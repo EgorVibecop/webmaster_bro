@@ -1,5 +1,9 @@
 ---
+import '@fontsource-variable/manrope';
 import '../styles/global.css';
+import '../styles/pages.css';
+import fontCyrillic from '@fontsource-variable/manrope/files/manrope-cyrillic-wght-normal.woff2?url';
+import fontLatin from '@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url';
 
 interface Props {
   title: string;
@@ -22,8 +26,8 @@ const ogImage = new URL(image, site).href;
 const csp = [
   "default-src 'self'",
   "script-src 'self'",
-  "style-src 'self' https://fonts.googleapis.com",
-  "font-src https://fonts.gstatic.com",
+  "style-src 'self'",
+  "font-src 'self' data:",
   "img-src 'self' data:",
   "connect-src 'self' https://*.workers.dev",
   "form-action 'self'",
@@ -63,9 +67,8 @@ const csp = [
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={ogImage} />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700&family=Work+Sans:wght@400;500;600&display=swap" />
+  <link rel="preload" href={fontCyrillic} as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href={fontLatin} as="font" type="font/woff2" crossorigin />
 
   <slot name="head" />
 </head>

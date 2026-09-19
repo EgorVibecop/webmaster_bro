@@ -1,39 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 import { FORM_ENDPOINT } from '../config.js';
-
-const services = [
-  {
-    icon: `<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="0.8" fill="currentColor"/>`,
-    title: 'Стратегия и анализ рынка',
-    desc: 'Ищем нишу, отбираем целевых клиентов через JTBD и оцениваем рынок с опорой на AI-модели и данные — а не только на экспертную интуицию.',
-  },
-  {
-    icon: `<line x1="4" y1="20" x2="20" y2="20"/><rect x="6" y="12" width="3" height="8"/><rect x="12" y="8" width="3" height="12"/><rect x="18" y="4" width="3" height="16"/>`,
-    title: 'Маркетинговые исследования',
-    desc: 'Объём рынка, доли конкурентов, портрет аудитории — когда решение затрагивает бюджет, а не только гипотезу.',
-  },
-  {
-    icon: `<path d="M12 3 20 7.5 20 16.5 12 21 4 16.5 4 7.5Z"/><path d="M4 7.5 12 12 20 7.5"/><line x1="12" y1="12" x2="12" y2="21"/>`,
-    title: 'Продуктовые исследования',
-    desc: 'Не типовой опрос по случайной панели: над проектом работают исследователи, которые разбираются в продукте, и ищут точки роста именно для вашей ситуации.',
-  },
-  {
-    icon: `<rect x="5" y="4" width="14" height="17" rx="1.5"/><path d="M9 3.5h6v2H9z"/><path d="M8.5 12.5 10.5 14.5 15.5 9.5"/>`,
-    title: 'Опросы CATI / CAWI',
-    desc: 'Телефонные и онлайн-опросы на репрезентативной выборке — от 100 до нескольких тысяч респондентов.',
-  },
-  {
-    icon: `<path d="M2 12C4.5 7 8 4.5 12 4.5s7.5 2.5 10 7.5c-2.5 5-6 7.5-10 7.5S4.5 17 2 12Z"/><circle cx="12" cy="12" r="3"/>`,
-    title: 'Юзабилити-тестирование',
-    desc: 'Смотрим, где реальный пользователь застревает в интерфейсе, и что с этим делать.',
-  },
-  {
-    icon: `<path d="M3 6.5c0-1.1.9-2 2-2h7c1.1 0 2 .9 2 2v5c0 1.1-.9 2-2 2H8l-3 2.5V13.5H5c-1.1 0-2-.9-2-2Z"/><path d="M13 9h6c1.1 0 2 .9 2 2v4c0 1.1-.9 2-2 2h-1v2.5L15 17h-2"/>`,
-    title: 'Кастдев и глубинные интервью',
-    desc: 'Разговариваем с 8–15 респондентами, когда вопрос не в цифрах, а в том, почему они так решают.',
-  },
-];
+import { services } from '../data/services.js';
 
 const process = [
   { title: 'Бриф и методология', desc: 'Обсуждаем задачу, предлагаем метод и выборку, фиксируем сроки и стоимость.' },
@@ -74,7 +44,7 @@ const jsonLd = {
         name: 'Услуги',
         itemListElement: services.map((s) => ({
           '@type': 'Offer',
-          itemOffered: { '@type': 'Service', name: s.title, description: s.desc },
+          itemOffered: { '@type': 'Service', name: s.title, description: s.desc, url: `${SITE}/uslugi/${s.slug}/` },
         })),
       },
     },
@@ -86,32 +56,7 @@ const jsonLd = {
   description={description}
 >
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-  <header class="site-header">
-    <div class="brand">
-      <div class="brand-row">
-        <svg width="30" height="24" viewBox="0 0 32 26" fill="none" stroke="var(--accent)" stroke-linecap="round" aria-hidden="true">
-          <path d="M2 6 Q9 1 16 6 T30 6" stroke-width="1.5"/>
-          <path d="M2 13 Q9 8 16 13 T30 13" stroke-width="1.5" opacity="0.65"/>
-          <path d="M2 20 Q9 15 16 20 T30 20" stroke-width="1.5" opacity="0.35"/>
-          <circle cx="9" cy="7" r="6" fill="var(--bg)" stroke-width="1.5"/>
-          <circle cx="9" cy="7" r="2" fill="none" stroke-width="1.3"/>
-          <path d="M6 12.2 L4 15" stroke-width="1.3"/>
-          <path d="M12 12.2 L14 15" stroke-width="1.3"/>
-        </svg>
-        <span class="brand-name">Baikal Research</span>
-      </div>
-      <span class="brand-tagline">Видим глубже</span>
-    </div>
-    <nav class="main-nav" aria-label="Основная навигация">
-      <a href="#services">Услуги</a>
-      <a href="#process">Как мы работаем</a>
-      <a href="#cases">Методология</a>
-      <a href="#contact">Контакты</a>
-    </nav>
-    <div class="header-cta">
-      <a class="btn btn-primary btn-sm" href="#contact">Обсудить задачу</a>
-    </div>
-  </header>
+  <SiteHeader />
 
   <main>
 
@@ -149,7 +94,7 @@ const jsonLd = {
             <h3>{s.title}</h3>
             <p>{s.desc}</p>
           </div>
-          <a class="svc-link" href="#contact" aria-label={`Обсудить задачу: ${s.title}`}>Подробнее →</a>
+          <a class="svc-link" href={`/uslugi/${s.slug}/`} aria-label={`Подробнее об услуге: ${s.title}`}>Подробнее →</a>
         </div>
       ))}
     </div>
@@ -288,16 +233,7 @@ const jsonLd = {
 
   </main>
 
-  <footer class="site-footer">
-    <div class="copyright">© 2026 Baikal Research. Все права защищены.</div>
-    <nav class="footer-nav" aria-label="Навигация в подвале">
-      <a href="#services">Услуги</a>
-      <a href="#process">Как мы работаем</a>
-      <a href="#cases">Методология</a>
-      <a href="#contact">Контакты</a>
-      <a href="/privacy/">Политика конфиденциальности</a>
-    </nav>
-  </footer>
+  <SiteFooter />
 
   <script is:inline src="/js/observation-glass.js" defer></script>
   <script is:inline src="/js/lead-form.js" defer></script>
