@@ -1,0 +1,352 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { FORM_ENDPOINT } from '../config.js';
+
+const services = [
+  {
+    icon: `<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="0.8" fill="currentColor"/>`,
+    title: 'Стратегия и анализ рынка',
+    desc: 'Ищем нишу, отбираем целевых клиентов через JTBD и оцениваем рынок с опорой на AI-модели и данные — а не только на экспертную интуицию.',
+  },
+  {
+    icon: `<line x1="4" y1="20" x2="20" y2="20"/><rect x="6" y="12" width="3" height="8"/><rect x="12" y="8" width="3" height="12"/><rect x="18" y="4" width="3" height="16"/>`,
+    title: 'Маркетинговые исследования',
+    desc: 'Объём рынка, доли конкурентов, портрет аудитории — когда решение затрагивает бюджет, а не только гипотезу.',
+  },
+  {
+    icon: `<path d="M12 3 20 7.5 20 16.5 12 21 4 16.5 4 7.5Z"/><path d="M4 7.5 12 12 20 7.5"/><line x1="12" y1="12" x2="12" y2="21"/>`,
+    title: 'Продуктовые исследования',
+    desc: 'Не типовой опрос по случайной панели: над проектом работают исследователи, которые разбираются в продукте, и ищут точки роста именно для вашей ситуации.',
+  },
+  {
+    icon: `<rect x="5" y="4" width="14" height="17" rx="1.5"/><path d="M9 3.5h6v2H9z"/><path d="M8.5 12.5 10.5 14.5 15.5 9.5"/>`,
+    title: 'Опросы CATI / CAWI',
+    desc: 'Телефонные и онлайн-опросы на репрезентативной выборке — от 100 до нескольких тысяч респондентов.',
+  },
+  {
+    icon: `<path d="M2 12C4.5 7 8 4.5 12 4.5s7.5 2.5 10 7.5c-2.5 5-6 7.5-10 7.5S4.5 17 2 12Z"/><circle cx="12" cy="12" r="3"/>`,
+    title: 'Юзабилити-тестирование',
+    desc: 'Смотрим, где реальный пользователь застревает в интерфейсе, и что с этим делать.',
+  },
+  {
+    icon: `<path d="M3 6.5c0-1.1.9-2 2-2h7c1.1 0 2 .9 2 2v5c0 1.1-.9 2-2 2H8l-3 2.5V13.5H5c-1.1 0-2-.9-2-2Z"/><path d="M13 9h6c1.1 0 2 .9 2 2v4c0 1.1-.9 2-2 2h-1v2.5L15 17h-2"/>`,
+    title: 'Кастдев и глубинные интервью',
+    desc: 'Разговариваем с 8–15 респондентами, когда вопрос не в цифрах, а в том, почему они так решают.',
+  },
+];
+
+const process = [
+  { title: 'Бриф и методология', desc: 'Обсуждаем задачу, предлагаем метод и выборку, фиксируем сроки и стоимость.' },
+  { title: 'Сбор данных', desc: 'CATI/CAWI-опрос, интервью или тестирование по согласованному сценарию.' },
+  { title: 'Анализ', desc: 'Считаем статистику, проверяем данные на артефакты выборки, ищем закономерности.' },
+  { title: 'Отчёт с рекомендациями', desc: 'Конкретные шаги для бизнеса, а не сырые данные без выводов.' },
+];
+---
+<BaseLayout
+  title="Baikal Research — исследования и бизнес-консалтинг"
+  description="Маркетинговые и продуктовые исследования, опросы CATI/CAWI, юзабилити-тестирование и кастдев-интервью. Стратегия и анализ рынка на данных, а не на интуиции."
+>
+  <header class="site-header">
+    <div class="brand">
+      <div class="brand-row">
+        <svg width="30" height="24" viewBox="0 0 32 26" fill="none" stroke="var(--accent)" stroke-linecap="round" aria-hidden="true">
+          <path d="M2 6 Q9 1 16 6 T30 6" stroke-width="1.5"/>
+          <path d="M2 13 Q9 8 16 13 T30 13" stroke-width="1.5" opacity="0.65"/>
+          <path d="M2 20 Q9 15 16 20 T30 20" stroke-width="1.5" opacity="0.35"/>
+          <circle cx="9" cy="7" r="6" fill="var(--bg)" stroke-width="1.5"/>
+          <circle cx="9" cy="7" r="2" fill="none" stroke-width="1.3"/>
+          <path d="M6 12.2 L4 15" stroke-width="1.3"/>
+          <path d="M12 12.2 L14 15" stroke-width="1.3"/>
+        </svg>
+        <span class="brand-name">Baikal Research</span>
+      </div>
+      <span class="brand-tagline">Видим глубже</span>
+    </div>
+    <nav class="main-nav">
+      <a href="#services">Услуги</a>
+      <a href="#process">Как мы работаем</a>
+      <a href="#cases">Методология</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+    <div class="header-cta">
+      <a class="btn btn-primary btn-sm" href="#contact">Обсудить задачу</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Исследования и бизнес-консалтинг</div>
+    <h1>Данные, которые превращаются в стратегию, а не остаются таблицей с цифрами</h1>
+    <p class="lead">Проводим маркетинговые и продуктовые исследования, опросы, юзабилити-тесты и кастдев-интервью — и отдаём не таблицу с цифрами, а конкретные рекомендации к сроку, о котором договорились на старте.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#contact">Обсудить задачу</a>
+      <a class="btn btn-ghost" href="#cases">Смотреть методологию</a>
+    </div>
+    <div class="trust-line">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6"/></svg>
+      Работаем по стандартам, принятым в отрасли исследований — ESOMAR, ISO 20252
+    </div>
+  </section>
+
+  <div class="wave-divider">
+    <svg width="100%" height="26" viewBox="0 0 1440 26" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 13 Q60 2 120 13 T240 13 T360 13 T480 13 T600 13 T720 13 T840 13 T960 13 T1080 13 T1200 13 T1320 13 T1440 13" fill="none" stroke="var(--accent)" stroke-width="1.5" opacity="0.35"/>
+    </svg>
+  </div>
+
+  <section id="services" class="services dot-field">
+    <div class="section-head">
+      <div class="eyebrow">Услуги</div>
+      <h2>От стратегии до количественных данных — закрываем вопрос целиком</h2>
+    </div>
+    <div class="svc-list">
+      {services.map((s, i) => (
+        <div class="svc-row">
+          <div class="svc-index">{String(i + 1).padStart(2, '0')}</div>
+          <svg class="svc-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={s.icon} />
+          <div class="svc-body">
+            <h3>{s.title}</h3>
+            <p>{s.desc}</p>
+          </div>
+          <a class="svc-link" href="#contact">Подробнее →</a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section id="process" class="process">
+    <div class="section-head">
+      <div class="eyebrow">Процесс</div>
+      <h2>Из брифа — в решение за понятный срок</h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline-line"></div>
+      <div class="timeline-row">
+        {process.map((step, i) => (
+          <div class:list={['timeline-item', { 'is-active': i === 0 }]}>
+            <div class="timeline-num">{String(i + 1).padStart(2, '0')}</div>
+            <h3>{step.title}</h3>
+            <p>{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="approach dot-field">
+    <div class="eyebrow-row">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6"/></svg>
+      <div class="eyebrow">Как мы считаем выборку</div>
+    </div>
+    <h2>Не продаём объём — предлагаем то, что реально нужно для задачи</h2>
+    <p>Не растягиваем исследование до 100 интервью или опроса на 10 000 человек, если задаче хватает меньшего. Предлагаем методику и размер выборки исходя из бюджета и того, что нужно узнать, — а не из прайса.</p>
+  </section>
+
+  <section id="cases" class="cases">
+    <div class="section-head">
+      <div class="eyebrow">Как это устроено</div>
+      <h2>Не просто цифры — мы наблюдаем за реальным поведением</h2>
+      <p>Смотрим на бизнес через призму клиента и сверяем это с реальной аналитикой — а не полагаемся на одну сторону. Долистайте до этого блока — зеркало откроется само, когда секция окажется на экране.</p>
+    </div>
+
+    <div class="cases-grid">
+      <div id="observation-room" class="observation-room">
+        <div class="observation-scene">
+          <svg viewBox="0 0 400 260" width="70%" style="max-width:340px" aria-hidden="true">
+            <line x1="90" y1="190" x2="310" y2="190" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="130" cy="110" r="26" fill="none" stroke="var(--ink)" stroke-width="2"/>
+            <path d="M90 190 Q90 140 130 140 Q170 140 170 190" fill="none" stroke="var(--ink)" stroke-width="2"/>
+            <rect x="105" y="165" width="30" height="20" rx="2" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+            <circle cx="280" cy="105" r="26" fill="none" stroke="var(--ink)" stroke-width="2"/>
+            <path d="M240 190 Q240 138 280 138 Q320 138 320 190" fill="none" stroke="var(--ink)" stroke-width="2"/>
+            <path d="M300 68 q18 -6 22 10 q3 14 -12 16 l4 10 l-12 -8 q-14 -4 -12 -16 q2 -10 10 -12Z" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="observation-caption">Комната наблюдения · юзабилити-тест / фокус-группа</div>
+        <div class="mirror-panel mirror-panel-left"></div>
+        <div class="mirror-panel mirror-panel-right"></div>
+        <div class="mirror-label">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#9FB2C2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12C4.5 7 8 4.5 12 4.5s7.5 2.5 10 7.5c-2.5 5-6 7.5-10 7.5S4.5 17 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+          <span style="font-size:13px; color:#9FB2C2;">Так респондент видит зеркало</span>
+        </div>
+      </div>
+
+      <div class="nps-card">
+        <div class="label">Иллюстративный пример</div>
+        <div id="nps-number" class="nps-number">5</div>
+        <div class="headline">Так может расти NPS после внедрения рекомендаций из отчёта</div>
+        <div class="fine-print">Один цикл: исследование → рекомендации → изменения в продукте или сервисе. Цифра иллюстративная — показывает логику, а не заявленный результат.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="contact-grid">
+      <div class="contact-form-col">
+        <div>
+          <div class="eyebrow">Контакты</div>
+          <h2>Расскажите о задаче — предложим метод и сроки</h2>
+        </div>
+        <form class="form-grid" id="lead-form" name="brief" data-endpoint={FORM_ENDPOINT}>
+          <div>
+            <label class="field-label" for="f-name">Имя <span class="req">*</span></label>
+            <input class="field" id="f-name" name="name" type="text" placeholder="Как к вам обращаться" required />
+          </div>
+          <div>
+            <label class="field-label" for="f-company">Компания</label>
+            <input class="field" id="f-company" name="company" type="text" placeholder="Название компании" />
+          </div>
+          <div>
+            <label class="field-label" for="f-email">Email <span class="req">*</span></label>
+            <input class="field" id="f-email" name="email" type="email" placeholder="you@company.ru" required />
+          </div>
+          <div>
+            <label class="field-label" for="f-phone">Телефон</label>
+            <input class="field" id="f-phone" name="phone" type="tel" placeholder="+7 (___) ___-__-__" />
+          </div>
+          <div class="full">
+            <label class="field-label" for="f-service">Тип услуги</label>
+            <select class="field" id="f-service" name="service">
+              <option>Маркетинговое исследование</option>
+              <option>Продуктовое исследование</option>
+              <option>Опрос CATI / CAWI</option>
+              <option>Юзабилити-тестирование</option>
+              <option>Кастдев-интервью</option>
+              <option>Пока не знаю, нужна консультация</option>
+            </select>
+          </div>
+          <div class="full">
+            <label class="field-label" for="f-message">Коротко о задаче</label>
+            <textarea class="field" id="f-message" name="message" rows="4" placeholder="Что нужно узнать и к какому сроку"></textarea>
+          </div>
+          <div class="hp" aria-hidden="true">
+            <label>Не заполняйте это поле <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+          </div>
+          <div class="full">
+            <label class="consent">
+              <input type="checkbox" name="consent" required />
+              <span>Даю согласие на обработку персональных данных в соответствии с <a href="/privacy" target="_blank" rel="noopener">Политикой обработки персональных данных</a> <span class="req">*</span></span>
+            </label>
+          </div>
+          <div class="full submit-row">
+            <button class="btn btn-primary" type="submit">Обсудить задачу</button>
+            <div class="required-note"><span class="req">*</span> — обязательные поля, остальное по желанию</div>
+          </div>
+          <div class="full form-status" id="form-status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+
+      <div class="contact-card">
+        <div>
+          <div class="label">Телефон</div>
+          <a class="phone-link" href="tel:+79774437588">+7 977 443-75-88</a>
+        </div>
+        <div class="divider"></div>
+        <div>
+          <div class="label">Email</div>
+          <div class="value">[email@baikalresearch.ru]</div>
+        </div>
+        <div class="divider"></div>
+        <div>
+          <div class="label">Telegram</div>
+          <div class="value">[@username]</div>
+        </div>
+        <div class="divider"></div>
+        <div>
+          <div class="label">Город</div>
+          <div class="value">[Город]</div>
+        </div>
+        <div class="fine-print">Отвечаем на заявки в течение одного рабочего дня.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="copyright">© 2026 Baikal Research. Все права защищены.</div>
+    <div class="footer-nav">
+      <a href="#services">Услуги</a>
+      <a href="#process">Как мы работаем</a>
+      <a href="#cases">Методология</a>
+      <a href="#contact">Контакты</a>
+      <a href="/privacy">Политика конфиденциальности</a>
+    </div>
+  </footer>
+
+  <script>
+    const room = document.getElementById('observation-room');
+    const npsEl = document.getElementById('nps-number');
+    if (room && npsEl && 'IntersectionObserver' in window) {
+      let triggered = false;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !triggered) {
+            triggered = true;
+            room.querySelectorAll('.mirror-panel, .mirror-label').forEach((el) => el.classList.add('revealed'));
+            const steps = [6, 7, 8, 9];
+            let i = 0;
+            const tick = () => {
+              if (i >= steps.length) return;
+              npsEl.textContent = String(steps[i]);
+              i += 1;
+              if (i < steps.length) setTimeout(tick, 450);
+            };
+            setTimeout(tick, 600);
+            observer.unobserve(room);
+          }
+        });
+      }, { threshold: 0.45 });
+      observer.observe(room);
+    }
+  </script>
+
+  <script>
+    const form = document.getElementById('lead-form');
+    const statusEl = document.getElementById('form-status');
+    if (form && statusEl) {
+      const button = form.querySelector('button[type="submit"]');
+      const setStatus = (text, kind) => {
+        statusEl.textContent = text;
+        statusEl.className = 'full form-status' + (kind ? ' is-' + kind : '');
+      };
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const endpoint = form.dataset.endpoint;
+        const fallback = 'Не удалось отправить заявку. Позвоните нам: +7 977 443-75-88.';
+        if (!endpoint) {
+          setStatus(fallback, 'error');
+          return;
+        }
+        const fd = new FormData(form);
+        const payload = {
+          name: fd.get('name'),
+          company: fd.get('company'),
+          email: fd.get('email'),
+          phone: fd.get('phone'),
+          service: fd.get('service'),
+          message: fd.get('message'),
+          website: fd.get('website'),
+          consent: form.elements.consent.checked,
+        };
+        button.disabled = true;
+        setStatus('Отправляем…', '');
+        try {
+          const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+          const data = await res.json().catch(() => ({}));
+          if (res.ok && data.ok) {
+            form.reset();
+            setStatus('Спасибо! Заявка отправлена, мы ответим в течение рабочего дня.', 'ok');
+          } else {
+            setStatus(fallback, 'error');
+          }
+        } catch {
+          setStatus(fallback, 'error');
+        } finally {
+          button.disabled = false;
+        }
+      });
+    }
+  </script>
+</BaseLayout>
