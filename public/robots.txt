@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://baikalresearch.ru/sitemap-index.xml
