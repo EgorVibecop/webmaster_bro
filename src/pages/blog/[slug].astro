@@ -18,6 +18,8 @@ const SITE = 'https://baikalresearch.ru';
 const url = `${SITE}/blog/${post.slug}/`;
 const fmt = (d: Date) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
 const minutes = Math.max(1, Math.round(post.body.split(/\s+/).length / 200));
+const withBrand = `${data.title} — Baikal Research`;
+const pageTitle = withBrand.length <= 65 ? withBrand : data.title;
 const service = data.service ? bySlug(data.service) : undefined;
 
 const all = (await getCollection('blog')).filter((p) => p.slug !== post.slug);
@@ -59,7 +61,7 @@ if (data.faq.length) {
 const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
 ---
 <BaseLayout
-  title={`${data.title} — Baikal Research`}
+  title={pageTitle}
   description={data.description}
   ogType="article"
   publishedTime={data.date.toISOString()}
