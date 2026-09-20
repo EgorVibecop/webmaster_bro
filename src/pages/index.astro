@@ -61,16 +61,10 @@ const jsonLd = {
   <main>
 
   <section class="hero">
-    <div class="eyebrow">Исследования и бизнес-консалтинг</div>
     <h1>Данные, которые превращаются в стратегию, а не остаются таблицей с цифрами</h1>
-    <p class="lead">Проводим маркетинговые и продуктовые исследования, опросы, юзабилити-тесты и кастдев-интервью — и отдаём не таблицу с цифрами, а конкретные рекомендации к сроку, о котором договорились на старте.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="#contact">Обсудить задачу</a>
       <a class="btn btn-ghost" href="#cases">Смотреть методологию</a>
-    </div>
-    <div class="trust-line">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6"/></svg>
-      Работаем по стандартам отрасли — ESOMAR, ISO 20252
     </div>
   </section>
 
@@ -84,6 +78,7 @@ const jsonLd = {
     <div class="section-head">
       <div class="eyebrow">Услуги</div>
       <h2>От стратегии до количественных данных — закрываем вопрос целиком</h2>
+      <p>Проводим маркетинговые и продуктовые исследования, опросы, юзабилити-тесты и кастдев-интервью — и отдаём не таблицу с цифрами, а конкретные рекомендации к сроку, о котором договорились на старте.</p>
     </div>
     <div class="svc-list">
       {services.map((s, i) => (
@@ -122,6 +117,10 @@ const jsonLd = {
   <section class="approach dot-field">
     <h2>Не продаём объём — предлагаем то, что реально нужно для задачи</h2>
     <p>Не растягиваем исследование до 100 интервью или опроса на 10 000 человек, если задаче хватает меньшего. Предлагаем методику и размер выборки исходя из бюджета и того, что нужно узнать, — а не из прайса.</p>
+    <div class="trust-line">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6"/></svg>
+      Работаем по стандартам отрасли — ESOMAR, ISO 20252
+    </div>
   </section>
 
   <section id="cases" class="cases">
@@ -139,13 +138,13 @@ const jsonLd = {
       </div>
 
       <div class="nps-card">
-        <div class="nps-scale" role="img" aria-label="NPS вырос с 6 до 9">
-          <span class="nps-from">6</span>
+        <div class="nps-scale" role="img" aria-label="NPS вырос с плюс 18 до плюс 42">
+          <span class="nps-from">+18</span>
           <svg class="nps-arrow" width="72" height="44" viewBox="0 0 64 40" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h54M42 6l16 14-16 14"/></svg>
-          <span class="nps-to">9</span>
+          <span class="nps-to">+42</span>
         </div>
         <div class="headline">Так может расти NPS после внедрения рекомендаций из отчёта</div>
-        <div class="fine-print">Один цикл: исследование → рекомендации → изменения в продукте или сервисе.</div>
+        <div class="fine-print">NPS = доля промоутеров (оценки 9–10) минус доля критиков (0–6), шкала от −100 до +100.</div>
       </div>
     </div>
   </section>

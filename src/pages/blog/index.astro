@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+
+const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const fmt = (d: Date) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+const minutes = (body: string) => Math.max(1, Math.round(body.split(/\s+/).length / 200));
+---
+<BaseLayout
+  title="Блог об исследованиях — Baikal Research"
+  description="Практические материалы об исследованиях: как рассчитать выборку, выбрать метод опроса, провести юзабилити-тест и превратить данные в решения."
+>
+  <SiteHeader />
+  <main class="page">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки">
+      <a href="/">Главная</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Блог</span>
+    </nav>
+    <h1>Блог об исследованиях</h1>
+    <p class="lead">Практические материалы о том, как проводить исследования и принимать по ним решения: выборка, методы, юзабилити, интервью.</p>
+
+    <div class="post-list">
+      {posts.map((post) => (
+        <article class="post-card">
+          <div class="post-meta">
+            <time datetime={post.data.date.toISOString()}>{fmt(post.data.date)}</time>
+            <span aria-hidden="true">·</span>
+            <span>{minutes(post.body)} мин чтения</span>
+          </div>
+          <h2><a href={`/blog/${post.slug}/`}>{post.data.title}</a></h2>
+          <p>{post.data.description}</p>
+        </article>
+      ))}
+    </div>
+  </main>
+  <SiteFooter />
+</BaseLayout>
