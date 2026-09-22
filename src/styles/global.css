@@ -256,7 +256,7 @@ img, svg { display: block; max-width: 100%; }
 
 /* Contact */
 .contact { background: var(--bg-alt); padding: clamp(56px, 8vw, 96px) var(--gutter); }
-.contact-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: stretch; }
+.contact-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: start; }
 .contact-form-col { display: flex; flex-direction: column; gap: 28px; }
 .contact-form-col h2 { font-weight: 600; font-size: var(--fs-h2); line-height: 1.25; margin-top: 14px; }
 .contact-subheading { font-size: var(--fs-body); line-height: 1.55; color: var(--ink-soft); margin-top: 12px; max-width: 52ch; }
@@ -296,11 +296,14 @@ img, svg { display: block; max-width: 100%; }
 .contact-card .label { font-size: 13px; color: var(--dark-label); margin-bottom: 8px; }
 .contact-card .value { color: var(--bg); font-size: 16px; }
 .contact-card a.value:hover { color: var(--accent); }
-.contact-card .phone-link { color: var(--bg); font-size: 22px; font-family: var(--font); font-weight: 600; }
+.contact-card .phone-link {
+  color: var(--bg); font-size: 22px; font-family: var(--font); font-weight: 600;
+  /* Убирает цветную кайму на жирном тексте на тёмном фоне — известный баг
+     субпиксельного сглаживания в Chrome/Windows, лечится принудительным слоем. */
+  transform: translateZ(0);
+}
 .contact-card .divider { height: 1px; background: var(--dark-line); }
-/* Карточка растянута по высоте формы (align-items: stretch у .contact-grid);
-   разница уходит одним отступом перед подписью, а не расползается между полями. */
-.contact-card .fine-print { margin-top: auto; padding-top: 6px; font-size: 14px; line-height: 1.5; color: var(--dark-text); }
+.contact-card .fine-print { margin-top: 6px; font-size: 14px; line-height: 1.5; color: var(--dark-text); }
 
 /* Мобильная панель быстрой связи */
 .mobile-action-bar { display: none; }
