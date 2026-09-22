@@ -1,3 +1,9 @@
+---
+interface Props {
+  contactHref?: string;
+}
+const { contactHref = '/#contact' } = Astro.props;
+---
 <header class="site-header" id="site-header" data-nav-open="false">
   <a class="brand" href="/" aria-label="Baikal Research — на главную">
     <div class="brand-row">
@@ -22,10 +28,10 @@
     <a href="/#process">Как мы работаем</a>
     <a href="/#cases">Методология</a>
     <a href="/blog/">Блог</a>
-    <a href="/#contact">Контакты</a>
+    <a href={contactHref}>Контакты</a>
   </nav>
   <div class="header-cta">
-    <a class="btn btn-primary btn-sm" href="/#contact">Обсудить задачу</a>
+    <a class="btn btn-primary btn-sm" href={contactHref}>Обсудить задачу</a>
   </div>
 </header>
 <script is:inline src="/js/nav-toggle.js" defer></script>

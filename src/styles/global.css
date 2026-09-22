@@ -259,6 +259,7 @@ img, svg { display: block; max-width: 100%; }
 .contact-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: stretch; }
 .contact-form-col { display: flex; flex-direction: column; gap: 28px; }
 .contact-form-col h2 { font-weight: 600; font-size: var(--fs-h2); line-height: 1.25; margin-top: 14px; }
+.contact-subheading { font-size: var(--fs-body); line-height: 1.55; color: var(--ink-soft); margin-top: 12px; max-width: 52ch; }
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .form-grid .full { grid-column: 1 / -1; }
 .field-label { font-size: 13px; color: var(--ink-soft); margin-bottom: 6px; display: block; }
@@ -300,6 +301,36 @@ img, svg { display: block; max-width: 100%; }
 /* Карточка растянута по высоте формы (align-items: stretch у .contact-grid);
    разница уходит одним отступом перед подписью, а не расползается между полями. */
 .contact-card .fine-print { margin-top: auto; padding-top: 6px; font-size: 14px; line-height: 1.5; color: var(--dark-text); }
+
+/* Мобильная панель быстрой связи */
+.mobile-action-bar { display: none; }
+@media (max-width: 640px) {
+  .mobile-action-bar {
+    display: flex;
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 40;
+    gap: 1px;
+    padding: 8px;
+    padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+    background: var(--bg);
+    border-top: 1px solid var(--line);
+    box-shadow: 0 -4px 16px rgba(16, 28, 43, 0.06);
+  }
+  .mobile-action-bar-btn {
+    flex: 1;
+    text-align: center;
+    padding: 12px 10px;
+    border-radius: 5px;
+    font-size: var(--fs-small);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .mobile-action-bar-btn.is-ghost { background: var(--bg-alt); color: var(--ink); }
+  .mobile-action-bar-btn.is-primary { background: var(--accent-text); color: var(--accent-ink); }
+  /* Место под панелью, чтобы она не перекрывала последний блок страницы. */
+  body { padding-bottom: 64px; }
+}
 
 /* Responsive */
 @media (max-width: 880px) {

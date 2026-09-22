@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
+import ContactBlock from '../../components/ContactBlock.astro';
 import { bySlug } from '../../data/services.js';
 
 export async function getStaticPaths() {
@@ -67,7 +68,7 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
   publishedTime={data.date.toISOString()}
 >
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-  <SiteHeader />
+  <SiteHeader contactHref="#contact" />
 
   <main class="page article">
     <nav class="breadcrumbs" aria-label="Хлебные крошки">
@@ -101,13 +102,11 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
       </>
     )}
 
-    <section class="cta-band" aria-labelledby="cta-title">
-      <div>
-        <h2 id="cta-title">{service ? service.title : 'Расскажите о задаче'}</h2>
-        <p>Предложим метод, выборку и сроки под вашу задачу и бюджет. Цену называем до начала работ.</p>
-      </div>
-      <a class="btn btn-primary" href={service ? `/uslugi/${service.slug}/` : '/#contact'}>{service ? 'Подробнее об услуге' : 'Обсудить задачу'}</a>
-    </section>
+    {service && (
+      <p class="article-service-link">
+        Эта статья относится к услуге «<a href={`/uslugi/${service.slug}/`}>{service.title}</a>».
+      </p>
+    )}
 
     {related.length > 0 && (
       <>
@@ -124,5 +123,10 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
     )}
   </main>
 
-  <SiteFooter />
+  <ContactBlock
+    heading="Расскажите о своей задаче"
+    subheading="Предложим метод, выборку и сроки под вашу задачу и бюджет. Цену называем до начала работ."
+    presetService={service?.title}
+  />
+  <SiteFooter contactHref="#contact" />
 </BaseLayout>
