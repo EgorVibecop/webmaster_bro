@@ -82,15 +82,15 @@ const jsonLd = {
     </div>
     <div class="svc-list">
       {services.map((s, i) => (
-        <div class="svc-row">
+        <a class="svc-row" href={`/uslugi/${s.slug}/`} aria-label={`Подробнее об услуге: ${s.title}`}>
           <div class="svc-index">{String(i + 1).padStart(2, '0')}</div>
           <svg class="svc-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={s.icon} />
           <div class="svc-body">
             <h3>{s.title}</h3>
             <p>{s.desc}</p>
           </div>
-          <a class="svc-link" href={`/uslugi/${s.slug}/`} aria-label={`Подробнее об услуге: ${s.title}`}>Подробнее →</a>
-        </div>
+          <svg class="svc-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
       ))}
     </div>
   </section>
@@ -104,7 +104,7 @@ const jsonLd = {
       <div class="timeline-line"></div>
       <div class="timeline-row">
         {process.map((step, i) => (
-          <div class:list={['timeline-item', { 'is-active': i === 0 }]}>
+          <div class="timeline-item">
             <div class="timeline-num">{String(i + 1).padStart(2, '0')}</div>
             <h3>{step.title}</h3>
             <p>{step.desc}</p>
