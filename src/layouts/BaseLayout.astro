@@ -2,6 +2,7 @@
 import '@fontsource-variable/manrope';
 import '../styles/global.css';
 import '../styles/pages.css';
+import MobileActionBar from '../components/MobileActionBar.astro';
 import fontCyrillic from '@fontsource-variable/manrope/files/manrope-cyrillic-wght-normal.woff2?url';
 import fontLatin from '@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url';
 
@@ -77,5 +78,6 @@ const csp = [
 </head>
 <body>
   <slot />
+  <MobileActionBar />
 </body>
 </html>

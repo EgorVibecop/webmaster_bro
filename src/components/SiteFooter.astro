@@ -1,19 +1,31 @@
 ---
 import { services } from '../data/services.js';
+
+interface Props {
+  contactHref?: string;
+}
+const { contactHref = '/#contact' } = Astro.props;
 ---
 <footer class="site-footer">
-  <div class="footer-top">
-    <div class="copyright">© 2026 Baikal Research. Все права защищены.</div>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <span class="footer-brand-name">Baikal Research</span>
+      <div class="footer-contacts">
+        <a href="tel:+79774437588">+7 977 443-75-88</a>
+        <a href="https://t.me/wowtsap" target="_blank" rel="noopener">Telegram: @wowtsap</a>
+      </div>
+    </div>
     <nav class="footer-nav" aria-label="Навигация в подвале">
       <a href="/#services">Услуги</a>
       <a href="/#process">Как мы работаем</a>
       <a href="/#cases">Методология</a>
       <a href="/blog/">Блог</a>
-      <a href="/#contact">Контакты</a>
+      <a href={contactHref}>Контакты</a>
       <a href="/privacy/">Политика конфиденциальности</a>
     </nav>
   </div>
   <nav class="footer-services" aria-label="Все услуги">
     {services.map((s) => <a href={`/uslugi/${s.slug}/`}>{s.title}</a>)}
   </nav>
+  <div class="copyright">© 2026 Baikal Research. Все права защищены.</div>
 </footer>

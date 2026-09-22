@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import { FORM_ENDPOINT } from '../config.js';
+import ContactBlock from '../components/ContactBlock.astro';
 import { services } from '../data/services.js';
 
 const process = [
@@ -149,81 +149,11 @@ const jsonLd = {
     </div>
   </section>
 
-  <section id="contact" class="contact">
-    <div class="contact-grid">
-      <div class="contact-form-col">
-        <div>
-          <div class="eyebrow">Контакты</div>
-          <h2>Расскажите о задаче — предложим метод и сроки</h2>
-        </div>
-        <form class="form-grid" id="lead-form" name="brief" data-endpoint={FORM_ENDPOINT}>
-          <div>
-            <label class="field-label" for="f-name">Имя <span class="req">*</span></label>
-            <input class="field" id="f-name" name="name" type="text" autocomplete="name" maxlength="100" placeholder="Как к вам обращаться" required />
-          </div>
-          <div>
-            <label class="field-label" for="f-company">Компания</label>
-            <input class="field" id="f-company" name="company" type="text" autocomplete="organization" maxlength="150" placeholder="Название компании" />
-          </div>
-          <div>
-            <label class="field-label" for="f-email">Email <span class="req">*</span></label>
-            <input class="field" id="f-email" name="email" type="email" autocomplete="email" maxlength="150" placeholder="you@company.ru" required />
-          </div>
-          <div>
-            <label class="field-label" for="f-phone">Телефон</label>
-            <input class="field" id="f-phone" name="phone" type="tel" autocomplete="tel" maxlength="50" placeholder="+7 (___) ___-__-__" />
-          </div>
-          <div class="full">
-            <label class="field-label" for="f-service">Тип услуги</label>
-            <select class="field" id="f-service" name="service">
-              <option>Маркетинговое исследование</option>
-              <option>Продуктовое исследование</option>
-              <option>Опрос CATI / CAWI</option>
-              <option>Юзабилити-тестирование</option>
-              <option>Кастдев-интервью</option>
-              <option>Пока не знаю, нужна консультация</option>
-            </select>
-          </div>
-          <div class="full">
-            <label class="field-label" for="f-message">Коротко о задаче</label>
-            <textarea class="field" id="f-message" name="message" rows="4" maxlength="2000" placeholder="Что нужно узнать и к какому сроку"></textarea>
-          </div>
-          <div class="hp" aria-hidden="true">
-            <label>Не заполняйте это поле <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
-          </div>
-          <div class="full">
-            <label class="consent">
-              <input type="checkbox" name="consent" required />
-              <span>Даю согласие на обработку персональных данных в соответствии с <a href="/privacy/" target="_blank" rel="noopener">Политикой обработки персональных данных</a> <span class="req">*</span></span>
-            </label>
-          </div>
-          <div class="full submit-row">
-            <button class="btn btn-primary" type="submit">Обсудить задачу</button>
-            <div class="required-note"><span class="req">*</span> — обязательные поля, остальное по желанию</div>
-          </div>
-          <div class="full form-status" id="form-status" role="status" aria-live="polite"></div>
-        </form>
-      </div>
-
-      <div class="contact-card">
-        <div>
-          <div class="label">Телефон</div>
-          <a class="phone-link" href="tel:+79774437588">+7 977 443-75-88</a>
-        </div>
-        <div class="divider"></div>
-        <div>
-          <div class="label">Telegram</div>
-          <a class="value" href="https://t.me/wowtsap" target="_blank" rel="noopener">@wowtsap</a>
-        </div>
-        <div class="fine-print">Отвечаем на заявки в течение одного рабочего дня.</div>
-      </div>
-    </div>
-  </section>
+  <ContactBlock />
 
   </main>
 
   <SiteFooter />
 
   <script is:inline src="/js/observation-glass.js" defer></script>
-  <script is:inline src="/js/lead-form.js" defer></script>
 </BaseLayout>
