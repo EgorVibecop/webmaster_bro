@@ -114,7 +114,7 @@ const jsonLd = {
         <div class="post-list">
           {posts.map((p) => (
             <article class="post-card">
-              <h3><a href={`/blog/${p.slug}/`}>{p.data.title}</a></h3>
+              <h3><a href={`/blog/${p.id}/`}>{p.data.title}</a></h3>
               <p>{p.data.description}</p>
             </article>
           ))}
