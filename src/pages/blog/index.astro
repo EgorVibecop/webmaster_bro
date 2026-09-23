@@ -24,7 +24,7 @@ const minutes = (body: string) => Math.max(1, Math.round(body.split(/\s+/).lengt
       {posts.map((post) => (
         <article class="post-card">
           <div class="post-meta">{minutes(post.body)} мин чтения</div>
-          <h2><a href={`/blog/${post.slug}/`}>{post.data.title}</a></h2>
+          <h2><a href={`/blog/${post.id}/`}>{post.data.title}</a></h2>
           <p>{post.data.description}</p>
         </article>
       ))}
