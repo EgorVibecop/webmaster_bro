@@ -6,7 +6,7 @@
 
   var button = form.querySelector('button[type="submit"]');
   var openedAt = Date.now();
-  var FALLBACK = 'Не удалось отправить заявку. Позвоните нам: +7 977 443-75-88 или напишите в Telegram: @wowtsap.';
+  var FALLBACK = 'Не удалось отправить заявку. Позвоните нам: +7 977 443-75-88 или напишите на baikalresearch@yandex.ru.';
 
   function setStatus(text, kind) {
     statusEl.textContent = text;
