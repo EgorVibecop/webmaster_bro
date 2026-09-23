@@ -26,13 +26,17 @@ const ogImage = new URL(image, site).href;
 // Политика безопасности через meta (GitHub Pages не даёт задавать HTTP-заголовки).
 // Только в боевой сборке: в режиме разработки она мешает горячей перезагрузке.
 // connect-src: адрес функции приёма заявок (*.workers.dev), при своём домене для неё добавить его сюда.
+// frame-src — только под GTM-контейнер, для его noscript-iframe.
+// GTM сам грузит другие скрипты по настройке в его панели; при добавлении
+// там нового тега может понадобиться открыть его домен здесь же.
 const csp = [
   "default-src 'self'",
-  "script-src 'self' https://mc.yandex.ru",
+  "script-src 'self' https://mc.yandex.ru https://www.googletagmanager.com",
   "style-src 'self'",
   "font-src 'self' data:",
   "img-src 'self' data: https://mc.yandex.ru",
-  "connect-src 'self' https://*.workers.dev https://mc.yandex.ru",
+  "connect-src 'self' https://*.workers.dev https://mc.yandex.ru https://www.googletagmanager.com",
+  "frame-src https://www.googletagmanager.com",
   "form-action 'self'",
   "base-uri 'self'",
   "object-src 'none'",
@@ -43,6 +47,7 @@ const csp = [
 <head>
   <meta charset="utf-8" />
   {import.meta.env.PROD && <meta http-equiv="Content-Security-Policy" content={csp} />}
+  <script is:inline src="/js/gtm.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title}</title>
   <meta name="description" content={description} />
@@ -77,6 +82,7 @@ const csp = [
   <slot name="head" />
 </head>
 <body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TTGMQCPB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <slot />
   <MobileActionBar />
   <script is:inline src="/js/metrika.js" defer></script>
