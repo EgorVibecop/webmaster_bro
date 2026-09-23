@@ -1,0 +1,66 @@
+name: Uptime check
+
+# Раз в 15 минут проверяет, что сайт отвечает. Сообщение в Telegram
+# приходит только при смене статуса — сайт упал или снова поднялся,
+# а не на каждую проверку, пока он лежит.
+#
+# Нужны два секрета в Settings → Secrets and variables → Actions этого
+# репозитория: TELEGRAM_BOT_TOKEN и TELEGRAM_CHAT_ID — те же значения,
+# что уже заведены в Cloudflare Worker (см. worker/README.md).
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Восстановить предыдущий статус
+        id: cache
+        uses: actions/cache/restore@v4
+        with:
+          path: .uptime-status
+          key: uptime-status-${{ github.run_id }}
+          restore-keys: |
+            uptime-status-
+
+      - name: Проверить сайт
+        id: ping
+        run: |
+          code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 https://baikalresearch.ru/ || echo "000")
+          now=$([ "$code" = "200" ] && echo "up" || echo "down")
+          prev=$(cat .uptime-status 2>/dev/null || echo "up")
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+          echo "now=$now" >> "$GITHUB_OUTPUT"
+          echo "changed=$([ "$now" != "$prev" ] && echo "true" || echo "false")" >> "$GITHUB_OUTPUT"
+          echo "$now" > .uptime-status
+
+      - name: Сообщить в Telegram о падении
+        if: steps.ping.outputs.changed == 'true' && steps.ping.outputs.now == 'down'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          STATUS_CODE: ${{ steps.ping.outputs.code }}
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            -d chat_id="${TELEGRAM_CHAT_ID}" \
+            -d text="⚠️ baikalresearch.ru не отвечает (код ${STATUS_CODE}). https://baikalresearch.ru/"
+
+      - name: Сообщить в Telegram о восстановлении
+        if: steps.ping.outputs.changed == 'true' && steps.ping.outputs.now == 'up'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            -d chat_id="${TELEGRAM_CHAT_ID}" \
+            -d text="✅ baikalresearch.ru снова отвечает."
+
+      - name: Сохранить статус
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: .uptime-status
+          key: uptime-status-${{ github.run_id }}
