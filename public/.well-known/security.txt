@@ -1,4 +1,4 @@
-Contact: https://t.me/wowtsap
+Contact: mailto:baikalresearch@yandex.ru
 Expires: 2027-09-19T00:00:00.000Z
 Preferred-Languages: ru, en
 Canonical: https://baikalresearch.ru/.well-known/security.txt
