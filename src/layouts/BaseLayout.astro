@@ -28,11 +28,11 @@ const ogImage = new URL(image, site).href;
 // connect-src: адрес функции приёма заявок (*.workers.dev), при своём домене для неё добавить его сюда.
 const csp = [
   "default-src 'self'",
-  "script-src 'self'",
+  "script-src 'self' https://mc.yandex.ru",
   "style-src 'self'",
   "font-src 'self' data:",
-  "img-src 'self' data:",
-  "connect-src 'self' https://*.workers.dev",
+  "img-src 'self' data: https://mc.yandex.ru",
+  "connect-src 'self' https://*.workers.dev https://mc.yandex.ru",
   "form-action 'self'",
   "base-uri 'self'",
   "object-src 'none'",
@@ -79,5 +79,7 @@ const csp = [
 <body>
   <slot />
   <MobileActionBar />
+  <script is:inline src="/js/metrika.js" defer></script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/112962064" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 </body>
 </html>
