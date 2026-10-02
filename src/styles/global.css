@@ -55,7 +55,7 @@ h1, h2, h3 { font-family: var(--font); margin: 0; text-wrap: balance; }
 h1, h2 { font-family: var(--font-display); }
 ::selection { background: var(--accent-text); color: #FFFFFF; }
 [id] { scroll-margin-top: 88px; }
-.svc-index, .nps-scale, .trust-line, .timeline-num, .hero-steps-num, time { font-variant-numeric: tabular-nums; }
+.svc-index, .nps-scale, .trust-line, .timeline-num, time { font-variant-numeric: tabular-nums; }
 p { margin: 0; text-wrap: pretty; }
 a { color: var(--accent-text); text-decoration: none; }
 a:hover { color: var(--ink); }
@@ -193,8 +193,6 @@ img, svg { display: block; max-width: 100%; }
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 .hero-inner {
-  max-width: var(--container);
-  margin: 0 auto;
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
   gap: clamp(32px, 5vw, 72px);
@@ -209,7 +207,7 @@ img, svg { display: block; max-width: 100%; }
 }
 .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
 
-/* Правая колонка: ход работы, те же четыре шага, что и в разделе ниже. */
+/* Правая колонка: задачи клиента со ссылками на подходящую услугу. */
 .hero-steps {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -217,12 +215,17 @@ img, svg { display: block; max-width: 100%; }
   padding: 28px;
 }
 .hero-steps-title { font-size: var(--fs-label); font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--on-night-soft); margin-bottom: 18px; }
-.hero-steps ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
-.hero-steps li { display: grid; grid-template-columns: 36px 1fr; gap: 14px; padding: 14px 0; border-top: 1px solid rgba(255, 255, 255, 0.1); }
-.hero-steps li:first-child { border-top: none; padding-top: 0; }
-.hero-steps-num { font-family: var(--font-mono); font-size: var(--fs-label); color: var(--on-night-soft); padding-top: 3px; }
-.hero-steps b { display: block; font-size: 17px; font-weight: 600; margin-bottom: 2px; }
-.hero-steps span.d { font-size: var(--fs-small); line-height: 1.5; color: var(--on-night-soft); }
+.hero-steps ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.hero-steps li { border-top: 1px solid rgba(255, 255, 255, 0.1); }
+.hero-steps li:first-child { border-top: none; }
+.hero-steps li a { display: block; padding: 14px 0; color: #FFFFFF; }
+.hero-steps li:first-child a { padding-top: 0; }
+.hero-steps li a:hover { color: #FFFFFF; }
+.hero-steps b { display: block; font-size: 17px; font-weight: 600; line-height: 1.35; margin-bottom: 4px; }
+.hero-steps .d { font-size: var(--fs-small); color: var(--on-night-soft); }
+.hero-steps .arr { display: inline-block; transition: transform .16s ease; }
+.hero-steps li a:hover .arr { transform: translateX(3px); }
+.hero-steps li a:hover .d { color: #FFFFFF; }
 .hero-steps-link { display: inline-block; margin-top: 18px; font-size: var(--fs-small); font-weight: 600; color: #FFFFFF; }
 .hero-steps-link:hover { color: #FFFFFF; }
 .hero-steps-link span { display: inline-block; transition: transform .16s ease; }
@@ -412,6 +415,5 @@ img, svg { display: block; max-width: 100%; }
   .form-grid { grid-template-columns: 1fr; }
   .svc-list { grid-template-columns: 1fr; }
   .svc-row { padding: 22px 20px; }
-  /* На телефоне те же четыре шага идут ниже в разделе «Процесс»: не дублируем. */
-  .hero-steps { display: none; }
+  .hero-steps { padding: 22px 20px; }
 }

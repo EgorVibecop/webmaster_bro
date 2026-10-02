@@ -12,6 +12,13 @@ const process = [
   { title: 'Отчёт с рекомендациями', desc: 'Конкретные шаги для бизнеса, а не сырые данные без выводов.' },
 ];
 
+const heroTasks = [
+  { q: 'Почему клиенты не покупают или уходят?', service: 'Кастдев и глубинные интервью', slug: 'custdev-glubinnye-intervyu' },
+  { q: 'Где пользователи застревают в интерфейсе?', service: 'Юзабилити-тестирование', slug: 'usability-testirovanie' },
+  { q: 'Каков объём рынка и кто конкуренты?', service: 'Маркетинговые исследования', slug: 'marketingovye-issledovaniya' },
+  { q: 'Сколько клиентов так думает, в процентах?', service: 'Опросы CATI / CAWI', slug: 'cati-cawi-oprosy' },
+];
+
 const SITE = 'https://baikalresearch.ru';
 const description = 'Маркетинговые и продуктовые исследования, опросы CATI/CAWI, юзабилити-тестирование и кастдев-интервью. Стратегия и анализ рынка на данных, а не на интуиции.';
 const jsonLd = {
@@ -73,17 +80,19 @@ const jsonLd = {
           <a class="btn btn-ghost-on-dark" href="#process">Как мы работаем</a>
         </div>
       </div>
-      <aside class="hero-steps" aria-label="Ход работы">
-        <div class="hero-steps-title">Ход работы</div>
-        <ol>
-          {process.map((step, i) => (
+      <aside class="hero-steps" aria-label="С какой задачей приходят">
+        <div class="hero-steps-title">С какой задачей приходят</div>
+        <ul>
+          {heroTasks.map((t) => (
             <li>
-              <span class="hero-steps-num">{String(i + 1).padStart(2, '0')}</span>
-              <div><b>{step.title}</b><span class="d">{step.desc}</span></div>
+              <a href={`/uslugi/${t.slug}/`}>
+                <b>{t.q}</b>
+                <span class="d">{t.service} <span class="arr" aria-hidden="true">→</span></span>
+              </a>
             </li>
           ))}
-        </ol>
-        <a class="hero-steps-link" href="#process">Подробнее <span aria-hidden="true">→</span></a>
+        </ul>
+        <a class="hero-steps-link" href="#contact">Другая задача? Опишите её <span aria-hidden="true">→</span></a>
       </aside>
     </div>
   </section>
