@@ -65,20 +65,30 @@ const jsonLd = {
   <main>
 
   <section class="hero">
-    <h1>Данные, которые превращаются в стратегию, а не остаются таблицей с цифрами</h1>
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="#contact">Обсудить задачу</a>
-      <a class="btn btn-ghost" href="#process">Как мы работаем</a>
+    <div class="hero-inner">
+      <div class="hero-main">
+        <h1>Данные, которые превращаются в стратегию, а не остаются таблицей с цифрами</h1>
+        <div class="hero-actions">
+          <a class="btn btn-on-dark" href="#contact">Обсудить задачу</a>
+          <a class="btn btn-ghost-on-dark" href="#process">Как мы работаем</a>
+        </div>
+      </div>
+      <aside class="hero-steps" aria-label="Ход работы">
+        <div class="hero-steps-title">Ход работы</div>
+        <ol>
+          {process.map((step, i) => (
+            <li>
+              <span class="hero-steps-num">{String(i + 1).padStart(2, '0')}</span>
+              <div><b>{step.title}</b><span class="d">{step.desc}</span></div>
+            </li>
+          ))}
+        </ol>
+        <a class="hero-steps-link" href="#process">Подробнее <span aria-hidden="true">→</span></a>
+      </aside>
     </div>
   </section>
 
-  <div class="wave-divider">
-    <svg width="100%" height="26" viewBox="0 0 1440 26" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0 13 Q60 2 120 13 T240 13 T360 13 T480 13 T600 13 T720 13 T840 13 T960 13 T1080 13 T1200 13 T1320 13 T1440 13" fill="none" stroke="var(--accent)" stroke-width="1.5" opacity="0.35"/>
-    </svg>
-  </div>
-
-  <section id="services" class="services dot-field">
+  <section id="services" class="services">
     <div class="section-head">
       <div class="eyebrow">Услуги</div>
       <h2>От стратегии до количественных данных — закрываем вопрос целиком</h2>
@@ -88,12 +98,11 @@ const jsonLd = {
       {services.map((s, i) => (
         <a class="svc-row" href={`/uslugi/${s.slug}/`} aria-label={`Подробнее об услуге: ${s.title}`}>
           <div class="svc-index">{String(i + 1).padStart(2, '0')}</div>
-          <svg class="svc-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={s.icon} />
           <div class="svc-body">
             <h3>{s.title}</h3>
             <p>{s.desc}</p>
           </div>
-          <svg class="svc-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <span class="svc-more">Подробнее <span aria-hidden="true">→</span></span>
         </a>
       ))}
     </div>
@@ -118,7 +127,7 @@ const jsonLd = {
     </div>
   </section>
 
-  <section class="approach dot-field">
+  <section class="approach">
     <h2>Не продаём объём — предлагаем то, что реально нужно для задачи</h2>
     <p>Не растягиваем исследование до 100 интервью или опроса на 10 000 человек, если задаче хватает меньшего. Метод и размер выборки подбираем под задачу и бюджет, а не подгоняем задачу под прайс.</p>
     <div class="trust-line">
