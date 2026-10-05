@@ -234,7 +234,7 @@ img, svg { display: block; max-width: 100%; }
 .trust-line { display: flex; align-items: center; gap: 10px; margin-top: 18px; font-size: 14px; color: var(--ink-soft); }
 
 /* Services */
-.services { padding: clamp(56px, 8vw, 96px) var(--gutter); display: flex; flex-direction: column; gap: 48px; background: var(--bg-alt); }
+.services { padding: clamp(40px, 8vw, 96px) var(--gutter); display: flex; flex-direction: column; gap: clamp(28px, 4vw, 48px); background: var(--bg-alt); }
 .section-head { max-width: 640px; }
 .section-head h2 { font-weight: 600; letter-spacing: -0.02em; font-size: var(--fs-h2); line-height: 1.12; margin-top: 14px; }
 .section-head p { font-size: var(--fs-body); line-height: 1.6; color: var(--ink-soft); margin-top: 14px; }
@@ -261,7 +261,7 @@ img, svg { display: block; max-width: 100%; }
 .svc-row:hover .svc-more span { transform: translateX(3px); }
 
 /* Process */
-.process { padding: clamp(56px, 8vw, 96px) var(--gutter); display: flex; flex-direction: column; gap: 56px; }
+.process { padding: clamp(40px, 8vw, 96px) var(--gutter); display: flex; flex-direction: column; gap: clamp(28px, 5vw, 56px); }
 .timeline { position: relative; }
 /* Линия идёт от центра первого кружка до центра последнего: при 4 равных
    колонках их центры лежат на 1/8 и 7/8 ширины. */
@@ -282,7 +282,7 @@ img, svg { display: block; max-width: 100%; }
   background: var(--bg-alt);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  padding: clamp(40px, 6vw, 64px) var(--gutter);
+  padding: clamp(36px, 6vw, 64px) var(--gutter);
   display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 18px;
 }
 .approach h2 { font-weight: 600; letter-spacing: -0.02em; font-size: var(--fs-h2); line-height: 1.15; max-width: 760px; }
@@ -290,7 +290,7 @@ img, svg { display: block; max-width: 100%; }
 .approach .trust-line { justify-content: flex-start; margin-top: 6px; }
 
 /* Cases / observation */
-.cases { padding: clamp(56px, 8vw, 96px) var(--gutter); display: flex; flex-direction: column; gap: 52px; }
+.cases { padding: clamp(40px, 8vw, 96px) var(--gutter); display: flex; flex-direction: column; gap: clamp(28px, 5vw, 52px); }
 .cases .section-head p { font-size: var(--fs-body); line-height: 1.6; color: var(--ink-soft); margin-top: 14px; }
 .cases-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: stretch; }
 
@@ -322,7 +322,7 @@ img, svg { display: block; max-width: 100%; }
 .nps-card .fine-print { font-size: 14px; line-height: 1.6; color: var(--dark-text); }
 
 /* Contact */
-.contact { background: var(--bg-alt); padding: clamp(56px, 8vw, 96px) var(--gutter); }
+.contact { background: var(--bg-alt); padding: clamp(40px, 8vw, 96px) var(--gutter); }
 .contact-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: start; }
 .contact-form-col { display: flex; flex-direction: column; gap: 28px; }
 .contact-form-col h2 { font-weight: 600; font-size: var(--fs-h2); line-height: 1.25; margin-top: 14px; }
@@ -409,7 +409,8 @@ img, svg { display: block; max-width: 100%; }
   .cases-grid, .contact-grid { grid-template-columns: 1fr; }
   .timeline-line { display: none; }
   .timeline-row { flex-direction: column; gap: 32px; }
-  .timeline-item { max-width: none; padding-left: 18px; border-left: 2px solid var(--line); }
+  /* В колонке базовые 220px из flex превращаются в высоту и дают пустоту под текстом. */
+  .timeline-item { max-width: none; flex: 0 0 auto; padding-left: 18px; border-left: 2px solid var(--line); }
 }
 @media (max-width: 640px) {
   .form-grid { grid-template-columns: 1fr; }
