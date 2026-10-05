@@ -90,3 +90,36 @@
 .prose th, .prose td { border-bottom: 1px solid var(--line); padding: 10px 14px; text-align: left; }
 .prose th { background: var(--bg-alt); font-weight: 700; }
 .prose code { background: var(--bg-alt); padding: 2px 6px; border-radius: 4px; font-size: 0.92em; }
+
+/* Каталог услуг, контакты, «Как мы работаем» */
+.page-wide { max-width: 1100px; }
+.page-wide .svc-list { margin-top: 36px; }
+.svc-list--two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.svc-row h2 { font-family: var(--font-display); font-weight: 600; font-size: var(--fs-h3); line-height: 1.25; letter-spacing: -0.01em; margin: 0; }
+.page-wide h2.svc-title { margin: 0; }
+
+.task-list { list-style: none; padding: 0; margin: 20px 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.task-list a { display: flex; flex-direction: column; gap: 4px; height: 100%; padding: 20px 22px; border: 1px solid var(--line); border-radius: var(--radius-card); color: var(--ink); transition: border-color .16s ease, transform .16s ease; }
+.task-list a:hover { border-color: #B9CBD8; transform: translateY(-2px); color: var(--ink); }
+.task-list b { font-size: 17px; font-weight: 600; line-height: 1.35; }
+.task-list span { font-size: var(--fs-small); color: var(--accent-text); font-weight: 600; }
+
+.req-list { margin: 32px 0 0; border-top: 1px solid var(--line); }
+.req-list > div { display: grid; grid-template-columns: 160px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.req-list dt { font-size: var(--fs-small); color: var(--ink-soft); }
+.req-list dd { margin: 0; font-size: var(--fs-body); }
+.req-list dd a { color: var(--ink); }
+.req-list dd a:hover { color: var(--accent-text); }
+
+.step-roles { margin: 14px 0 0; display: flex; flex-direction: column; gap: 10px; }
+.step-roles > div { display: grid; grid-template-columns: 76px 1fr; gap: 12px; }
+.step-roles dt { font-size: var(--fs-label); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--accent-text); padding-top: 3px; }
+.step-roles dd { margin: 0; font-size: var(--fs-small); line-height: 1.55; color: var(--ink-soft); }
+
+@media (max-width: 880px) {
+  .svc-list--two, .task-list { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .req-list > div { grid-template-columns: 1fr; gap: 2px; }
+  .step-roles > div { grid-template-columns: 1fr; gap: 2px; }
+}

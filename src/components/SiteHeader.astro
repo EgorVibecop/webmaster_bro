@@ -2,7 +2,7 @@
 interface Props {
   contactHref?: string;
 }
-const { contactHref = '/#contact' } = Astro.props;
+const { contactHref = '/kontakty/' } = Astro.props;
 ---
 <header class="site-header" id="site-header" data-nav-open="false">
   <a class="brand" href="/" aria-label="Baikal Research — на главную">
@@ -24,10 +24,10 @@ const { contactHref = '/#contact' } = Astro.props;
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
   </button>
   <nav class="main-nav" id="main-nav" aria-label="Основная навигация">
-    <a href="/#services">Услуги</a>
-    <a href="/#process">Как мы работаем</a>
+    <a href="/uslugi/">Услуги</a>
+    <a href="/kak-my-rabotaem/">Как мы работаем</a>
     <a href="/blog/">Блог</a>
-    <a href={contactHref}>Контакты</a>
+    <a href="/kontakty/">Контакты</a>
   </nav>
   <div class="header-cta">
     <a class="btn btn-on-dark btn-sm" href={contactHref}>Обсудить задачу</a>

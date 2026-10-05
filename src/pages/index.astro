@@ -4,6 +4,7 @@ import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import ContactBlock from '../components/ContactBlock.astro';
 import { services } from '../data/services.js';
+import { tasks } from '../data/tasks.js';
 
 const process = [
   { title: 'Бриф и методология', desc: 'Обсуждаем задачу, предлагаем метод и выборку, фиксируем сроки и стоимость.' },
@@ -12,12 +13,6 @@ const process = [
   { title: 'Отчёт с рекомендациями', desc: 'Конкретные шаги для бизнеса, а не сырые данные без выводов.' },
 ];
 
-const heroTasks = [
-  { q: 'Почему клиенты не покупают или уходят?', service: 'Кастдев и глубинные интервью', slug: 'custdev-glubinnye-intervyu' },
-  { q: 'Где пользователи застревают в интерфейсе?', service: 'Юзабилити-тестирование', slug: 'usability-testirovanie' },
-  { q: 'Каков объём рынка и кто конкуренты?', service: 'Маркетинговые исследования', slug: 'marketingovye-issledovaniya' },
-  { q: 'Сколько клиентов так думает, в процентах?', service: 'Опросы CATI / CAWI', slug: 'cati-cawi-oprosy' },
-];
 
 const SITE = 'https://baikalresearch.ru';
 const description = 'Маркетинговые и продуктовые исследования, опросы CATI/CAWI, юзабилити-тестирование и кастдев-интервью. Стратегия и анализ рынка на данных, а не на интуиции.';
@@ -67,7 +62,7 @@ const jsonLd = {
   description={description}
 >
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-  <SiteHeader />
+  <SiteHeader contactHref="#contact" />
 
   <main>
 
@@ -77,13 +72,13 @@ const jsonLd = {
         <h1>Данные, которые превращаются в стратегию, а не остаются таблицей с цифрами</h1>
         <div class="hero-actions">
           <a class="btn btn-on-dark" href="#contact">Обсудить задачу</a>
-          <a class="btn btn-ghost-on-dark" href="#process">Как мы работаем</a>
+          <a class="btn btn-ghost-on-dark" href="/kak-my-rabotaem/">Как мы работаем</a>
         </div>
       </div>
       <aside class="hero-steps" aria-label="С какой задачей приходят">
         <div class="hero-steps-title">С какой задачей приходят</div>
         <ul>
-          {heroTasks.map((t) => (
+          {tasks.map((t) => (
             <li>
               <a href={`/uslugi/${t.slug}/`}>
                 <b>{t.q}</b>
@@ -115,6 +110,7 @@ const jsonLd = {
         </a>
       ))}
     </div>
+    <a class="section-link" href="/uslugi/">Все услуги и вопросы, с которыми приходят <span aria-hidden="true">→</span></a>
   </section>
 
   <section id="process" class="process">
@@ -134,6 +130,7 @@ const jsonLd = {
         ))}
       </div>
     </div>
+    <a class="section-link" href="/kak-my-rabotaem/">Что нужно от вас и что получите вы <span aria-hidden="true">→</span></a>
   </section>
 
   <section class="approach">
