@@ -3,7 +3,6 @@ import '@fontsource-variable/manrope';
 import '@fontsource/ibm-plex-serif/600.css';
 import '../styles/global.css';
 import '../styles/pages.css';
-import MobileActionBar from '../components/MobileActionBar.astro';
 import fontCyrillic from '@fontsource-variable/manrope/files/manrope-cyrillic-wght-normal.woff2?url';
 import fontDisplayCyrillic from '@fontsource/ibm-plex-serif/files/ibm-plex-serif-cyrillic-600-normal.woff2?url';
 import fontLatin from '@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url';
@@ -87,7 +86,6 @@ const csp = [
 <body>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TTGMQCPB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <slot />
-  <MobileActionBar />
   <script is:inline src="/js/metrika.js" defer></script>
   <noscript><div><img src="https://mc.yandex.ru/watch/112962064" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 </body>
