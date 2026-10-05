@@ -27,7 +27,7 @@ const jsonLd = {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Главная', item: `${SITE}/` },
-        { '@type': 'ListItem', position: 2, name: 'Услуги', item: `${SITE}/#services` },
+        { '@type': 'ListItem', position: 2, name: 'Услуги', item: `${SITE}/uslugi/` },
         { '@type': 'ListItem', position: 3, name: page.h1, item: url },
       ],
     },
@@ -59,7 +59,7 @@ const jsonLd = {
   <main class="page">
     <nav class="breadcrumbs" aria-label="Хлебные крошки">
       <a href="/">Главная</a><span aria-hidden="true">/</span>
-      <a href="/#services">Услуги</a><span aria-hidden="true">/</span>
+      <a href="/uslugi/">Услуги</a><span aria-hidden="true">/</span>
       <span aria-current="page">{service.title}</span>
     </nav>
 

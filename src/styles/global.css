@@ -1,7 +1,7 @@
 :root {
   --font: 'Manrope Variable', 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
   /* Антиква только в заголовках: тексты и интерфейс остаются на Manrope. */
-  --font-display: 'Literata Variable', 'Literata', Georgia, 'Times New Roman', serif;
+  --font-display: 'IBM Plex Serif', Georgia, 'Times New Roman', serif;
   --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
   --bg: #FFFFFF;
   --bg-alt: #EFF5F9;
@@ -418,3 +418,7 @@ img, svg { display: block; max-width: 100%; }
   .svc-row { padding: 22px 20px; }
   .hero-steps { padding: 22px 20px; }
 }
+
+.section-link { align-self: flex-start; font-size: var(--fs-body); font-weight: 600; color: var(--accent-text); }
+.section-link span { display: inline-block; transition: transform .16s ease; }
+.section-link:hover span { transform: translateX(3px); }

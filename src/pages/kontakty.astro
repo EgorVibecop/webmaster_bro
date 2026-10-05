@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+
+const SITE = 'https://baikalresearch.ru';
+const url = `${SITE}/kontakty/`;
+const description = 'Контакты Baikal Research: телефон, почта, форма заявки и реквизиты ИП. Отвечаем на заявки в течение одного рабочего дня.';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Главная', item: `${SITE}/` },
+        { '@type': 'ListItem', position: 2, name: 'Контакты', item: url },
+      ],
+    },
+    {
+      '@type': 'ContactPage',
+      '@id': `${url}#page`,
+      url,
+      name: 'Контакты Baikal Research',
+      isPartOf: { '@id': `${SITE}/#website` },
+      about: { '@id': `${SITE}/#org` },
+    },
+  ],
+};
+---
+<BaseLayout title="Контакты — Baikal Research" description={description}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <SiteHeader contactHref="#contact" />
+
+  <main class="page">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки">
+      <a href="/">Главная</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Контакты</span>
+    </nav>
+
+    <h1>Контакты</h1>
+    <p class="lead">Позвоните, напишите на почту или оставьте заявку в форме ниже. Отвечаем в течение одного рабочего дня.</p>
+
+    <dl class="req-list">
+      <div><dt>Телефон</dt><dd><a href="tel:+79774437588">+7 977 443-75-88</a></dd></div>
+      <div><dt>Email</dt><dd><a href="mailto:baikalresearch@yandex.ru">baikalresearch@yandex.ru</a></dd></div>
+      <div><dt>Исполнитель</dt><dd>ИП Бахарев Егор Александрович</dd></div>
+      <div><dt>ОГРНИП</dt><dd>326774600729070</dd></div>
+    </dl>
+  </main>
+
+  <ContactBlock
+    heading="Расскажите о задаче"
+    subheading="Предложим метод, выборку и сроки под вашу задачу и бюджет. Цену называем до начала работ."
+  />
+  <SiteFooter />
+</BaseLayout>

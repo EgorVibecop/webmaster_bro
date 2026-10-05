@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import ContactBlock from '../../components/ContactBlock.astro';
+import { services } from '../../data/services.js';
+import { tasks } from '../../data/tasks.js';
+
+const SITE = 'https://baikalresearch.ru';
+const url = `${SITE}/uslugi/`;
+const description = 'Маркетинговые и продуктовые исследования, опросы CATI/CAWI, юзабилити-тестирование, кастдев и глубинные интервью, стратегия и анализ рынка. Подберём метод под задачу.';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Главная', item: `${SITE}/` },
+        { '@type': 'ListItem', position: 2, name: 'Услуги', item: url },
+      ],
+    },
+    {
+      '@type': 'CollectionPage',
+      '@id': `${url}#page`,
+      url,
+      name: 'Услуги Baikal Research',
+      isPartOf: { '@id': `${SITE}/#website` },
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListElement: services.map((s, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          url: `${SITE}/uslugi/${s.slug}/`,
+          name: s.title,
+        })),
+      },
+    },
+  ],
+};
+---
+<BaseLayout title="Услуги — Baikal Research" description={description}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <SiteHeader />
+
+  <main class="page page-wide">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки">
+      <a href="/">Главная</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Услуги</span>
+    </nav>
+
+    <h1>Услуги</h1>
+    <p class="lead">Исследования под задачу бизнеса: от оценки рынка до проверки интерфейса. Метод и размер выборки подбираем под вопрос и бюджет, цену называем до начала работ.</p>
+
+    <div class="svc-list svc-list--two">
+      {services.map((s, i) => (
+        <a class="svc-row" href={`/uslugi/${s.slug}/`} aria-label={`Подробнее об услуге: ${s.title}`}>
+          <div class="svc-index">{String(i + 1).padStart(2, '0')}</div>
+          <div class="svc-body">
+            <h2>{s.title}</h2>
+            <p>{s.desc}</p>
+          </div>
+          <span class="svc-more">Подробнее <span aria-hidden="true">→</span></span>
+        </a>
+      ))}
+    </div>
+
+    <h2>Не уверены, что вам нужно?</h2>
+    <p class="lead">Выберите вопрос, который ближе к вашему, мы подскажем метод.</p>
+    <ul class="task-list">
+      {tasks.map((t) => (
+        <li>
+          <a href={`/uslugi/${t.slug}/`}>
+            <b>{t.q}</b>
+            <span>{t.service} <span aria-hidden="true">→</span></span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <p class="article-service-link">Задача звучит иначе? <a href="#contact">Опишите её своими словами</a>, подберём формат.</p>
+  </main>
+
+  <ContactBlock
+    heading="Расскажите о задаче"
+    subheading="Предложим метод, выборку и сроки под вашу задачу и бюджет. Цену называем до начала работ."
+  />
+  <SiteFooter />
+</BaseLayout>
