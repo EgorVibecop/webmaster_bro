@@ -15,7 +15,7 @@
 .footer-legal { display: flex; flex-direction: column; gap: 6px; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.12); font-size: 13px; line-height: 1.5; color: var(--dark-label); }
 
 /* Service pages */
-.page { max-width: 860px; margin: 0 auto; padding: 40px var(--gutter) 88px; }
+.page { max-width: 860px; margin: 0 auto; padding: 32px var(--gutter) 56px; }
 .breadcrumbs { display: flex; flex-wrap: wrap; gap: 6px 8px; font-size: 13px; color: var(--ink-soft); margin-bottom: 28px; }
 .breadcrumbs a { color: var(--ink-soft); }
 .breadcrumbs a:hover { color: var(--accent-text); }
