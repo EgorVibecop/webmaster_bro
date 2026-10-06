@@ -5,6 +5,7 @@ import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import ContactBlock from '../../components/ContactBlock.astro';
 import { bySlug } from '../../data/services.js';
+import { readingMinutes } from '../../utils/readingTime';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -17,7 +18,7 @@ const { data } = post;
 
 const SITE = 'https://baikalresearch.ru';
 const url = `${SITE}/blog/${post.id}/`;
-const minutes = Math.max(1, Math.round(post.body.split(/\s+/).length / 200));
+const minutes = readingMinutes(post.body);
 const withBrand = `${data.title} — Baikal Research`;
 const pageTitle = withBrand.length <= 65 ? withBrand : data.title;
 const service = data.service ? bySlug(data.service) : undefined;

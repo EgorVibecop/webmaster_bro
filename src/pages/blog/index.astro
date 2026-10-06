@@ -3,9 +3,9 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
+import { readingMinutes } from '../../utils/readingTime';
 
 const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-const minutes = (body: string) => Math.max(1, Math.round(body.split(/\s+/).length / 200));
 ---
 <BaseLayout
   title="Блог об исследованиях — Baikal Research"
@@ -23,7 +23,7 @@ const minutes = (body: string) => Math.max(1, Math.round(body.split(/\s+/).lengt
     <div class="post-list">
       {posts.map((post) => (
         <article class="post-card">
-          <div class="post-meta">{minutes(post.body)} мин чтения</div>
+          <div class="post-meta">{readingMinutes(post.body)} мин чтения</div>
           <h2><a href={`/blog/${post.id}/`}>{post.data.title}</a></h2>
           <p>{post.data.description}</p>
         </article>
