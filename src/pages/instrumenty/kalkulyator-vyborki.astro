@@ -1,0 +1,164 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import ContactBlock from '../../components/ContactBlock.astro';
+
+const SITE = 'https://baikalresearch.ru';
+const url = `${SITE}/instrumenty/kalkulyator-vyborki/`;
+const title = 'Калькулятор выборки и значимости различий онлайн — Baikal Research';
+const description = 'Бесплатный калькулятор: сколько респондентов нужно для опроса, какая погрешность у вашей выборки и значимо ли различие между двумя группами. Считает в браузере, данные никуда не уходят.';
+
+const faq = [
+  { q: 'Какая выборка нужна для опроса?', a: 'Зависит от нужной точности. Для погрешности ±5 п.п. при доверительной вероятности 95% и неизвестной доле обычно достаточно около 385 респондентов, если аудитория большая. Для ±3 п.п. нужно около 1 070, для ±10 п.п. около 97.' },
+  { q: 'Что такое доверительная вероятность и погрешность?', a: 'Погрешность показывает, насколько доля в выборке может отличаться от доли во всей аудитории. Доверительная вероятность говорит, как часто такая оценка попадает в этот интервал. Чаще всего берут 95%.' },
+  { q: 'Что значит «различие значимо»?', a: 'Что разница между группами вряд ли возникла случайно из-за того, что мы опросили не всех. Значимость не говорит о том, насколько разница важна для бизнеса.' },
+  { q: 'Какую долю вводить, если её не знаете?', a: 'Введите 50%. Это самый осторожный вариант: он даёт максимальную выборку и подходит, когда о доле нет предположений.' },
+  { q: 'Подходит ли калькулятор для квотной или взвешенной выборки?', a: 'Он рассчитан на простую случайную выборку. При квотах и весах реальная погрешность больше, и её считают отдельно с учётом дизайн-эффекта.' },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Главная', item: `${SITE}/` },
+        { '@type': 'ListItem', position: 2, name: 'Калькулятор выборки и значимости', item: url },
+      ],
+    },
+    {
+      '@type': 'WebApplication',
+      '@id': `${url}#app`,
+      name: 'Калькулятор выборки и значимости различий',
+      url,
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Любой, в браузере',
+      inLanguage: 'ru',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'RUB' },
+      provider: { '@id': `${SITE}/#org` },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faq.map((item) => ({
+        '@type': 'Question',
+        name: item.q,
+        acceptedAnswer: { '@type': 'Answer', text: item.a },
+      })),
+    },
+  ],
+};
+---
+<BaseLayout title={title} description={description}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <SiteHeader contactHref="#contact" />
+
+  <main class="page page-wide">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки">
+      <a href="/">Главная</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Калькулятор выборки и значимости</span>
+    </nav>
+
+    <h1>Калькулятор выборки и значимости различий</h1>
+    <p class="lead">Сколько респондентов нужно опросить, какая погрешность у вашей выборки и значимо ли различие между двумя группами. Всё считается в браузере, ваши цифры никуда не отправляются.</p>
+
+    <div class="calc-grid">
+      <section class="calc-card" aria-labelledby="c1">
+        <h2 id="c1">Сколько респондентов нужно</h2>
+        <div class="calc-fields">
+          <div>
+            <label class="field-label" for="s-conf">Доверительная вероятность</label>
+            <select class="field" id="s-conf"><option value="90">90%</option><option value="95" selected>95%</option><option value="99">99%</option></select>
+          </div>
+          <div>
+            <label class="field-label" for="s-err">Погрешность, ± п.п.</label>
+            <input class="field" id="s-err" type="text" inputmode="decimal" value="5" autocomplete="off" />
+          </div>
+          <div>
+            <label class="field-label" for="s-p">Ожидаемая доля, %</label>
+            <input class="field" id="s-p" type="text" inputmode="decimal" value="50" autocomplete="off" />
+          </div>
+          <div>
+            <label class="field-label" for="s-pop">Размер аудитории (необязательно)</label>
+            <input class="field" id="s-pop" type="text" inputmode="numeric" placeholder="Если большая, оставьте пустым" autocomplete="off" />
+          </div>
+        </div>
+        <div class="calc-result" id="s-out" role="status" aria-live="polite"></div>
+      </section>
+
+      <section class="calc-card" aria-labelledby="c2">
+        <h2 id="c2">Какая погрешность у выборки</h2>
+        <div class="calc-fields">
+          <div>
+            <label class="field-label" for="e-conf">Доверительная вероятность</label>
+            <select class="field" id="e-conf"><option value="90">90%</option><option value="95" selected>95%</option><option value="99">99%</option></select>
+          </div>
+          <div>
+            <label class="field-label" for="e-n">Число респондентов</label>
+            <input class="field" id="e-n" type="text" inputmode="numeric" value="400" autocomplete="off" />
+          </div>
+          <div>
+            <label class="field-label" for="e-p">Доля в ответах, %</label>
+            <input class="field" id="e-p" type="text" inputmode="decimal" value="50" autocomplete="off" />
+          </div>
+          <div>
+            <label class="field-label" for="e-pop">Размер аудитории (необязательно)</label>
+            <input class="field" id="e-pop" type="text" inputmode="numeric" placeholder="Если большая, оставьте пустым" autocomplete="off" />
+          </div>
+        </div>
+        <div class="calc-result" id="e-out" role="status" aria-live="polite"></div>
+      </section>
+
+      <section class="calc-card calc-card--wide" aria-labelledby="c3">
+        <h2 id="c3">Значимо ли различие двух групп</h2>
+        <p class="calc-intro">Например, довольны сервисом 62% клиентов из одного города и 55% из другого. Это разница или случайный разброс?</p>
+        <div class="calc-fields calc-fields--diff">
+          <div>
+            <label class="field-label" for="d-n1">Группа А: респондентов</label>
+            <input class="field" id="d-n1" type="text" inputmode="numeric" value="400" autocomplete="off" />
+          </div>
+          <div>
+            <label class="field-label" for="d-p1">Группа А: доля, %</label>
+            <input class="field" id="d-p1" type="text" inputmode="decimal" value="62" autocomplete="off" />
+          </div>
+          <div>
+            <label class="field-label" for="d-n2">Группа Б: респондентов</label>
+            <input class="field" id="d-n2" type="text" inputmode="numeric" value="400" autocomplete="off" />
+          </div>
+          <div>
+            <label class="field-label" for="d-p2">Группа Б: доля, %</label>
+            <input class="field" id="d-p2" type="text" inputmode="decimal" value="55" autocomplete="off" />
+          </div>
+          <div>
+            <label class="field-label" for="d-conf">Доверительная вероятность</label>
+            <select class="field" id="d-conf"><option value="90">90%</option><option value="95" selected>95%</option><option value="99">99%</option></select>
+          </div>
+        </div>
+        <div class="calc-result" id="d-out" role="status" aria-live="polite"></div>
+      </section>
+    </div>
+
+    <h2>Как считается</h2>
+    <p class="calc-formula">n = z² · p · (1 − p) / e²</p>
+    <p class="lead">Здесь z зависит от доверительной вероятности (1,96 для 95%), p — ожидаемая доля, e — допустимая погрешность. Для конечной аудитории размер выборки уменьшается по поправке n / (1 + (n − 1) / N). Значимость различий считаем z-критерием для двух долей. Калькулятор подходит для простой случайной выборки. При квотах и весах погрешность больше, и её считают отдельно. Подробнее: <a href="/blog/kak-rasschitat-vyborku-dlya-oprosa/">как рассчитать выборку для опроса</a>.</p>
+
+    <h2>Частые вопросы</h2>
+    <div class="faq">
+      {faq.map((item) => (
+        <details>
+          <summary>{item.q}</summary>
+          <p>{item.a}</p>
+        </details>
+      ))}
+    </div>
+
+    <p class="article-service-link">Нужно провести опрос и посчитать выборку под вашу задачу? Смотрите <a href="/uslugi/cati-cawi-oprosy/">опросы CATI и CAWI</a> или <a href="#contact">расскажите о задаче</a>.</p>
+  </main>
+
+  <ContactBlock
+    heading="Нужен расчёт под ваш проект"
+    subheading="Подберём метод, выборку и сроки. Цену называем до начала работ."
+  />
+  <SiteFooter />
+  <script is:inline src="/js/calc.js" defer></script>
+</BaseLayout>
