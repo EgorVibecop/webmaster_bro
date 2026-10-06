@@ -151,3 +151,51 @@
   .calc-fields .field-label { min-height: 0; }
   .calc-dl > div { grid-template-columns: 1fr; gap: 0; }
 }
+
+/* Планировщик выборки */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.pl { margin-top: 32px; display: flex; flex-direction: column; gap: 14px; }
+.pl-step { display: grid; grid-template-columns: 44px 1fr; gap: 18px; background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-card); padding: 24px; }
+.pl-step[hidden] { display: none; }
+.pl-num { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--line); display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--accent-text); font-variant-numeric: tabular-nums; }
+.pl-body h3 { margin: 0 0 12px; font-size: 19px; font-weight: 700; line-height: 1.3; }
+.pl-help { font-size: var(--fs-small); line-height: 1.55; color: var(--ink-soft); margin: -4px 0 14px; }
+.pl-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.pl-opt { position: relative; display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--radius-control); cursor: pointer; transition: border-color .16s ease, background .16s ease; }
+.pl-opt:hover { border-color: #B9CBD8; }
+.pl-opt input { margin-top: 3px; width: 18px; height: 18px; accent-color: var(--accent-text); flex-shrink: 0; }
+.pl-opt:has(input:checked) { border-color: var(--accent-text); background: var(--bg-alt); }
+.pl-opt b { display: block; font-size: 16px; font-weight: 600; }
+.pl-opt i { display: block; font-style: normal; font-size: var(--fs-small); line-height: 1.45; color: var(--ink-soft); margin-top: 2px; }
+.pl-group { display: grid; grid-template-columns: 1.4fr 1fr auto; gap: 12px; align-items: end; margin-bottom: 12px; }
+.pl-remove, .pl-add { font: inherit; font-size: var(--fs-small); font-weight: 600; color: var(--accent-text); background: transparent; border: none; cursor: pointer; padding: 12px 4px; }
+.pl-remove { color: var(--ink-soft); font-weight: 500; }
+.pl-remove:hover { color: var(--ink); }
+.pl-add:hover { color: var(--accent-text-hover); }
+.pl-cut, .pl-diff { margin-top: 16px; max-width: 520px; }
+.pl-diff[hidden] { display: none; }
+.pl-result { background: var(--bg); border: 2px solid var(--accent-text); border-radius: var(--radius-card); padding: 26px; }
+.pl-head { margin-bottom: 18px; }
+.pl-table { width: 100%; border-collapse: collapse; font-size: var(--fs-body); }
+.pl-table th, .pl-table td { text-align: left; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.pl-table th { font-size: var(--fs-label); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-soft); }
+.pl-table .num { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+.pl-table .pl-total td { font-weight: 700; border-bottom: none; }
+.pl-why { margin: 24px 0 10px; font-size: 18px; font-weight: 700; }
+.pl-steps { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 10px; font-size: var(--fs-small); line-height: 1.6; color: var(--ink-soft); }
+.pl-steps b { color: var(--ink); }
+.pl-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; margin-top: 22px; }
+.calc-pro { margin-top: 28px; border: 1px solid var(--line); border-radius: var(--radius-card); padding: 0 22px; }
+.calc-pro > summary { cursor: pointer; padding: 18px 0; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+.calc-pro > summary::-webkit-details-marker { display: none; }
+.calc-pro > summary::after { content: '+'; color: var(--accent-text); font-size: 22px; line-height: 1; }
+.calc-pro[open] > summary::after { content: '\2212'; }
+.calc-pro .calc-grid { margin: 0 0 22px; }
+
+@media (max-width: 640px) {
+  .pl-step { grid-template-columns: 1fr; padding: 20px 18px; gap: 10px; }
+  .pl-group { grid-template-columns: 1fr; }
+  .pl-remove { justify-self: start; padding: 0 0 8px; }
+  .pl-result { padding: 20px 18px; }
+  .calc-pro { padding: 0 16px; }
+}
