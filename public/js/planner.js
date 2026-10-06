@@ -210,5 +210,21 @@
     });
   }
 
-  bind(); syncVisibility(); renderGroups(); renderResult();
+  function setMode(pro) {
+    var ts = $('tab-simple'), tp = $('tab-pro');
+    ts.setAttribute('aria-selected', pro ? 'false' : 'true'); ts.tabIndex = pro ? -1 : 0;
+    tp.setAttribute('aria-selected', pro ? 'true' : 'false'); tp.tabIndex = pro ? 0 : -1;
+    $('mode-simple').hidden = pro; $('mode-pro').hidden = !pro;
+  }
+  function bindTabs() {
+    $('tab-simple').addEventListener('click', function () { setMode(false); });
+    $('tab-pro').addEventListener('click', function () { setMode(true); });
+    [$('tab-simple'), $('tab-pro')].forEach(function (t) {
+      t.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { var pro = t.id === 'tab-simple'; setMode(pro); $(pro ? 'tab-pro' : 'tab-simple').focus(); }
+      });
+    });
+  }
+
+  bind(); bindTabs(); syncVisibility(); renderGroups(); renderResult();
 })();

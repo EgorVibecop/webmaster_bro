@@ -64,6 +64,12 @@ const jsonLd = {
     <h1>Сколько людей опросить</h1>
     <p class="lead">Ответьте на несколько вопросов о вашем опросе простыми словами. Мы посчитаем, сколько человек нужно в каждой группе и сколько всего, и объясним, почему так. Статистику знать не нужно. Данные не уходят на сервер, всё считается в вашем браузере.</p>
 
+    <div class="mode-tabs" role="tablist" aria-label="Режим калькулятора">
+      <button type="button" role="tab" id="tab-simple" aria-selected="true" aria-controls="mode-simple" class="mode-tab">Я не разбираюсь в статистике<span>Ответьте на вопросы, мы посчитаем сами</span></button>
+      <button type="button" role="tab" id="tab-pro" aria-selected="false" aria-controls="mode-pro" tabindex="-1" class="mode-tab">Я знаю статистику<span>Погрешность, выборка, значимость различий</span></button>
+    </div>
+
+    <div id="mode-simple" role="tabpanel" aria-labelledby="tab-simple">
     <section class="pl" aria-labelledby="pl-title">
       <h2 id="pl-title" class="sr-only">Планировщик выборки</h2>
 
@@ -131,9 +137,9 @@ const jsonLd = {
 
       <div class="pl-result" id="pl-out" role="status" aria-live="polite"></div>
     </section>
+    </div>
 
-    <details class="calc-pro">
-      <summary>Если вы знаете статистику: быстрые калькуляторы</summary>
+    <div id="mode-pro" role="tabpanel" aria-labelledby="tab-pro" hidden>
     <div class="calc-grid">
       <section class="calc-card" aria-labelledby="c1">
         <h2 id="c1">Сколько респондентов нужно</h2>
@@ -210,8 +216,9 @@ const jsonLd = {
       </section>
     </div>
 
-        </details>
-<h2>Как считается</h2>
+        </div>
+
+    <h2>Как считается</h2>
     <p class="calc-formula">n = z² · p · (1 − p) / e²</p>
     <p class="lead">Планировщик выше считает число людей на каждую группу по этой же формуле при доверительной вероятности 95% и доле 50% (самый осторожный вариант), а для сравнения групп берёт мощность 80%. Затем умножает на число групп и добавляет около 10% запаса. В самой формуле z зависит от доверительной вероятности (1,96 для 95%), p — ожидаемая доля, e — допустимая погрешность. Для конечной аудитории размер выборки уменьшается по поправке n / (1 + (n − 1) / N). Значимость различий считаем z-критерием для двух долей. Калькулятор подходит для простой случайной выборки. При квотах и весах погрешность больше, и её считают отдельно. Подробнее: <a href="/blog/kak-rasschitat-vyborku-dlya-oprosa/">как рассчитать выборку для опроса</a>.</p>
 
