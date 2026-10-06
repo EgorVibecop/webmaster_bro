@@ -185,17 +185,21 @@
 .pl-steps { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 10px; font-size: var(--fs-small); line-height: 1.6; color: var(--ink-soft); }
 .pl-steps b { color: var(--ink); }
 .pl-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; margin-top: 22px; }
-.calc-pro { margin-top: 28px; border: 1px solid var(--line); border-radius: var(--radius-card); padding: 0 22px; }
-.calc-pro > summary { cursor: pointer; padding: 18px 0; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
-.calc-pro > summary::-webkit-details-marker { display: none; }
-.calc-pro > summary::after { content: '+'; color: var(--accent-text); font-size: 22px; line-height: 1; }
-.calc-pro[open] > summary::after { content: '\2212'; }
-.calc-pro .calc-grid { margin: 0 0 22px; }
 
 @media (max-width: 640px) {
   .pl-step { grid-template-columns: 1fr; padding: 20px 18px; gap: 10px; }
   .pl-group { grid-template-columns: 1fr; }
   .pl-remove { justify-self: start; padding: 0 0 8px; }
   .pl-result { padding: 20px 18px; }
-  .calc-pro { padding: 0 16px; }
 }
+
+/* Выбор режима калькулятора */
+.mode-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 28px; }
+.mode-tab { font: inherit; text-align: left; cursor: pointer; background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-control); padding: 14px 18px; font-size: 16px; font-weight: 600; color: var(--ink); transition: border-color .16s ease, background .16s ease; }
+.mode-tab span { display: block; font-size: var(--fs-small); font-weight: 400; color: var(--ink-soft); margin-top: 2px; }
+.mode-tab:hover { border-color: #B9CBD8; }
+.mode-tab[aria-selected="true"] { border-color: var(--accent-text); background: var(--bg-alt); box-shadow: inset 0 0 0 1px var(--accent-text); }
+[role="tabpanel"][hidden] { display: none; }
+.mode-tabs + [role="tabpanel"] .pl { margin-top: 18px; }
+#mode-pro .calc-grid { margin-top: 18px; }
+@media (max-width: 640px) { .mode-tabs { grid-template-columns: 1fr; } }
