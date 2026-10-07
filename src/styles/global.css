@@ -391,3 +391,11 @@ img, svg { display: block; max-width: 100%; }
 .section-link { align-self: flex-start; font-size: var(--fs-body); font-weight: 600; color: var(--accent-text); }
 .section-link span { display: inline-block; transition: transform .16s ease; }
 .section-link:hover span { transform: translateX(3px); }
+
+/* Блок калькулятора на главной */
+.tool-band { padding: 0 var(--gutter) clamp(28px, 4.5vw, 56px); }
+.tool-card { background: var(--night); color: #FFFFFF; border-radius: var(--radius-card); padding: clamp(24px, 4vw, 40px); display: flex; align-items: center; justify-content: space-between; gap: 24px 40px; flex-wrap: wrap; }
+.tool-card > div { max-width: 640px; }
+.tool-card h2 { font-weight: 600; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.15; letter-spacing: -0.02em; margin: 10px 0 10px; color: #FFFFFF; }
+.tool-card p { font-size: var(--fs-body); line-height: 1.55; color: var(--on-night-soft); }
+.tool-eyebrow { color: var(--on-night-soft); }

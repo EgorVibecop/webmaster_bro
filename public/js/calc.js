@@ -110,7 +110,7 @@
   groups.forEach(function (g) {
     g.ids.forEach(function (id) {
       var el = document.getElementById(id);
-      if (el) { el.addEventListener('input', g.fn); el.addEventListener('change', g.fn); }
+      if (el) { el.addEventListener('input', g.fn); el.addEventListener('change', g.fn); el.addEventListener('input', function () { if (window.baikalGoal) window.baikalGoal('calc_pro_used', true); }); }
     });
     g.fn();
   });

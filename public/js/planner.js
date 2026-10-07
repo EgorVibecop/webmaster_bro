@@ -173,6 +173,7 @@
     var send = el('button', 'btn btn-primary', 'Отправить этот расчёт нам');
     send.type = 'button';
     send.addEventListener('click', function () {
+      if (window.baikalGoal) window.baikalGoal('calc_send_to_us');
       var msg = $('f-message'); var sv = $('f-service');
       if (msg) msg.value = summaryText(r);
       if (sv) { for (var i = 0; i < sv.options.length; i++) { if (sv.options[i].text.indexOf('CATI') !== -1) { sv.selectedIndex = i; break; } } }
@@ -226,5 +227,8 @@
     });
   }
 
+  function markUsed() { if (window.baikalGoal) window.baikalGoal('calc_planner_used', true); }
+  $('mode-simple').addEventListener('change', markUsed);
+  $('mode-simple').addEventListener('input', markUsed);
   bind(); bindTabs(); syncVisibility(); renderGroups(); renderResult();
 })();

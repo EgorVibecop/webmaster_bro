@@ -49,6 +49,7 @@
       })
       .then(function (result) {
         if (result.ok) {
+          if (window.baikalGoal) window.baikalGoal('lead_submit');
           form.reset();
           setStatus('Спасибо! Заявка отправлена, мы ответим в течение рабочего дня.', 'ok');
         } else {
