@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+
+const SITE = 'https://baikalresearch.ru';
+const url = `${SITE}/o-nas/`;
+const description = 'Baikal Research — исследовательская команда с опытом работы в бизнесе и в исследовательском агентстве. Как мы подходим к задачам и с кем работаем.';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Главная', item: `${SITE}/` },
+        { '@type': 'ListItem', position: 2, name: 'О нас', item: url },
+      ],
+    },
+    {
+      '@type': 'AboutPage',
+      '@id': `${url}#page`,
+      url,
+      name: 'О Baikal Research',
+      isPartOf: { '@id': `${SITE}/#website` },
+      about: { '@id': `${SITE}/#org` },
+    },
+  ],
+};
+---
+<BaseLayout title="О нас — Baikal Research" description={description}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <SiteHeader contactHref="#contact" />
+
+  <main class="page">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки">
+      <a href="/">Главная</a><span aria-hidden="true">/</span>
+      <span aria-current="page">О нас</span>
+    </nav>
+
+    <h1>О нас</h1>
+    <p class="lead">Мы исследовательская команда. У нас есть опыт работы в бизнесе, на стороне тех, кто принимает решения по результатам исследований, и в исследовательском агентстве, где эти исследования проводят.</p>
+
+    <h2>Почему это важно</h2>
+    <p class="lead">Мы видели исследования с двух сторон. В бизнесе исследование нужно не само по себе, а чтобы решить, что запускать, кому продавать и что менять в продукте. В агентстве важно, чтобы результат был методологически корректным и ему можно было доверять. Мы соединяем эти два взгляда: сначала разбираемся, какое решение вам предстоит принять, и только потом выбираем метод.</p>
+
+    <h2>Как мы подходим к работе</h2>
+    <ul class="checks">
+      <li>Метод и размер выборки подбираем под задачу и бюджет, а не под готовый пакет услуг.</li>
+      <li>Показываем, где цифры оценочные и чем ограничены выводы.</li>
+      <li>ИИ-инструменты используем для скорости, выводы всегда проверяет исследователь.</li>
+      <li>Работаем с юридическими лицами, предпринимателями и физическими лицами. Формат договора и оплаты обсуждаем под вас: подход у нас индивидуальный.</li>
+    </ul>
+
+    <h2>С чем к нам приходят</h2>
+    <p class="lead">Чаще всего с вопросами о клиентах, рынке и продукте: почему не покупают, где теряются на пути, как велик рынок и кто конкуренты, сколько клиентов думает так или иначе. Подробнее на странице <a href="/uslugi/">услуг</a>. Если нужно прикинуть объём опроса, воспользуйтесь <a href="/instrumenty/kalkulyator-vyborki/">калькулятором выборки</a>. Как проходит работа, описано на странице <a href="/kak-my-rabotaem/">«Как мы работаем»</a>.</p>
+    <div class="page-actions">
+      <a class="btn btn-primary" href="#contact">Обсудить задачу</a>
+    </div>
+  </main>
+
+  <ContactBlock
+    heading="Расскажите о задаче"
+    subheading="Предложим метод, выборку и сроки под вашу задачу и бюджет. Цену называем до начала работ."
+  />
+  <SiteFooter />
+</BaseLayout>
