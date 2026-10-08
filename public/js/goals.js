@@ -1,8 +1,8 @@
-// Цели Яндекс.Метрики (счётчик 112962064). Идентификаторы целей типа «JavaScript-событие»
+// Цели Яндекс.Метрики (счётчик 113551309). Идентификаторы целей типа «JavaScript-событие»
 // должны быть заведены в кабинете Метрики: lead_submit, click_phone, click_email,
 // calc_planner_used, calc_send_to_us, calc_pro_used.
 (function () {
-  var COUNTER = 112962064;
+  var COUNTER = 113551309;
   var sent = {};
   window.baikalGoal = function (name, once) {
     if (once && sent[name]) return;

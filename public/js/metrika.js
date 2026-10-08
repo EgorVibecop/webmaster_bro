@@ -1,4 +1,4 @@
-// Яндекс.Метрика, счётчик 112962064 (baikalresearch.ru).
+// Яндекс.Метрика, счётчик 113551309 (baikalresearch.ru).
 // Вебвизор (запись сессий) выключен намеренно, пока не дописана
 // политика конфиденциальности — включить: webvisor:true ниже.
 (function (m, e, t, r, i, k, a) {
@@ -9,9 +9,9 @@
   }
   k = e.createElement(t); a = e.getElementsByTagName(t)[0];
   k.async = 1; k.src = r; a.parentNode.insertBefore(k, a);
-})(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=112962064', 'ym');
+})(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=113551309', 'ym');
 
-ym(112962064, 'init', {
+ym(113551309, 'init', {
   ssr: true,
   webvisor: false,
   clickmap: true,
