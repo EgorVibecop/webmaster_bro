@@ -1,4 +1,4 @@
-/* Footer: тёмный, как шапка; колонки с заголовками, чтобы разделы не сливались. */
+/* Footer: темный, как шапка; колонки с заголовками, чтобы разделы не сливались. */
 .site-footer { background: var(--night); color: var(--on-night-soft); padding: clamp(40px, 6vw, 64px) var(--gutter) 28px; }
 .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 40px 56px; }
 .footer-brand { display: flex; flex-direction: column; gap: 6px; }

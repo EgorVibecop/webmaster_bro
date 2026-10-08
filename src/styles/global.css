@@ -7,7 +7,7 @@
   --bg-alt: #EFF5F9;
   --ink: #101C2B;
   --ink-soft: #5B6B7A;
-  /* Синий разведён на две роли: --accent — крупная графика (иконки, «+42»,
+  /* Синий разведен на две роли: --accent — крупная графика (иконки, «+42»,
      проходит 3:1 от 24px), --accent-text — текст, ссылки, кнопки (проходит 4.5:1). */
   --accent: #0284C7;
   --accent-text: #0369A1;
@@ -17,7 +17,7 @@
   --dark-line: #1C2A38;
   --dark-label: #90A4B5;
   --dark-text: #A9BBC9;
-  /* Тёмная поверхность шапки и первого экрана. */
+  /* Темная поверхность шапки и первого экрана. */
   --night: #0C1A28;
   --night-lift: #15293A;
   --on-night: #E8EEF3;
@@ -104,13 +104,13 @@ img, svg { display: block; max-width: 100%; }
 .btn-ghost:hover { background: var(--ink); color: var(--bg); }
 .btn-sm { padding: 12px 22px; font-size: 15px; }
 
-/* На тёмном фоне главная кнопка белая: инверсия читается дороже синей заливки. */
+/* На темном фоне главная кнопка белая: инверсия читается дороже синей заливки. */
 .btn-on-dark { background: #FFFFFF; color: var(--night); border-color: #FFFFFF; }
 .btn-on-dark:hover { background: var(--on-night); border-color: var(--on-night); color: var(--night); }
 .btn-ghost-on-dark { background: transparent; color: #FFFFFF; border-color: rgba(255, 255, 255, 0.4); }
 .btn-ghost-on-dark:hover { background: transparent; color: #FFFFFF; border-color: rgba(255, 255, 255, 0.75); }
 
-/* Header: тёмная шапка на всех страницах, полупрозрачная с размытием. */
+/* Header: темная шапка на всех страницах, полупрозрачная с размытием. */
 .site-header {
   position: sticky;
   top: 0;
@@ -174,7 +174,7 @@ img, svg { display: block; max-width: 100%; }
 }
 
 /* Hero */
-/* Тёмная поверхность: два близких тона плюс зерно вместо плоской заливки. */
+/* Темная поверхность: два близких тона плюс зерно вместо плоской заливки. */
 .hero {
   position: relative;
   isolation: isolate;
@@ -262,7 +262,7 @@ img, svg { display: block; max-width: 100%; }
 /* Process */
 .process { padding: clamp(28px, 4.5vw, 56px) var(--gutter); display: flex; flex-direction: column; gap: clamp(28px, 5vw, 56px); }
 .timeline { position: relative; }
-/* Линия идёт от центра первого кружка до центра последнего: при 4 равных
+/* Линия идет от центра первого кружка до центра последнего: при 4 равных
    колонках их центры лежат на 1/8 и 7/8 ширины. */
 .timeline-line { position: absolute; top: 28px; left: calc(100% / 8); width: calc(100% - 100% / 4); height: 2px; background: var(--line); z-index: 0; }
 .timeline-row { display: flex; justify-content: space-between; gap: 20px; position: relative; z-index: 1; flex-wrap: wrap; }
@@ -364,7 +364,7 @@ img, svg { display: block; max-width: 100%; }
 .contact-card a.value:hover { color: var(--accent); }
 .contact-card .phone-link {
   color: var(--bg); font-size: 22px; font-family: var(--font); font-weight: 600;
-  /* Убирает цветную кайму на жирном тексте на тёмном фоне — известный баг
+  /* Убирает цветную кайму на жирном тексте на темном фоне — известный баг
      субпиксельного сглаживания в Chrome/Windows, лечится принудительным слоем. */
   transform: translateZ(0);
 }

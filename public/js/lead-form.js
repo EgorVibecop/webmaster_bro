@@ -1,4 +1,4 @@
-// Отправка заявки в облачную функцию (она пересылает её в Telegram).
+// Отправка заявки в облачную функцию (она пересылает ее в Telegram).
 (function () {
   var form = document.getElementById('lead-form');
   var statusEl = document.getElementById('form-status');

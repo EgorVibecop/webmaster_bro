@@ -1,8 +1,8 @@
-// Планировщик выборки для тех, кто не знает статистику. Всё считается в браузере.
+// Планировщик выборки для тех, кто не знает статистику. Все считается в браузере.
 (function () {
   var Z = 1.96;            // доверительная вероятность 95%
   var Z_POWER = 0.8416;    // мощность 80%
-  var RESERVE = 0.1;       // запас на анкеты, которые придётся отбросить
+  var RESERVE = 0.1;       // запас на анкеты, которые придется отбросить
   var nf = new Intl.NumberFormat('ru-RU');
 
   var state = {
@@ -53,7 +53,7 @@
       nameWrap.appendChild(lab); nameWrap.appendChild(inp);
 
       var subWrap = el('div');
-      var lab2 = el('label', 'field-label', 'Делим ещё на подгруппы?');
+      var lab2 = el('label', 'field-label', 'Делим еще на подгруппы?');
       lab2.setAttribute('for', 'pl-g-sub-' + i);
       var sel = el('select', 'field');
       sel.id = 'pl-g-sub-' + i;
@@ -77,8 +77,8 @@
 
   function summaryText(r) {
     var lines = [];
-    lines.push('Расчёт из планировщика выборки: ' + nf.format(r.total) + ' респондентов (с запасом ' + nf.format(r.withReserve) + ').');
-    lines.push('Точность ±' + state.err + ' п.п. при 95%, ' + nf.format(r.perCell) + ' на каждую группу' + (state.compare ? ', с учётом сравнения групп (разница от ' + state.diff + ' п.п.)' : '') + '.');
+    lines.push('Расчет из планировщика выборки: ' + nf.format(r.total) + ' респондентов (с запасом ' + nf.format(r.withReserve) + ').');
+    lines.push('Точность ±' + state.err + ' п.п. при 95%, ' + nf.format(r.perCell) + ' на каждую группу' + (state.compare ? ', с учетом сравнения групп (разница от ' + state.diff + ' п.п.)' : '') + '.');
     r.rows.forEach(function (row) { lines.push('— ' + row.label + ': ' + nf.format(row.n)); });
     return lines.join('\n');
   }
@@ -116,7 +116,7 @@
     var head = el('div', 'pl-head');
     head.appendChild(el('div', 'calc-sub', 'Нужно опросить около'));
     head.appendChild(el('div', 'calc-big', nf.format(r.withReserve) + ' ' + plural(r.withReserve, ['человека', 'человек', 'человек'])));
-    head.appendChild(el('div', 'calc-sub', r.total === r.withReserve ? '' : nf.format(r.total) + ' по расчёту и около 10% запаса на анкеты, которые придётся отбросить'));
+    head.appendChild(el('div', 'calc-sub', r.total === r.withReserve ? '' : nf.format(r.total) + ' по расчету и около 10% запаса на анкеты, которые придется отбросить'));
     out.appendChild(head);
 
     var table = el('table', 'pl-table');
@@ -129,7 +129,7 @@
     r.rows.forEach(function (row) {
       var tr = el('tr'); tr.appendChild(el('td', '', row.label)); tr.appendChild(el('td', 'num', nf.format(row.n))); tb.appendChild(tr);
     });
-    var trt = el('tr', 'pl-total'); trt.appendChild(el('td', '', 'Всего по расчёту')); trt.appendChild(el('td', 'num', nf.format(r.total))); tb.appendChild(trt);
+    var trt = el('tr', 'pl-total'); trt.appendChild(el('td', '', 'Всего по расчету')); trt.appendChild(el('td', 'num', nf.format(r.total))); tb.appendChild(trt);
     table.appendChild(tb);
     out.appendChild(table);
 
@@ -149,7 +149,7 @@
     if (state.compare) {
       var li3 = el('li');
       li3.appendChild(el('b', '', 'Сравнение групп. '));
-      li3.appendChild(document.createTextNode('Чтобы с хорошим шансом (около 80%) заметить разницу от ' + state.diff + ' п.п. между двумя группами, нужно ' + nf.format(r.perCmp) + ' человек в каждой. ' + (r.perCmp > r.perPrec ? 'Это больше, чем нужно для точности, поэтому берём это число.' : 'Это меньше, чем нужно для точности, поэтому берём число из первого пункта.')));
+      li3.appendChild(document.createTextNode('Чтобы с хорошим шансом (около 80%) заметить разницу от ' + state.diff + ' п.п. между двумя группами, нужно ' + nf.format(r.perCmp) + ' человек в каждой. ' + (r.perCmp > r.perPrec ? 'Это больше, чем нужно для точности, поэтому берем это число.' : 'Это меньше, чем нужно для точности, поэтому берем число из первого пункта.')));
       ol.appendChild(li3);
     }
     var li4 = el('li');
@@ -165,12 +165,12 @@
     if (state.mode === 'groups' && state.err < 10 && r.cells > 1) {
       var rough = round10(r.cells * nPrecision(10) * (1 + RESERVE));
       var tip = el('p', 'calc-note');
-      tip.textContent = 'Как сэкономить: если по группам нужен только ориентир (±10 п.п.), хватит около ' + nf.format(rough) + ' человек вместо ' + nf.format(r.withReserve) + '. Общие цифры по всем группам вместе при этом всё равно будут точными.';
+      tip.textContent = 'Как сэкономить: если по группам нужен только ориентир (±10 п.п.), хватит около ' + nf.format(rough) + ' человек вместо ' + nf.format(r.withReserve) + '. Общие цифры по всем группам вместе при этом все равно будут точными.';
       out.appendChild(tip);
     }
 
     var actions = el('div', 'pl-actions');
-    var send = el('button', 'btn btn-primary', 'Отправить этот расчёт нам');
+    var send = el('button', 'btn btn-primary', 'Отправить этот расчет нам');
     send.type = 'button';
     send.addEventListener('click', function () {
       if (window.baikalGoal) window.baikalGoal('calc_send_to_us');
@@ -181,7 +181,7 @@
       var nm = $('f-name'); if (nm) setTimeout(function () { nm.focus({ preventScroll: true }); }, 400);
     });
     actions.appendChild(send);
-    actions.appendChild(el('span', 'calc-hint', 'Мы посмотрим расчёт и подскажем, как уложиться в бюджет.'));
+    actions.appendChild(el('span', 'calc-hint', 'Мы посмотрим расчет и подскажем, как уложиться в бюджет.'));
     out.appendChild(actions);
   }
 
