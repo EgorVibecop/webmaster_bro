@@ -24,7 +24,7 @@ const jsonLd = {
       '@id': `${SITE}/#website`,
       url: `${SITE}/`,
       name: 'Baikal Research',
-      alternateName: ['Байкал Рисёрч', 'Байкал Рисерч'],
+      alternateName: 'Байкал Рисерч',
       inLanguage: 'ru',
       publisher: { '@id': `${SITE}/#org` },
     },
@@ -32,7 +32,7 @@ const jsonLd = {
       '@type': 'ProfessionalService',
       '@id': `${SITE}/#org`,
       name: 'Baikal Research',
-      alternateName: ['Байкал Рисёрч', 'Байкал Рисерч', 'Baikal Research агентство исследований'],
+      alternateName: ['Байкал Рисерч', 'Baikal Research агентство исследований'],
       url: `${SITE}/`,
       sameAs: ['https://yandex.ru/maps/org/baikal_research/159982807852/'],
       logo: `${SITE}/apple-touch-icon.png`,
@@ -58,7 +58,7 @@ const jsonLd = {
 };
 ---
 <BaseLayout
-  title="Baikal Research (Байкал Рисёрч) — исследования и бизнес-консалтинг"
+  title="Baikal Research (Байкал Рисерч) — исследования и бизнес-консалтинг"
   description={description}
 >
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
