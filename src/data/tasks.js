@@ -3,6 +3,6 @@
 export const tasks = [
   { q: 'Почему клиенты не покупают или уходят?', service: 'Кастдев и глубинные интервью', slug: 'custdev-glubinnye-intervyu' },
   { q: 'Где пользователи застревают в интерфейсе?', service: 'Юзабилити-тестирование', slug: 'usability-testirovanie' },
-  { q: 'Каков объём рынка и кто конкуренты?', service: 'Маркетинговые исследования', slug: 'marketingovye-issledovaniya' },
+  { q: 'Каков объем рынка и кто конкуренты?', service: 'Маркетинговые исследования', slug: 'marketingovye-issledovaniya' },
   { q: 'Сколько клиентов так думает, в процентах?', service: 'Опросы CATI / CAWI', slug: 'cati-cawi-oprosy' },
 ];
