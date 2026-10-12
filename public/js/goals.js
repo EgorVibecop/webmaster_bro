@@ -17,3 +17,37 @@
     else if (href.indexOf('mailto:') === 0) window.baikalGoal('click_email');
   });
 })();
+
+// Источник визита для заявок: первая страница, откуда пришёл человек, метки UTM и ClientID Метрики.
+// Хранится только в sessionStorage (до закрытия вкладки) и уходит вместе с заявкой в Telegram.
+(function () {
+  var KEY = 'baikal_src';
+  function read() { try { return JSON.parse(sessionStorage.getItem(KEY) || 'null'); } catch (e) { return null; } }
+  function write(v) { try { sessionStorage.setItem(KEY, JSON.stringify(v)); } catch (e) { /* хранилище недоступно */ } }
+  if (!read()) {
+    var q = new URLSearchParams(location.search);
+    var utm = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].map(function (k) { return q.get(k) ? k.replace('utm_', '') + '=' + q.get(k) : ''; }).filter(Boolean).join(', ');
+    write({ landing: location.pathname + location.search, ref: document.referrer || '', utm: utm });
+  }
+  window.baikalSource = function (cb) {
+    var s = read() || { landing: location.pathname, ref: document.referrer || '', utm: '' };
+    var done = false;
+    function finish(cid) {
+      if (done) return; done = true;
+      var host = '';
+      try { host = s.ref ? new URL(s.ref).hostname : ''; } catch (e) { host = s.ref; }
+      var parts = [
+        'Откуда пришел: ' + (host || 'прямой заход или закрытый источник'),
+        'Первая страница: ' + s.landing,
+        'Заявка с страницы: ' + location.pathname,
+      ];
+      if (s.utm) parts.push('Метки: ' + s.utm);
+      if (cid) parts.push('ClientID Метрики: ' + cid);
+      cb(parts.join('\n'));
+    }
+    try {
+      if (typeof window.ym === 'function') window.ym(113551309, 'getClientID', function (id) { finish(id); });
+    } catch (e) { /* без ClientID */ }
+    setTimeout(function () { finish(''); }, 800);
+  };
+})();

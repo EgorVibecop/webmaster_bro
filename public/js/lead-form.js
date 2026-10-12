@@ -37,6 +37,8 @@
     button.disabled = true;
     setStatus('Отправляем…', '');
 
+    (window.baikalSource || function (cb) { cb(''); })(function (src) {
+    if (src) payload.message = String(payload.message || '').slice(0, 1700) + '\n\n— Источник —\n' + src;
     fetch(endpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -62,5 +64,6 @@
       .then(function () {
         button.disabled = false;
       });
+    });
   });
 })();
