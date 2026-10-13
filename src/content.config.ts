@@ -6,6 +6,8 @@ const blog = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    // Короткий ответ в начале статьи (2–3 предложения): его же берем в разметку Article как abstract
+    summary: z.string().optional(),
     date: z.coerce.date(),
     updated: z.coerce.date().optional(),
     // slug связанной услуги: по нему статья попадает в блок «Полезные статьи» на странице услуги

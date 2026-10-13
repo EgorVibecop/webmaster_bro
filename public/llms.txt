@@ -1,0 +1,27 @@
+# Baikal Research (Байкал Рисерч)
+
+> Исследовательская команда с опытом работы в бизнесе и в исследовательском агентстве. Маркетинговые и продуктовые исследования, опросы CATI/CAWI, юзабилити-тестирование, кастдев и глубинные интервью, анализ рынка и конкурентов. Работаем с юридическими лицами, предпринимателями и физическими лицами по всей России.
+
+## Услуги
+- [Стратегия и анализ рынка](https://baikalresearch.ru/uslugi/strategiya-i-analiz-rynka/): выбор ниши и клиентов, анализ рынка и конкурентов, план на 90 дней.
+- [Маркетинговые исследования](https://baikalresearch.ru/uslugi/marketingovye-issledovaniya/): емкость рынка, конкуренты, целевая аудитория.
+- [Продуктовые исследования](https://baikalresearch.ru/uslugi/produktovye-issledovaniya/): ценность, цена, сценарии использования, барьеры.
+- [Опросы CATI и CAWI](https://baikalresearch.ru/uslugi/cati-cawi-oprosy/): телефонные и онлайн-опросы, расчет выборки, NPS.
+- [Юзабилити-тестирование](https://baikalresearch.ru/uslugi/usability-testirovanie/): тесты сайтов и приложений.
+- [Кастдев и глубинные интервью](https://baikalresearch.ru/uslugi/custdev-glubinnye-intervyu/): интервью с клиентами, JTBD.
+
+## Инструменты
+- [Сколько людей опросить: калькулятор выборки](https://baikalresearch.ru/instrumenty/kalkulyator-vyborki/): расчет числа респондентов по группам, погрешность, значимость различий.
+
+## Материалы
+- [Сколько респондентов нужно для опроса](https://baikalresearch.ru/blog/kak-rasschitat-vyborku-dlya-oprosa/)
+- [CATI или CAWI: что выбрать](https://baikalresearch.ru/blog/cati-ili-cawi-chto-vybrat/)
+- [Юзабилити-тест: сколько участников нужно](https://baikalresearch.ru/blog/yusabiliti-test-skolko-uchastnikov/)
+- [Качественные и количественные исследования: в чем разница](https://baikalresearch.ru/blog/kachestvennye-i-kolichestvennye-issledovaniya/)
+- [Как проводить глубинное интервью: 8 правил модератора](https://baikalresearch.ru/blog/kak-provodit-glubinnoe-intervyu/)
+- [JTBD-интервью: из чего состоит разговор на час](https://baikalresearch.ru/blog/jtbd-interview-struktura/)
+
+## О компании
+- [О нас](https://baikalresearch.ru/o-nas/)
+- [Как мы работаем](https://baikalresearch.ru/kak-my-rabotaem/)
+- [Контакты](https://baikalresearch.ru/kontakty/)
