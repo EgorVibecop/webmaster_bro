@@ -40,6 +40,7 @@ const graph: any[] = [
     '@id': `${url}#article`,
     headline: data.title,
     description: data.description,
+    ...(data.summary ? { abstract: data.summary } : {}),
     inLanguage: 'ru',
     datePublished: data.date.toISOString(),
     dateModified: (data.updated ?? data.date).toISOString(),
@@ -79,6 +80,13 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
 
     <h1>{data.title}</h1>
     <div class="post-meta">{minutes} мин чтения</div>
+
+    {data.summary && (
+      <aside class="tldr" aria-label="Коротко">
+        <div class="tldr-title">Коротко</div>
+        <p>{data.summary}</p>
+      </aside>
+    )}
 
     <div class="prose">
       <Content />

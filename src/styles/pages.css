@@ -203,3 +203,8 @@
 .mode-tabs + [role="tabpanel"] .pl { margin-top: 18px; }
 #mode-pro .calc-grid { margin-top: 18px; }
 @media (max-width: 640px) { .mode-tabs { grid-template-columns: 1fr; } }
+
+/* Короткий ответ в начале статьи */
+.tldr { background: var(--bg-alt); border-left: 3px solid var(--accent-text); border-radius: 0 var(--radius-control) var(--radius-control) 0; padding: 16px 20px; margin: 0 0 28px; }
+.tldr-title { font-size: var(--fs-label); font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent-text); margin-bottom: 6px; }
+.tldr p { margin: 0; font-size: var(--fs-body); line-height: 1.6; }
