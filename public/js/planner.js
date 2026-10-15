@@ -2,7 +2,6 @@
 (function () {
   var Z = 1.96;            // доверительная вероятность 95%
   var Z_POWER = 0.8416;    // мощность 80%
-  var RESERVE = 0.1;       // запас на анкеты, которые придется отбросить
   var nf = new Intl.NumberFormat('ru-RU');
 
   var state = {
@@ -77,7 +76,7 @@
 
   function summaryText(r) {
     var lines = [];
-    lines.push('Расчет из планировщика выборки: ' + nf.format(r.total) + ' респондентов (с запасом ' + nf.format(r.withReserve) + ').');
+    lines.push('Расчет из планировщика выборки: ' + nf.format(r.total) + ' респондентов.');
     lines.push('Точность ±' + state.err + ' п.п. при 95%, ' + nf.format(r.perCell) + ' на каждую группу' + (state.compare ? ', с учетом сравнения групп (разница от ' + state.diff + ' п.п.)' : '') + '.');
     r.rows.forEach(function (row) { lines.push('— ' + row.label + ': ' + nf.format(row.n)); });
     return lines.join('\n');
@@ -105,7 +104,7 @@
       });
     }
     var total = cells * perCell;
-    return { perPrec: perPrec, perCmp: perCmp, perCell: perCell, rows: rows, cells: cells, total: total, withReserve: round10(total * (1 + RESERVE)) };
+    return { perPrec: perPrec, perCmp: perCmp, perCell: perCell, rows: rows, cells: cells, total: total, withReserve: round10(total) };
   }
 
   function renderResult() {
@@ -116,7 +115,7 @@
     var head = el('div', 'pl-head');
     head.appendChild(el('div', 'calc-sub', 'Нужно опросить около'));
     head.appendChild(el('div', 'calc-big', nf.format(r.withReserve) + ' ' + plural(r.withReserve, ['человека', 'человек', 'человек'])));
-    head.appendChild(el('div', 'calc-sub', r.total === r.withReserve ? '' : nf.format(r.total) + ' по расчету и около 10% запаса на анкеты, которые придется отбросить'));
+    head.appendChild(el('div', 'calc-sub', ''));
     out.appendChild(head);
 
     var table = el('table', 'pl-table');
@@ -156,14 +155,10 @@
     li4.appendChild(el('b', '', 'Типы вопросов. '));
     li4.appendChild(document.createTextNode('Одиночный и множественный выбор считаются одинаково: у каждого варианта доля тех, кто его выбрал, и точность та же. Открытые вопросы число респондентов не увеличивают: ответы нужно прочитать и разложить по темам, это добавляет работы, но не людей.'));
     ol.appendChild(li4);
-    var li5 = el('li');
-    li5.appendChild(el('b', '', 'Запас. '));
-    li5.appendChild(document.createTextNode('Часть анкет обычно приходится отбросить (слишком быстрые, шаблонные ответы), поэтому добавляем около 10%.'));
-    ol.appendChild(li5);
     out.appendChild(ol);
 
     if (state.mode === 'groups' && state.err < 10 && r.cells > 1) {
-      var rough = round10(r.cells * nPrecision(10) * (1 + RESERVE));
+      var rough = round10(r.cells * nPrecision(10));
       var tip = el('p', 'calc-note');
       tip.textContent = 'Как сэкономить: если по группам нужен только ориентир (±10 п.п.), хватит около ' + nf.format(rough) + ' человек вместо ' + nf.format(r.withReserve) + '. Общие цифры по всем группам вместе при этом все равно будут точными.';
       out.appendChild(tip);
