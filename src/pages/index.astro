@@ -100,15 +100,6 @@ const jsonLd = {
     </div>
   </section>
 
-  <section class="clients" aria-label="С кем работали">
-    <div class="clients-label">С кем работали</div>
-    <ul class="clients-row">
-      {clients.map((c) => (
-        <li class={c.tall ? 'tall' : undefined}><img src={`/clients/${c.file}`} alt={c.name} height="40" loading="lazy" /></li>
-      ))}
-    </ul>
-  </section>
-
   <section id="services" class="services">
     <div class="section-head">
       <div class="eyebrow">Услуги</div>
@@ -194,6 +185,15 @@ const jsonLd = {
         <div class="fine-print">NPS = доля промоутеров (оценки 9–10) минус доля критиков (0–6), шкала от −100 до +100.</div>
       </div>
     </div>
+  </section>
+
+  <section class="clients" aria-label="С кем работали">
+    <div class="clients-label">С кем работали</div>
+    <ul class="clients-row">
+      {clients.map((c) => (
+        <li class={c.tall ? 'tall' : undefined}><img src={`/clients/${c.file}`} alt={c.name} height="40" loading="lazy" /></li>
+      ))}
+    </ul>
   </section>
 
   <ContactBlock />
