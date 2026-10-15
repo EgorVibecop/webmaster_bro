@@ -6,6 +6,13 @@ import ContactBlock from '../components/ContactBlock.astro';
 import { services } from '../data/services.js';
 import { tasks } from '../data/tasks.js';
 
+const clients = [
+  { name: 'Магнит Tech', file: 'magnit-tech.png' },
+  { name: 'Novartis', file: 'novartis.png' },
+  { name: 'Национальная Лотерея', file: 'nacionalnaya-loteriya.png', tall: true },
+  { name: 'СберЗдоровье', file: 'sberzdorovye.png' },
+];
+
 const process = [
   { title: 'Бриф и методология', desc: 'Обсуждаем задачу, предлагаем метод и выборку, фиксируем сроки и стоимость.' },
   { title: 'Сбор данных', desc: 'CATI/CAWI-опрос, интервью или тестирование по согласованному сценарию. Следим за качеством рекрута.' },
@@ -69,6 +76,14 @@ const jsonLd = {
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-main">
+        <div class="promo-pill" role="note">
+          <span class="promo-dot" aria-hidden="true"></span>
+          <span class="promo-text">Первое исследование со скидкой 20%</span>
+          <span class="promo-actions">
+            <a href="#contact">Написать</a>
+            <a href="tel:+79774437588">Позвонить</a>
+          </span>
+        </div>
         <h1>Исследования, после которых понятно, что делать</h1>
         <div class="hero-actions">
           <a class="btn btn-on-dark" href="#contact">Обсудить задачу</a>
@@ -90,6 +105,15 @@ const jsonLd = {
         <a class="hero-steps-link" href="#contact">Другая задача? Опишите ее <span aria-hidden="true">→</span></a>
       </aside>
     </div>
+  </section>
+
+  <section class="clients" aria-label="С кем работали">
+    <div class="clients-label">С кем работали</div>
+    <ul class="clients-row">
+      {clients.map((c) => (
+        <li class={c.tall ? 'tall' : undefined}><img src={`/clients/${c.file}`} alt={c.name} height="40" loading="lazy" /></li>
+      ))}
+    </ul>
   </section>
 
   <section id="services" class="services">
@@ -145,7 +169,7 @@ const jsonLd = {
 
   <section class="approach">
     <h2>Подбираем исследование под задачу и бюджет</h2>
-    <p>Метод и размер выборки выбираем под задачу и бюджет. Если задаче хватает 10 интервью, мы не предложим 100. Если хватает опроса на 400 человек, не будем делать опрос на 10 000. Так же гибко подходим к формату работы: с юрлицами, ИП и физлицами, с предоплатой, по этапам или после сдачи. Подход к каждому клиенту индивидуальный.</p>
+    <p>Метод и размер выборки выбираем под задачу и бюджет. Если задаче хватает 10 интервью, мы не предложим 100. Если хватает опроса на 400 человек, не будем делать опрос на 10 000. Так же гибко подходим к формату работы: с юрлицами, ИП и физлицами, с предоплатой, по этапам или после сдачи. Подход к каждому клиенту индивидуальный. Берем и небольшие проекты: работаем с малым бизнесом, ИП и частными лицами.</p>
     <a class="section-link" href="/o-nas/">О нас <span aria-hidden="true">→</span></a>
     <div class="trust-line">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6"/></svg>

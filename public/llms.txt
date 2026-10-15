@@ -25,3 +25,7 @@
 - [О нас](https://baikalresearch.ru/o-nas/)
 - [Как мы работаем](https://baikalresearch.ru/kak-my-rabotaem/)
 - [Контакты](https://baikalresearch.ru/kontakty/)
+
+## Справочные материалы
+- [Словарь терминов исследований](https://baikalresearch.ru/glossariy/): выборка, погрешность, CAWI и CATI, NPS, кастдев, JTBD, юзабилити-тестирование.
+- [Сколько стоит опрос и от чего зависит цена](https://baikalresearch.ru/blog/skolko-stoit-opros/)

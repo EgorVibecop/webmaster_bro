@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+import { glossary } from '../data/glossary.js';
+
+const SITE = 'https://baikalresearch.ru';
+const url = `${SITE}/glossariy/`;
+const description = 'Словарь терминов маркетинговых и продуктовых исследований: выборка, погрешность, CAWI и CATI, NPS, кастдев, JTBD, юзабилити-тестирование. Короткие определения простым языком.';
+const items = [...glossary].sort((a, b) => a.term.localeCompare(b.term, 'ru'));
+const id = (t) => 'term-' + t.toLowerCase().replace(/[^a-zа-я0-9]+/gi, '-');
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Главная', item: `${SITE}/` },
+        { '@type': 'ListItem', position: 2, name: 'Словарь терминов', item: url },
+      ],
+    },
+    {
+      '@type': 'DefinedTermSet',
+      '@id': `${url}#set`,
+      name: 'Словарь терминов исследований',
+      inLanguage: 'ru',
+      url,
+      publisher: { '@id': `${SITE}/#org` },
+      hasDefinedTerm: items.map((g) => ({
+        '@type': 'DefinedTerm',
+        name: g.term,
+        description: g.def,
+        url: `${url}#${id(g.term)}`,
+        inDefinedTermSet: `${url}#set`,
+      })),
+    },
+  ],
+};
+---
+<BaseLayout title="Словарь терминов исследований — Baikal Research" description={description}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <SiteHeader contactHref="#contact" />
+
+  <main class="page">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки">
+      <a href="/">Главная</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Словарь терминов</span>
+    </nav>
+
+    <h1>Словарь терминов исследований</h1>
+    <p class="lead">Короткие определения слов, которые встречаются в брифах, предложениях и отчетах. Если какого-то термина не хватает, напишите нам, добавим.</p>
+
+    <dl class="glossary">
+      {items.map((g) => (
+        <div class="glossary-item" id={id(g.term)}>
+          <dt>{g.term}</dt>
+          <dd>
+            {g.def}
+            {g.link && <> <a href={g.link}>Подробнее</a></>}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </main>
+
+  <ContactBlock
+    heading="Нужна помощь с исследованием?"
+    subheading="Расскажите о задаче: предложим метод, выборку и сроки. Цену называем до начала работ."
+  />
+  <SiteFooter />
+</BaseLayout>
