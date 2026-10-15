@@ -208,3 +208,10 @@
 .tldr { background: var(--bg-alt); border-left: 3px solid var(--accent-text); border-radius: 0 var(--radius-control) var(--radius-control) 0; padding: 16px 20px; margin: 0 0 28px; }
 .tldr-title { font-size: var(--fs-label); font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent-text); margin-bottom: 6px; }
 .tldr p { margin: 0; font-size: var(--fs-body); line-height: 1.6; }
+
+/* Словарь терминов */
+.glossary { margin: 28px 0 0; }
+.glossary-item { padding: 18px 0; border-top: 1px solid var(--line); scroll-margin-top: 90px; }
+.glossary-item:last-child { border-bottom: 1px solid var(--line); }
+.glossary dt { font-family: var(--font-display); font-weight: 600; font-size: var(--fs-h3); line-height: 1.25; margin-bottom: 6px; }
+.glossary dd { margin: 0; color: var(--ink-soft); line-height: 1.6; max-width: 68ch; }
