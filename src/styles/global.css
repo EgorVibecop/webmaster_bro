@@ -383,8 +383,16 @@ img, svg { display: block; max-width: 100%; }
 }
 @media (max-width: 640px) {
   .form-grid { grid-template-columns: 1fr; }
-  .svc-list { grid-template-columns: 1fr; }
-  .svc-row { padding: 22px 20px; }
+  /* На телефоне услуги идут плотным списком: номер, название, две строки описания, стрелка справа */
+  .svc-list { grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--line); }
+  .svc-row { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; align-items: start; gap: 4px 12px; padding: 16px 0; background: none; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; }
+  .svc-row:hover { transform: none; box-shadow: none; }
+  .svc-index { padding-top: 4px; }
+  .svc-body { gap: 4px; }
+  .svc-body h3 { font-size: 19px; }
+  .svc-body p { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 14px; }
+  .svc-more { margin: 0; padding: 4px 0 0; font-size: 0; }
+  .svc-more span { font-size: 18px; }
   .hero-steps { padding: 22px 20px; }
 }
 
