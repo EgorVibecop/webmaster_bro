@@ -234,7 +234,8 @@ img, svg { display: block; max-width: 100%; }
 
 /* Services */
 .services { padding: clamp(28px, 4.5vw, 56px) var(--gutter); display: flex; flex-direction: column; gap: clamp(28px, 4vw, 48px); background: var(--bg-alt); }
-.section-head { max-width: 640px; }
+.section-head { max-width: none; }
+.section-head p { max-width: 640px; }
 .section-head h2 { font-weight: 600; letter-spacing: -0.02em; font-size: var(--fs-h2); line-height: 1.12; margin-top: 14px; }
 .section-head p { font-size: var(--fs-body); line-height: 1.6; color: var(--ink-soft); margin-top: 14px; }
 .svc-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
@@ -284,7 +285,7 @@ img, svg { display: block; max-width: 100%; }
   padding: clamp(28px, 4vw, 48px) var(--gutter);
   display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 18px;
 }
-.approach h2 { font-weight: 600; letter-spacing: -0.02em; font-size: var(--fs-h2); line-height: 1.15; max-width: 760px; }
+.approach h2 { font-weight: 600; letter-spacing: -0.02em; font-size: var(--fs-h2); line-height: 1.15; max-width: 980px; }
 .approach p { font-size: var(--fs-body); line-height: 1.6; color: var(--ink-soft); max-width: 680px; }
 .approach .trust-line { justify-content: flex-start; margin-top: 6px; }
 
