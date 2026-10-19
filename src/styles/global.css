@@ -417,8 +417,6 @@ img, svg { display: block; max-width: 100%; }
 /* Клиенты */
 .clients { padding: 0 var(--gutter) clamp(24px, 3.5vw, 40px); }
 .clients-label { font-size: var(--fs-label); font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-soft); }
-.hero-tool { font-weight: 600; font-size: var(--fs-body); text-decoration: none !important; }
-.hero-offer--second { margin: -6px 0 0; }
 
 /* Анимации */
 /* Первый экран: элементы появляются по очереди при загрузке. */
