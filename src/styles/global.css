@@ -180,7 +180,7 @@ img, svg { display: block; max-width: 100%; }
   isolation: isolate;
   color: #FFFFFF;
   background: radial-gradient(120% 90% at 20% 0%, var(--night-lift) 0%, var(--night) 70%);
-  padding: clamp(28px, 4.5vw, 56px) var(--gutter) clamp(32px, 5vw, 56px);
+  padding: clamp(20px, 3vw, 36px) var(--gutter) clamp(24px, 3.5vw, 40px);
 }
 .hero::after {
   content: "";
@@ -233,7 +233,7 @@ img, svg { display: block; max-width: 100%; }
 .trust-line { display: flex; align-items: center; gap: 10px; margin-top: 18px; font-size: 14px; color: var(--ink-soft); }
 
 /* Services */
-.services { padding: clamp(28px, 4.5vw, 56px) var(--gutter); display: flex; flex-direction: column; gap: clamp(28px, 4vw, 48px); background: var(--bg-alt); }
+.services { padding: clamp(20px, 3vw, 36px) var(--gutter); display: flex; flex-direction: column; gap: clamp(20px, 3vw, 32px); background: var(--bg-alt); }
 .section-head { max-width: none; }
 .section-head p { max-width: 640px; }
 .section-head h2 { font-weight: 600; letter-spacing: -0.02em; font-size: var(--fs-h2); line-height: 1.12; margin-top: 14px; }
@@ -261,7 +261,7 @@ img, svg { display: block; max-width: 100%; }
 .svc-row:hover .svc-more span { transform: translateX(3px); }
 
 /* Process */
-.process { padding: clamp(28px, 4.5vw, 56px) var(--gutter); display: flex; flex-direction: column; gap: clamp(28px, 5vw, 56px); }
+.process { padding: clamp(20px, 3vw, 36px) var(--gutter); display: flex; flex-direction: column; gap: clamp(20px, 3.5vw, 36px); }
 .timeline { position: relative; }
 /* Линия идет от центра первого кружка до центра последнего: при 4 равных
    колонках их центры лежат на 1/8 и 7/8 ширины. */
@@ -282,7 +282,7 @@ img, svg { display: block; max-width: 100%; }
   background: var(--bg-alt);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  padding: clamp(28px, 4vw, 48px) var(--gutter);
+  padding: clamp(20px, 3vw, 32px) var(--gutter);
   display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 18px;
 }
 .approach h2 { font-weight: 600; letter-spacing: -0.02em; font-size: var(--fs-h2); line-height: 1.15; max-width: 980px; }
@@ -290,7 +290,7 @@ img, svg { display: block; max-width: 100%; }
 .approach .trust-line { justify-content: flex-start; margin-top: 6px; }
 
 /* Cases / observation */
-.cases { padding: clamp(28px, 4.5vw, 56px) var(--gutter); display: flex; flex-direction: column; gap: clamp(28px, 5vw, 52px); }
+.cases { padding: clamp(20px, 3vw, 36px) var(--gutter); display: flex; flex-direction: column; gap: clamp(20px, 3.5vw, 36px); }
 .cases .section-head p { font-size: var(--fs-body); line-height: 1.6; color: var(--ink-soft); margin-top: 14px; }
 .cases-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: stretch; }
 
@@ -322,7 +322,7 @@ img, svg { display: block; max-width: 100%; }
 .nps-card .fine-print { font-size: 14px; line-height: 1.6; color: var(--dark-text); }
 
 /* Contact */
-.contact { background: var(--bg-alt); padding: clamp(28px, 4.5vw, 56px) var(--gutter); }
+.contact { background: var(--bg-alt); padding: clamp(20px, 3vw, 36px) var(--gutter); }
 .contact-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: start; }
 .contact-form-col { display: flex; flex-direction: column; gap: 28px; }
 .contact-form-col h2 { font-weight: 600; font-size: var(--fs-h2); line-height: 1.25; margin-top: 14px; }
@@ -402,7 +402,7 @@ img, svg { display: block; max-width: 100%; }
 .section-link:hover span { transform: translateX(3px); }
 
 /* Блок калькулятора на главной */
-.tool-band { padding: 0 var(--gutter) clamp(28px, 4.5vw, 56px); }
+.tool-band { padding: 0 var(--gutter) clamp(20px, 3vw, 36px); }
 .tool-card { background: var(--night); color: #FFFFFF; border-radius: var(--radius-card); padding: clamp(24px, 4vw, 40px); display: flex; align-items: center; justify-content: space-between; gap: 24px 40px; flex-wrap: wrap; }
 .tool-card > div { max-width: 640px; }
 .tool-card h2 { font-weight: 600; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.15; letter-spacing: -0.02em; margin: 10px 0 10px; color: #FFFFFF; }
@@ -415,7 +415,7 @@ img, svg { display: block; max-width: 100%; }
 .hero-offer a:hover { text-decoration-color: #FFFFFF; }
 
 /* Клиенты */
-.clients { padding: 0 var(--gutter) clamp(36px, 5vw, 64px); }
+.clients { padding: 0 var(--gutter) clamp(24px, 3.5vw, 40px); }
 .clients-label { font-size: var(--fs-label); font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-soft); }
 .clients-row { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 22px clamp(28px, 5vw, 64px); }
 .clients-row img { height: 38px; width: auto; max-width: 100%; display: block; filter: grayscale(1); opacity: .75; mix-blend-mode: multiply; transition: filter .2s ease, opacity .2s ease; }
@@ -425,3 +425,42 @@ img, svg { display: block; max-width: 100%; }
 @media (max-width: 640px) { .clients-row li.tall img { height: 46px; } }
 .hero-tool { font-weight: 600; font-size: var(--fs-body); text-decoration: none !important; }
 .hero-offer--second { margin: -6px 0 0; }
+
+/* Анимации */
+/* Первый экран: элементы появляются по очереди при загрузке. */
+@keyframes rise { from { opacity: 0; translate: 0 18px; } to { opacity: 1; translate: 0 0; } }
+@keyframes slide-left { from { opacity: 0; translate: 28px 0; } to { opacity: 1; translate: 0 0; } }
+.hero h1 { animation: rise .7s cubic-bezier(.2, .7, .2, 1) both; }
+.hero-actions { animation: rise .7s cubic-bezier(.2, .7, .2, 1) .12s both; }
+.hero-offer { animation: rise .7s cubic-bezier(.2, .7, .2, 1) .24s both; }
+.hero-steps { animation: slide-left .8s cubic-bezier(.2, .7, .2, 1) .2s both; }
+.hero-steps li { animation: rise .6s ease both; }
+.hero-steps li:nth-child(1) { animation-delay: .45s; }
+.hero-steps li:nth-child(2) { animation-delay: .55s; }
+.hero-steps li:nth-child(3) { animation-delay: .65s; }
+.hero-steps li:nth-child(4) { animation-delay: .75s; }
+@media (max-width: 880px) { .hero-steps { animation-name: rise; } }
+
+/* Блоки появляются при прокрутке: JS ставит .motion на html и data-reveal на блоки. */
+.motion [data-reveal] {
+  opacity: 0;
+  translate: 0 22px;
+  transition: opacity .65s ease var(--d, 0s), translate .65s cubic-bezier(.2, .7, .2, 1) var(--d, 0s), transform .16s ease, border-color .16s ease, box-shadow .16s ease;
+}
+.motion [data-reveal].in { opacity: 1; translate: 0 0; }
+
+/* Линия процесса дорисовывается, номера шагов загораются по очереди. */
+.motion .timeline-line { transform: scaleX(0); transform-origin: left; transition: transform 1.2s cubic-bezier(.4, 0, .2, 1) .15s; }
+.motion .timeline.drawn .timeline-line { transform: scaleX(1); }
+.motion .timeline-num { transition: border-color .4s ease, color .4s ease, background .4s ease; }
+.motion .timeline.drawn .timeline-num { border-color: var(--accent-text); color: var(--accent-text); }
+.motion .timeline.drawn .timeline-item:nth-child(1) .timeline-num { transition-delay: .15s; }
+.motion .timeline.drawn .timeline-item:nth-child(2) .timeline-num { transition-delay: .5s; }
+.motion .timeline.drawn .timeline-item:nth-child(3) .timeline-num { transition-delay: .85s; }
+.motion .timeline.drawn .timeline-item:nth-child(4) .timeline-num { transition-delay: 1.2s; }
+
+/* Шапка становится компактнее при прокрутке. */
+.site-header { transition: padding .25s ease, box-shadow .25s ease, background .25s ease; }
+@media (min-width: 881px) {
+  .site-header[data-scrolled="true"] { padding-top: 10px; padding-bottom: 10px; box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25); }
+}
