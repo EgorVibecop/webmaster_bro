@@ -189,13 +189,21 @@ const jsonLd = {
     </div>
   </section>
 
-  <section class="clients" aria-label="С кем работали">
-    <div class="clients-label">С кем работали</div>
-    <ul class="clients-row">
-      {clients.map((c) => (
-        <li class={c.tall ? 'tall' : undefined}><img src={`/clients/${c.file}`} alt={c.name} height="40" loading="lazy" /></li>
-      ))}
-    </ul>
+  <section class="clients" aria-label="Клиенты и партнеры">
+    <div class="clients-label">Клиенты и партнеры</div>
+    <div class="marquee">
+      <div class="marquee-track">
+        {[0, 1].map((g) => (
+          <ul class="marquee-group" aria-hidden={g === 1 ? 'true' : undefined}>
+            {Array.from({ length: 3 }, () => clients).flat().map((c, i) => (
+              <li class={[c.tall ? 'tall' : '', i >= clients.length ? 'dup' : ''].join(' ').trim() || undefined}>
+                <img src={`/clients/${c.file}`} alt={g === 0 && i < clients.length ? c.name : ''} height="40" loading="lazy" />
+              </li>
+            ))}
+          </ul>
+        ))}
+      </div>
+    </div>
   </section>
 
   <ContactBlock />
