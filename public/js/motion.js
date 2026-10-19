@@ -3,8 +3,10 @@
 (function () {
   var header = document.querySelector('.site-header');
   if (header) {
+    var last = null;
     var onScroll = function () {
-      header.setAttribute('data-scrolled', window.scrollY > 8 ? 'true' : 'false');
+      var v = window.scrollY > 8 ? 'true' : 'false';
+      if (v !== last) { last = v; header.setAttribute('data-scrolled', v); }
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
