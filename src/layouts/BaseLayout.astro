@@ -27,7 +27,7 @@ const ogImage = new URL(image, site).href;
 // Политика безопасности через meta (GitHub Pages не дает задавать HTTP-заголовки).
 // Только в боевой сборке: в режиме разработки она мешает горячей перезагрузке.
 // connect-src: адрес функции приема заявок (*example.invalid), при своем домене для нее добавить его сюда.
-// frame-src — GTM-контейнер (noscript-iframe) и служебный фрейм Метрики match.html (синхронизация кук).
+// frame-src – GTM-контейнер (noscript-iframe) и служебный фрейм Метрики match.html (синхронизация кук).
 // GTM сам грузит другие скрипты по настройке в его панели; при добавлении
 // там нового тега может понадобиться открыть его домен здесь же.
 const csp = [
@@ -71,7 +71,7 @@ const csp = [
   <meta property="og:image" content={ogImage} />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Baikal Research — исследования и бизнес-консалтинг" />
+  <meta property="og:image:alt" content="Baikal Research – исследования и бизнес-консалтинг" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />

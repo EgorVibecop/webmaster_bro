@@ -10,6 +10,7 @@ const clients = [
   { name: 'Магнит Tech', file: 'magnit-tech.png' },
   { name: 'Novartis', file: 'novartis.png' },
   { name: 'Национальная Лотерея', file: 'nacionalnaya-loteriya.png', tall: true },
+  { name: 'Промышленно-энергетический форум', file: 'promyshlenno-energeticheskiy-forum.png', tall: true },
   { name: 'СберЗдоровье', file: 'sberzdorovye.png' },
 ];
 
@@ -65,7 +66,7 @@ const jsonLd = {
 };
 ---
 <BaseLayout
-  title="Baikal Research (Байкал Рисерч) — исследования и бизнес-консалтинг"
+  title="Baikal Research (Байкал Рисерч) – исследования и бизнес-консалтинг"
   description={description}
 >
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
@@ -78,11 +79,11 @@ const jsonLd = {
       <div class="hero-main">
         <h1>Исследования, после которых понятно, что делать</h1>
         <div class="hero-actions">
-          <a class="btn btn-on-dark" href="#contact">Обсудить задачу</a>
+          <a class="btn btn-on-dark" href="#contact">Связаться с нами</a>
           <a class="btn btn-ghost-on-dark" href="/kak-my-rabotaem/">Как мы работаем</a>
         </div>
         <p class="hero-offer"><a class="hero-tool" href="/instrumenty/kalkulyator-vyborki/">Бесплатный расчет выборки для опроса <span aria-hidden="true">→</span></a></p>
-        <p class="hero-offer hero-offer--second">Скидка 20% на первое исследование. <a href="#contact">Напишите</a> или позвоните: <a href="tel:+79774437588">+7 977 443-75-88</a></p>
+        <p class="hero-offer hero-offer--second">Скидка 20% на первое исследование</p>
       </div>
       <aside class="hero-steps" aria-label="С какой задачей приходят">
         <div class="hero-steps-title">С какой задачей приходят</div>
@@ -158,7 +159,7 @@ const jsonLd = {
     <a class="section-link" href="/o-nas/">О нас <span aria-hidden="true">→</span></a>
     <div class="trust-line">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6"/></svg>
-      Работаем по стандартам отрасли — ESOMAR, ISO 20252
+      Работаем по стандартам отрасли – ESOMAR, ISO 20252
     </div>
   </section>
 
