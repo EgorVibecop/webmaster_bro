@@ -17,7 +17,7 @@
 
   var SELECTORS = [
     '.section-head', '.svc-row', '.timeline-item', '.tool-card', '.approach > *',
-    '.cases-grid > *', '.clients > *', '.clients-row li', '.contact-grid > *',
+    '.cases-grid > *', '.clients > *', '.contact-grid > *',
     '.page > h2', '.page .steps li', '.page .callout', '.glossary-item'
   ].join(',');
   var els = document.querySelectorAll(SELECTORS);
