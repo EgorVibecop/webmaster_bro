@@ -55,7 +55,6 @@ const jsonLd = {
     <div class="svc-list svc-list--two">
       {services.map((s, i) => (
         <a class="svc-row" href={`/uslugi/${s.slug}/`} aria-label={`Подробнее об услуге: ${s.title}`}>
-          <div class="svc-index">{String(i + 1).padStart(2, '0')}</div>
           <div class="svc-body">
             <h2>{s.title}</h2>
             <p>{s.desc}</p>
