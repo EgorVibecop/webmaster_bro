@@ -8,7 +8,7 @@ import { readingMinutes } from '../../utils/readingTime';
 const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 <BaseLayout
-  title="Блог об исследованиях — Baikal Research"
+  title="Блог об исследованиях – Baikal Research"
   description="Практические материалы об исследованиях: как рассчитать выборку, выбрать метод опроса, провести юзабилити-тест и превратить данные в решения."
 >
   <SiteHeader />

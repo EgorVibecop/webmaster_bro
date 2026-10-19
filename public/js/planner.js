@@ -78,7 +78,7 @@
     var lines = [];
     lines.push('Расчет из планировщика выборки: ' + nf.format(r.total) + ' респондентов.');
     lines.push('Точность ±' + state.err + ' п.п. при 95%, ' + nf.format(r.perCell) + ' на каждую группу' + (state.compare ? ', с учетом сравнения групп (разница от ' + state.diff + ' п.п.)' : '') + '.');
-    r.rows.forEach(function (row) { lines.push('— ' + row.label + ': ' + nf.format(row.n)); });
+    r.rows.forEach(function (row) { lines.push('– ' + row.label + ': ' + nf.format(row.n)); });
     return lines.join('\n');
   }
 

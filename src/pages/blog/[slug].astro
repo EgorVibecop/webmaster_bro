@@ -19,7 +19,7 @@ const { data } = post;
 const SITE = 'https://baikalresearch.ru';
 const url = `${SITE}/blog/${post.id}/`;
 const minutes = readingMinutes(post.body);
-const withBrand = `${data.title} — Baikal Research`;
+const withBrand = `${data.title} – Baikal Research`;
 const pageTitle = withBrand.length <= 65 ? withBrand : data.title;
 const service = data.service ? bySlug(data.service) : undefined;
 

@@ -5,7 +5,7 @@ interface Props {
 const { contactHref = '/kontakty/' } = Astro.props;
 ---
 <header class="site-header" id="site-header" data-nav-open="false">
-  <a class="brand" href="/" aria-label="Baikal Research — на главную">
+  <a class="brand" href="/" aria-label="Baikal Research – на главную">
     <div class="brand-row">
       <svg width="30" height="24" viewBox="0 0 32 26" fill="none" stroke="var(--accent)" stroke-linecap="round" aria-hidden="true">
         <path d="M2 6 Q9 1 16 6 T30 6" stroke-width="1.5"/>
@@ -31,7 +31,7 @@ const { contactHref = '/kontakty/' } = Astro.props;
     <a href="/kontakty/">Контакты</a>
   </nav>
   <div class="header-cta">
-    <a class="btn btn-on-dark btn-sm" href={contactHref}>Обсудить задачу</a>
+    <a class="btn btn-on-dark btn-sm" href={contactHref}>Связаться с нами</a>
   </div>
 </header>
 <script is:inline src="/js/nav-toggle.js" defer></script>

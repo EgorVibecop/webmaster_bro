@@ -1,6 +1,6 @@
 ---
 // Единый блок «форма + прямые контакты». Используется на главной, на каждой
-// странице услуги и в каждой статье блога — чтобы человек не уходил с
+// странице услуги и в каждой статье блога – чтобы человек не уходил с
 // прочитанной страницы, чтобы задать вопрос.
 import { FORM_ENDPOINT } from '../config.js';
 import { services } from '../data/services.js';
@@ -11,7 +11,7 @@ interface Props {
   presetService?: string;
 }
 const {
-  heading = 'Расскажите о задаче — предложим метод и сроки',
+  heading = 'Расскажите о задаче – предложим метод и сроки',
   subheading,
   presetService,
 } = Astro.props;
@@ -63,8 +63,8 @@ const {
           </label>
         </div>
         <div class="full submit-row">
-          <button class="btn btn-primary" type="submit">Обсудить задачу</button>
-          <div class="required-note"><span class="req">*</span> — обязательные поля, остальное по желанию</div>
+          <button class="btn btn-primary" type="submit">Связаться с нами</button>
+          <div class="required-note"><span class="req">*</span> – обязательные поля, остальное по желанию</div>
         </div>
         <div class="full form-status" id="form-status" role="status" aria-live="polite"></div>
       </form>

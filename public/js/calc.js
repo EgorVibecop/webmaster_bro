@@ -84,7 +84,7 @@
 
     var html;
     if (se0 === 0) {
-      html = '<div class="calc-big">—</div><div class="calc-sub">доли в обеих группах равны 0% или 100%, расчет невозможен</div>';
+      html = '<div class="calc-big">–</div><div class="calc-sub">доли в обеих группах равны 0% или 100%, расчет невозможен</div>';
     } else {
       var zs = (p1 - p2) / se0;
       var pv = 2 * (1 - normCdf(Math.abs(zs)));
