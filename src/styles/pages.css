@@ -139,7 +139,7 @@
 .calc-dl > div { display: grid; grid-template-columns: 170px 1fr; gap: 12px; font-size: var(--fs-small); }
 .calc-dl dt { color: var(--ink-soft); }
 .calc-dl dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
-.calc-formula { font-family: var(--font-mono); font-size: 18px; background: var(--bg-alt); border-radius: var(--radius-control); padding: 14px 18px; display: inline-block; margin: 0 0 14px; }
+.calc-formula { font-family: var(--font); font-size: 18px; background: var(--bg-alt); border-radius: var(--radius-control); padding: 14px 18px; display: inline-block; margin: 0 0 14px; }
 
 @media (max-width: 880px) {
   .calc-grid { grid-template-columns: 1fr; }
