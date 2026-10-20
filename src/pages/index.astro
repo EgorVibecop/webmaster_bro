@@ -4,7 +4,6 @@ import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import ContactBlock from '../components/ContactBlock.astro';
 import { services } from '../data/services.js';
-import { tasks } from '../data/tasks.js';
 
 const clients = [
   { name: 'Магнит Tech', file: 'magnit-tech.png' },
@@ -69,36 +68,35 @@ const jsonLd = {
   title="Baikal Research (Байкал Рисерч) – исследования и бизнес-консалтинг"
   description={description}
 >
+  <link slot="head" rel="preload" as="image" href="/hero/ice-m.webp" media="(max-width: 700px)" fetchpriority="high" />
+  <link slot="head" rel="preload" as="image" href="/hero/ice.webp" media="(min-width: 701px)" fetchpriority="high" />
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <SiteHeader contactHref="#contact" />
 
   <main>
 
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-main">
-        <h1>Исследования, после которых понятно, что делать</h1>
-        <div class="hero-actions">
-          <a class="btn btn-on-dark" href="#contact">Связаться с нами</a>
-          <a class="btn btn-ghost-on-dark" href="/kak-my-rabotaem/">Как мы работаем</a>
-        </div>
-        <p class="hero-offer">Скидка 20% на первое исследование</p>
-      </div>
-      <aside class="hero-steps" aria-label="С какой задачей приходят">
-        <div class="hero-steps-title">С какой задачей приходят</div>
-        <ul>
-          {tasks.map((t) => (
-            <li>
-              <a href={`/uslugi/${t.slug}/`}>
-                <b>{t.q}</b>
-                <span class="d">{t.service} <span class="arr" aria-hidden="true">→</span></span>
-              </a>
-            </li>
-          ))}
-        </ul>
-        <a class="hero-steps-link" href="#contact">Другая задача? Опишите ее <span aria-hidden="true">→</span></a>
-      </aside>
+  <section class="hero-ice" aria-label="Baikal Research">
+    <div class="hero-ice-bg" data-anim>
+      <picture>
+        <source media="(max-width: 700px)" srcset="/hero/ice-m.webp" />
+        <img src="/hero/ice.webp" alt="Байкальский лед в сумерках: прозрачный лед с трещинами уходит вглубь, на горизонте заснеженный мыс" width="1440" height="1316" fetchpriority="high" decoding="async" />
+      </picture>
     </div>
+    <div class="hero-ice-tint" data-anim></div>
+    <div class="hero-ice-shade" aria-hidden="true"></div>
+    <div class="hero-ice-content">
+      <h1>
+        <span class="hl">Исследуем рынок.</span>
+        <span class="hl">Говорим с пользователями.</span>
+        <span class="hl">Находим решения</span>
+      </h1>
+      <p class="hero-ice-lead">Маркетинговые и продуктовые исследования: опросы, юзабилити-тесты, кастдев.</p>
+      <div class="hero-actions">
+        <a class="btn btn-on-dark" href="#contact">Связаться с нами</a>
+        <a class="btn btn-ghost-on-dark" href="/kak-my-rabotaem/">Как мы работаем</a>
+      </div>
+    </div>
+    <div class="hero-ice-offer"><span class="bar" aria-hidden="true"></span>Скидка 20% на первое исследование</div>
   </section>
 
   <section id="services" class="services">

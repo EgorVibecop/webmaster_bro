@@ -12,6 +12,13 @@
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
+  var heroIce = document.querySelector('.hero-ice');
+  if (heroIce && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      heroIce.classList.toggle('paused', !entries[0].isIntersecting);
+    }).observe(heroIce);
+  }
+
   if (!('IntersectionObserver' in window)) return;
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
