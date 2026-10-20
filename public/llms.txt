@@ -20,6 +20,9 @@
 - [Качественные и количественные исследования: в чем разница](https://baikalresearch.ru/blog/kachestvennye-i-kolichestvennye-issledovaniya/)
 - [Как проводить глубинное интервью: 8 правил модератора](https://baikalresearch.ru/blog/kak-provodit-glubinnoe-intervyu/)
 - [JTBD-интервью: из чего состоит разговор на час](https://baikalresearch.ru/blog/jtbd-interview-struktura/)
+- [Кастдев: что это, зачем нужен и как его провести](https://baikalresearch.ru/blog/chto-takoe-kastdev/)
+- [Deep-dive интервью: что это и когда оно нужно](https://baikalresearch.ru/blog/deep-dive-intervyu/)
+- [Клиентские метрики: NPS, CSAT, CSI, CES и как их измерять](https://baikalresearch.ru/blog/klientskie-metriki-nps-csat-csi-ces/)
 
 ## О компании
 - [О нас](https://baikalresearch.ru/o-nas/)
