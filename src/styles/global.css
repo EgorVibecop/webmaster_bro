@@ -1,7 +1,6 @@
 :root {
-  --font: 'Manrope Variable', 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
-  /* Антиква только в заголовках: тексты и интерфейс остаются на Manrope. */
-  --font-display: 'IBM Plex Serif', Georgia, 'Times New Roman', serif;
+  --font: 'Onest Variable', 'Onest', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-display: var(--font);
   --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
   --bg: #FFFFFF;
   --bg-alt: #EFF5F9;
@@ -436,3 +435,7 @@ img, svg { display: block; max-width: 100%; }
 /* Шапка на главной прозрачная поверх фото, при прокрутке становится плотной */
 body:has(.hero-ice) .site-header { position: fixed; left: 0; right: 0; transition: background .25s ease, box-shadow .25s ease, border-color .25s ease; }
 body:has(.hero-ice) .site-header[data-scrolled="false"]:not([data-nav-open="true"]) { background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom-color: transparent; }
+
+/* Зерно поверх фото первого экрана: маскирует мягкость увеличенного снимка */
+.hero-ice::after { content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: .10; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.hero-ice-content, .hero-ice-offer { z-index: 1; }
