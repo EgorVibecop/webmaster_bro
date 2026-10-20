@@ -68,8 +68,8 @@ const jsonLd = {
   title="Baikal Research (Байкал Рисерч) – исследования и бизнес-консалтинг"
   description={description}
 >
-  <link slot="head" rel="preload" as="image" href="/hero/ice-m.webp" media="(max-width: 700px)" fetchpriority="high" />
-  <link slot="head" rel="preload" as="image" href="/hero/ice.webp" media="(min-width: 701px)" fetchpriority="high" />
+  <link slot="head" rel="preload" as="image" href="/hero/ice-m.avif" type="image/avif" media="(max-width: 700px)" fetchpriority="high" />
+  <link slot="head" rel="preload" as="image" href="/hero/ice.avif" type="image/avif" media="(min-width: 701px)" fetchpriority="high" />
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <SiteHeader contactHref="#contact" />
 
@@ -78,8 +78,10 @@ const jsonLd = {
   <section class="hero-ice" aria-label="Baikal Research">
     <div class="hero-ice-bg" data-anim>
       <picture>
-        <source media="(max-width: 700px)" srcset="/hero/ice-m.webp" />
-        <img src="/hero/ice.webp" alt="Прозрачный байкальский лед с трещинами и пузырьками уходит вглубь, на горизонте заснеженный мыс" width="2048" height="2200" fetchpriority="high" decoding="async" />
+        <source media="(max-width: 700px)" srcset="/hero/ice-m.avif" type="image/avif" />
+        <source media="(max-width: 700px)" srcset="/hero/ice-m.webp" type="image/webp" />
+        <source srcset="/hero/ice.avif" type="image/avif" />
+        <img src="/hero/ice.webp" alt="Прозрачный байкальский лед с трещинами и пузырьками уходит вглубь, на горизонте заснеженный мыс" width="2560" height="2750" fetchpriority="high" decoding="async" />
       </picture>
     </div>
     <div class="hero-ice-tint" data-anim></div>
