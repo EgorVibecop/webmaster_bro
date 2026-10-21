@@ -8,7 +8,7 @@
 .footer-contacts a { color: #FFFFFF; font-size: 17px; padding: 6px 0; }
 .footer-contacts a:hover { color: var(--on-night-soft); }
 .footer-col { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
-.footer-col-title { font-size: var(--fs-label); font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--dark-label); margin-bottom: 10px; }
+.footer-col-title { font-size: var(--fs-label); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dark-label); margin-bottom: 10px; }
 .footer-col a { color: var(--on-night); font-size: var(--fs-small); padding: 6px 0; }
 .footer-col a:hover { color: #FFFFFF; text-decoration: underline; text-underline-offset: 3px; }
 .site-footer :where(a):focus-visible { outline-color: #FFFFFF; }
@@ -20,7 +20,7 @@
 .breadcrumbs a { color: var(--ink-soft); }
 .breadcrumbs a:hover { color: var(--accent-text); }
 .page h1 { font-weight: 600; font-size: clamp(30px, 4.5vw, 44px); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 20px; }
-.page .lead { font-size: 18px; line-height: 1.65; color: var(--ink-soft); }
+.page .lead { font-size: 20px; line-height: 1.65; color: var(--ink-soft); }
 .page-actions { margin-top: 28px; }
 .page h2 { font-weight: 600; font-size: clamp(22px, 3vw, 28px); letter-spacing: -0.01em; margin: 56px 0 18px; }
 
@@ -35,14 +35,14 @@
 .steps li { counter-increment: step; display: grid; grid-template-columns: 44px 1fr; gap: 18px; }
 .steps li::before {
   content: counter(step, decimal-leading-zero); width: 44px; height: 44px; border-radius: 50%;
-  border: 2px solid var(--line); color: var(--ink-soft); font-weight: 700; font-size: 15px;
+  border: 2px solid var(--line); color: var(--ink-soft); font-weight: 600; font-size: 15px;
   display: flex; align-items: center; justify-content: center;
 }
-.steps h3 { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+.steps h3 { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
 .steps p { font-size: var(--fs-body); line-height: 1.6; color: var(--ink-soft); }
 
 .callout { background: var(--bg-alt); border-radius: var(--radius-card); padding: 24px 28px; margin-top: 36px; }
-.callout h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+.callout h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
 .callout p { font-size: var(--fs-body); line-height: 1.65; color: var(--ink-soft); }
 
 .faq details { border-bottom: 1px solid var(--line); padding: 18px 0; }
@@ -56,7 +56,7 @@
 .article-service-link { margin-top: 44px; font-size: var(--fs-body); color: var(--ink-soft); }
 
 .related { display: flex; flex-wrap: wrap; gap: 10px; }
-.related a { border: 1px solid var(--line); border-radius: var(--radius-control); padding: 10px 16px; font-size: 14.5px; color: var(--ink); }
+.related a { border: 1px solid var(--line); border-radius: var(--radius-control); padding: 10px 16px; font-size: 15px; color: var(--ink); }
 .related a:hover { border-color: var(--accent-text); color: var(--accent-text); }
 
 @media (max-width: 880px) {
@@ -70,7 +70,7 @@
 }
 
 /* Блог */
-.post-meta { display: flex; gap: 8px; font-size: 14px; color: var(--ink-soft); margin-bottom: 8px; }
+.post-meta { display: flex; gap: 8px; font-size: 15px; color: var(--ink-soft); margin-bottom: 8px; }
 .post-list { display: grid; gap: 16px; margin-top: 28px; }
 .post-card { border: 1px solid var(--line); border-radius: var(--radius-card); padding: 22px 26px; background: var(--bg); }
 .post-card h2, .post-card h3 { margin: 0 0 8px; font-size: 20px; line-height: 1.3; letter-spacing: -0.01em; }
@@ -86,9 +86,9 @@
 .prose li { margin-bottom: 8px; }
 .prose a { color: var(--accent-text); text-decoration: underline; text-underline-offset: 3px; }
 .prose blockquote { border-left: 3px solid var(--accent); background: var(--bg-alt); margin: 24px 0; padding: 16px 22px; border-radius: 0 8px 8px 0; }
-.prose table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 15.5px; display: block; overflow-x: auto; }
+.prose table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 15px; display: block; overflow-x: auto; }
 .prose th, .prose td { border-bottom: 1px solid var(--line); padding: 10px 14px; text-align: left; }
-.prose th { background: var(--bg-alt); font-weight: 700; }
+.prose th { background: var(--bg-alt); font-weight: 600; }
 .prose code { background: var(--bg-alt); padding: 2px 6px; border-radius: 4px; font-size: 0.92em; }
 
 /* Каталог услуг, контакты, «Как мы работаем» */
@@ -139,7 +139,7 @@
 .calc-dl > div { display: grid; grid-template-columns: 170px 1fr; gap: 12px; font-size: var(--fs-small); }
 .calc-dl dt { color: var(--ink-soft); }
 .calc-dl dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
-.calc-formula { font-family: var(--font); font-size: 18px; background: var(--bg-alt); border-radius: var(--radius-control); padding: 14px 18px; display: inline-block; margin: 0 0 14px; }
+.calc-formula { font-family: var(--font); font-size: 17px; background: var(--bg-alt); border-radius: var(--radius-control); padding: 14px 18px; display: inline-block; margin: 0 0 14px; }
 
 @media (max-width: 880px) {
   .calc-grid { grid-template-columns: 1fr; }
@@ -157,19 +157,19 @@
 .pl { margin-top: 32px; display: flex; flex-direction: column; gap: 14px; }
 .pl-step { display: grid; grid-template-columns: 44px 1fr; gap: 18px; background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-card); padding: 24px; }
 .pl-step[hidden] { display: none; }
-.pl-num { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--line); display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--accent-text); font-variant-numeric: tabular-nums; }
-.pl-body h3 { margin: 0 0 12px; font-size: 19px; font-weight: 700; line-height: 1.3; }
+.pl-num { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--line); display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--accent-text); font-variant-numeric: tabular-nums; }
+.pl-body h3 { margin: 0 0 12px; font-size: 20px; font-weight: 600; line-height: 1.3; }
 .pl-help { font-size: var(--fs-small); line-height: 1.55; color: var(--ink-soft); margin: -4px 0 14px; }
 .pl-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
 .pl-opt { position: relative; display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--radius-control); cursor: pointer; transition: border-color .16s ease, background .16s ease; }
 .pl-opt:hover { border-color: #B9CBD8; }
 .pl-opt input { margin-top: 3px; width: 18px; height: 18px; accent-color: var(--accent-text); flex-shrink: 0; }
 .pl-opt:has(input:checked) { border-color: var(--accent-text); background: var(--bg-alt); }
-.pl-opt b { display: block; font-size: 16px; font-weight: 600; }
+.pl-opt b { display: block; font-size: 17px; font-weight: 600; }
 .pl-opt i { display: block; font-style: normal; font-size: var(--fs-small); line-height: 1.45; color: var(--ink-soft); margin-top: 2px; }
 .pl-group { display: grid; grid-template-columns: 1.4fr 1fr auto; gap: 12px; align-items: end; margin-bottom: 12px; }
 .pl-remove, .pl-add { font: inherit; font-size: var(--fs-small); font-weight: 600; color: var(--accent-text); background: transparent; border: none; cursor: pointer; padding: 12px 4px; }
-.pl-remove { color: var(--ink-soft); font-weight: 500; }
+.pl-remove { color: var(--ink-soft); font-weight: 400; }
 .pl-remove:hover { color: var(--ink); }
 .pl-add:hover { color: var(--accent-text-hover); }
 .pl-cut, .pl-diff { margin-top: 16px; max-width: 520px; }
@@ -178,10 +178,10 @@
 .pl-head { margin-bottom: 18px; }
 .pl-table { width: 100%; border-collapse: collapse; font-size: var(--fs-body); }
 .pl-table th, .pl-table td { text-align: left; padding: 10px 0; border-bottom: 1px solid var(--line); }
-.pl-table th { font-size: var(--fs-label); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-soft); }
+.pl-table th { font-size: var(--fs-label); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
 .pl-table .num { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
-.pl-table .pl-total td { font-weight: 700; border-bottom: none; }
-.pl-why { margin: 24px 0 10px; font-size: 18px; font-weight: 700; }
+.pl-table .pl-total td { font-weight: 600; border-bottom: none; }
+.pl-why { margin: 24px 0 10px; font-size: 17px; font-weight: 600; }
 .pl-steps { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 10px; font-size: var(--fs-small); line-height: 1.6; color: var(--ink-soft); }
 .pl-steps b { color: var(--ink); }
 .pl-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; margin-top: 22px; }
@@ -195,7 +195,7 @@
 
 /* Выбор режима калькулятора */
 .mode-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 28px; }
-.mode-tab { font: inherit; text-align: left; cursor: pointer; background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-control); padding: 14px 18px; font-size: 16px; font-weight: 600; color: var(--ink); transition: border-color .16s ease, background .16s ease; }
+.mode-tab { font: inherit; text-align: left; cursor: pointer; background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-control); padding: 14px 18px; font-size: 17px; font-weight: 600; color: var(--ink); transition: border-color .16s ease, background .16s ease; }
 .mode-tab span { display: block; font-size: var(--fs-small); font-weight: 400; color: var(--ink-soft); margin-top: 2px; }
 .mode-tab:hover { border-color: #B9CBD8; }
 .mode-tab[aria-selected="true"] { border-color: var(--accent-text); background: var(--bg-alt); box-shadow: inset 0 0 0 1px var(--accent-text); }
@@ -206,7 +206,7 @@
 
 /* Короткий ответ в начале статьи */
 .tldr { background: var(--bg-alt); border-left: 3px solid var(--accent-text); border-radius: 0 var(--radius-control) var(--radius-control) 0; padding: 16px 20px; margin: 0 0 28px; }
-.tldr-title { font-size: var(--fs-label); font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent-text); margin-bottom: 6px; }
+.tldr-title { font-size: var(--fs-label); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 6px; }
 .tldr p { margin: 0; font-size: var(--fs-body); line-height: 1.6; }
 
 /* Словарь терминов */
