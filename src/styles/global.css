@@ -402,7 +402,7 @@ img, svg { display: block; max-width: 100%; }
 
 /* Первый экран: байкальский лед, камера медленно уходит вглубь */
 .hero-ice { position: relative; isolation: isolate; overflow: hidden; background: #04090F; color: #FFFFFF; height: clamp(560px, 92svh, 860px); }
-.hero-ice-bg { position: absolute; left: 0; right: 0; top: 0; height: 155%; transform-origin: 50% 0; animation: ice-descend 30s ease-in-out infinite alternate; }
+.hero-ice-bg { position: absolute; left: 0; right: 0; top: 0; height: 140%; transform-origin: 50% 0; animation: ice-descend 30s ease-in-out infinite alternate; }
 .hero-ice-bg picture, .hero-ice-bg img { display: block; width: 100%; height: 100%; }
 .hero-ice-bg img { object-fit: cover; object-position: 50% 0; max-width: none; }
 .hero-ice-tint { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(2, 12, 20, 0.1) 0%, rgba(2, 12, 20, 0.6) 100%); opacity: 0; animation: ice-tint 30s ease-in-out infinite alternate; }
@@ -421,7 +421,7 @@ img, svg { display: block; max-width: 100%; }
 .hero-ice-offer { position: absolute; left: var(--gutter); bottom: 34px; display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #D2E1EB; animation: rise .8s ease .8s both; }
 .hero-ice-offer .bar { width: 46px; height: 1px; background: rgba(255, 255, 255, 0.55); }
 .hero-ice.paused .hero-ice-bg, .hero-ice.paused .hero-ice-tint { animation-play-state: paused; }
-@keyframes ice-descend { from { transform: translateY(0); } to { transform: translateY(-30%); } }
+@keyframes ice-descend { from { transform: translateY(0); } to { transform: translateY(-28%); } }
 @keyframes ice-tint { from { opacity: 0; } to { opacity: .7; } }
 @media (prefers-reduced-motion: reduce) { .hero-ice [data-anim] { animation: none !important; } .hero-ice-tint { opacity: .3; } }
 @media (max-width: 880px) {
