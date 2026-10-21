@@ -128,9 +128,9 @@ img, svg { display: block; max-width: 100%; }
 .brand:hover { color: #FFFFFF; }
 .brand-row { display: flex; align-items: center; gap: 8px; }
 .brand-name { font-weight: 600; font-size: 22px; letter-spacing: 0; }
-.brand-tagline { font-size: 13px; font-weight: 400; letter-spacing: 0; color: var(--on-night-soft); padding-left: 38px; }
+.brand-tagline { font-size: 13px; font-weight: 600; letter-spacing: 0; color: var(--on-night-soft); padding-left: 38px; }
 .main-nav { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
-.main-nav a { color: var(--on-night-soft); font-size: var(--fs-small); font-weight: 400; }
+.main-nav a { color: var(--on-night-soft); font-size: var(--fs-small); font-weight: 600; }
 .main-nav a:hover { color: #FFFFFF; }
 .site-header :where(a, button):focus-visible { outline-color: #FFFFFF; }
 .header-cta { display: flex; align-items: center; gap: 24px; }
