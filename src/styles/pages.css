@@ -215,3 +215,6 @@
 .glossary-item:last-child { border-bottom: 1px solid var(--line); }
 .glossary dt { font-family: var(--font-display); font-weight: 600; font-size: var(--fs-h3); line-height: 1.25; margin-bottom: 6px; }
 .glossary dd { margin: 0; color: var(--ink-soft); line-height: 1.6; max-width: 68ch; }
+
+/* На телефоне контакты уже показаны карточкой над подвалом: второй раз подряд не повторяем */
+@media (max-width: 880px) { .footer-contacts { display: none; } }
