@@ -6,11 +6,11 @@ import ContactBlock from '../components/ContactBlock.astro';
 import { services } from '../data/services.js';
 
 const clients = [
-  { name: 'Магнит Tech', file: 'magnit-tech.png' },
-  { name: 'Novartis', file: 'novartis.png' },
-  { name: 'Национальная Лотерея', file: 'nacionalnaya-loteriya.png', tall: true },
-  { name: 'Промышленно-энергетический форум', file: 'promyshlenno-energeticheskiy-forum.png', tall: true },
-  { name: 'СберЗдоровье', file: 'sberzdorovye.png' },
+  { name: 'Магнит Tech', file: 'magnit-tech.png', w: 279, h: 96 },
+  { name: 'Novartis', file: 'novartis.png', w: 586, h: 96 },
+  { name: 'Национальная Лотерея', file: 'nacionalnaya-loteriya.png', w: 293, h: 110, tall: true },
+  { name: 'Промышленно-энергетический форум', file: 'promyshlenno-energeticheskiy-forum.png', w: 187, h: 110, tall: true },
+  { name: 'СберЗдоровье', file: 'sberzdorovye.png', w: 342, h: 96 },
 ];
 
 const process = [
@@ -193,7 +193,7 @@ const jsonLd = {
           <ul class="marquee-group" aria-hidden={g === 1 ? 'true' : undefined}>
             {Array.from({ length: 3 }, () => clients).flat().map((c, i) => (
               <li class={[c.tall ? 'tall' : '', i >= clients.length ? 'dup' : ''].join(' ').trim() || undefined}>
-                <img src={`/clients/${c.file}`} alt={g === 0 && i < clients.length ? c.name : ''} height="40" loading="lazy" />
+                <img src={`/clients/${c.file}`} alt={g === 0 && i < clients.length ? c.name : ''} width={c.w} height={c.h} decoding="async" />
               </li>
             ))}
           </ul>
