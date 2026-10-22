@@ -19,6 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: withastro/action@v3
         with:
           node-version: 22
@@ -32,3 +34,17 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  # После выкладки сообщаем поисковикам по протоколу IndexNow (Яндекс, Bing и другие) о страницах сайта.
+  indexnow:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify IndexNow
+        continue-on-error: true
+        run: |
+          sleep 30
+          curl -s https://baikalresearch.ru/sitemap-0.xml | grep -o '<loc>[^<]*' | sed 's/<loc>//' > urls.txt
+          jq -n --rawfile urls urls.txt '{host:"baikalresearch.ru", key:"2f3f6dfc2219f6fd2b6ecdd525e79a78", keyLocation:"https://baikalresearch.ru/2f3f6dfc2219f6fd2b6ecdd525e79a78.txt", urlList: ($urls | split("\n") | map(select(length>0)))}' > body.json
+          cat body.json
+          curl -s -o /dev/null -w "IndexNow HTTP %{http_code}\n" -X POST https://api.indexnow.org/indexnow -H 'Content-Type: application/json; charset=utf-8' --data @body.json
