@@ -14,7 +14,7 @@ interface Props {
   publishedTime?: string;
 }
 
-const { title, description, noindex = false, image = '/og-image.jpg', ogType = 'website', publishedTime } = Astro.props;
+const { title, description, noindex = false, image = '/og-image-v2.jpg', ogType = 'website', publishedTime } = Astro.props;
 
 const site = Astro.site ?? new URL('https://baikalresearch.ru');
 let path = Astro.url.pathname;
