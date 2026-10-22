@@ -4,7 +4,6 @@ import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import ContactBlock from '../../components/ContactBlock.astro';
 import { services } from '../../data/services.js';
-import { tasks } from '../../data/tasks.js';
 
 const SITE = 'https://baikalresearch.ru';
 const url = `${SITE}/uslugi/`;
@@ -63,20 +62,6 @@ const jsonLd = {
         </a>
       ))}
     </div>
-
-    <h2>Не уверены, что вам нужно?</h2>
-    <p class="lead">Выберите вопрос, который ближе к вашему, мы подскажем метод.</p>
-    <ul class="task-list">
-      {tasks.map((t) => (
-        <li>
-          <a href={`/uslugi/${t.slug}/`}>
-            <b>{t.q}</b>
-            <span>{t.service} <span aria-hidden="true">→</span></span>
-          </a>
-        </li>
-      ))}
-    </ul>
-    <p class="article-service-link">Задача звучит иначе? <a href="#contact">Опишите ее своими словами</a>, подберем формат.</p>
   </main>
 
   <ContactBlock
