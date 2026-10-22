@@ -24,6 +24,8 @@
 - [Deep-dive интервью: что это и когда оно нужно](https://baikalresearch.ru/blog/deep-dive-intervyu/)
 - [Клиентские метрики: NPS, CSAT, CSI, CES и как их измерять](https://baikalresearch.ru/blog/klientskie-metriki-nps-csat-csi-ces/)
 - [Рекрутинг респондентов: как найти нужных людей для опроса и интервью](https://baikalresearch.ru/blog/rekruting-respondentov/)
+- [Как найти респондентов для интервью без бюджета: B2B и топ-менеджеры](https://baikalresearch.ru/blog/kak-nayti-respondentov-b2b/)
+- [Исследования с помощью ИИ: как начать, не зная промптов](https://baikalresearch.ru/blog/issledovaniya-s-pomoshchyu-ii/)
 
 ## О компании
 - [О нас](https://baikalresearch.ru/o-nas/)
