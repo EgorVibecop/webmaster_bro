@@ -8,7 +8,7 @@
   var button = form.querySelector('button[type="submit"]');
   var openedAt = Date.now();
   var EMAIL = 'baikalresearch@yandex.ru';
-  var TIMEOUT_MS = 9000;
+  var TIMEOUT_MS = 5000;
 
   function setStatus(text, kind) {
     statusEl.textContent = text;
@@ -19,15 +19,19 @@
   function setFallback(payload) {
     statusEl.textContent = '';
     statusEl.className = 'full form-status is-error';
-    var p = document.createElement('span');
-    p.textContent = 'Не удалось отправить заявку. Позвоните: +7 977 443-75-88 или ';
-    var body = 'Имя: ' + (payload.name || '') + '\nТелефон: ' + (payload.phone || '') + '\nПочта: ' + (payload.email || '') + '\nКомпания: ' + (payload.company || '') + '\n\n' + (payload.message || '');
-    var a = document.createElement('a');
-    a.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent('Заявка с сайта') + '&body=' + encodeURIComponent(body);
-    a.textContent = 'отправьте заявку письмом';
-    var tail = document.createElement('span');
-    tail.textContent = '.';
-    statusEl.appendChild(p); statusEl.appendChild(a); statusEl.appendChild(tail);
+    function text(t) { return document.createTextNode(t); }
+    var tel = document.createElement('a');
+    tel.href = 'tel:+79774437588';
+    tel.textContent = 'позвоните нам';
+    var body = ['Имя: ' + (payload.name || ''), 'Телефон: ' + (payload.phone || ''), 'Почта: ' + (payload.email || ''), 'Компания: ' + (payload.company || ''), '', payload.message || ''].join('\n');
+    var mail = document.createElement('a');
+    mail.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent('Заявка с сайта') + '&body=' + encodeURIComponent(body);
+    mail.textContent = 'отправьте материалы на почту';
+    statusEl.appendChild(text('Не удалось отправить заявку. Пожалуйста, '));
+    statusEl.appendChild(tel);
+    statusEl.appendChild(text(' или '));
+    statusEl.appendChild(mail);
+    statusEl.appendChild(text('.'));
   }
 
   function fieldOf(name) { return form.elements[name]; }
