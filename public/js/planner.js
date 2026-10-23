@@ -6,7 +6,7 @@
 
   var state = {
     mode: 'groups',
-    groups: [{ name: 'Группа 1', sub: 0 }, { name: 'Группа 2', sub: 0 }, { name: 'Группа 3', sub: 0 }],
+    groups: [{ name: '', sub: 0 }, { name: '', sub: 0 }],
     cut: 1,
     err: 5,
     compare: false,
@@ -44,25 +44,14 @@
     state.groups.forEach(function (g, i) {
       var row = el('div', 'pl-group');
       var nameWrap = el('div');
-      var lab = el('label', 'field-label', 'Название группы ' + (i + 1));
+      var lab = el('label', 'field-label', 'Группа ' + (i + 1));
       lab.setAttribute('for', 'pl-g-name-' + i);
       var inp = el('input', 'field');
       inp.id = 'pl-g-name-' + i; inp.type = 'text'; inp.maxLength = 60; inp.value = g.name; inp.autocomplete = 'off';
+      inp.placeholder = ['Например, действующие клиенты', 'Например, потенциальные клиенты', 'Например, клиенты конкурентов'][i] || 'Название группы';
       inp.addEventListener('input', function () { g.name = inp.value; renderResult(); });
       nameWrap.appendChild(lab); nameWrap.appendChild(inp);
-
-      var subWrap = el('div');
-      var lab2 = el('label', 'field-label', 'Делим еще на подгруппы?');
-      lab2.setAttribute('for', 'pl-g-sub-' + i);
-      var sel = el('select', 'field');
-      sel.id = 'pl-g-sub-' + i;
-      [[0, 'Нет'], [2, 'Да, на 2'], [3, 'Да, на 3'], [4, 'Да, на 4']].forEach(function (o) {
-        var op = el('option', '', o[1]); op.value = o[0]; if (g.sub === o[0]) op.selected = true; sel.appendChild(op);
-      });
-      sel.addEventListener('change', function () { g.sub = Number(sel.value); renderResult(); });
-      subWrap.appendChild(lab2); subWrap.appendChild(sel);
-
-      row.appendChild(nameWrap); row.appendChild(subWrap);
+      row.appendChild(nameWrap);
       if (state.groups.length > 1) {
         var rm = el('button', 'pl-remove', 'Убрать');
         rm.type = 'button';
@@ -199,9 +188,15 @@
     });
     $('pl-cut').addEventListener('change', function () { state.cut = Number($('pl-cut').value); renderResult(); });
     $('pl-diff').addEventListener('change', function () { state.diff = Number($('pl-diff').value); renderResult(); });
+    document.querySelectorAll('.pl-chip').forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        state.groups = chip.getAttribute('data-groups').split('|').map(function (n) { return { name: n, sub: 0 }; });
+        renderGroups(); renderResult();
+      });
+    });
     $('pl-add').addEventListener('click', function () {
       if (state.groups.length >= 10) return;
-      state.groups.push({ name: 'Группа ' + (state.groups.length + 1), sub: 0 });
+      state.groups.push({ name: '', sub: 0 });
       renderGroups(); renderResult();
     });
   }
