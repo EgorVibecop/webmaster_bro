@@ -419,7 +419,6 @@ img, svg { display: block; max-width: 100%; }
 .hero-ice h1 .hl:nth-child(3) { animation-delay: .35s; }
 .hero-actions { display: none; gap: 14px; flex-wrap: wrap; animation: rise .8s cubic-bezier(.2, .7, .2, 1) .6s both; }
 .hero-ice-offer { position: absolute; left: var(--gutter); bottom: 34px; display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #D2E1EB; animation: rise .8s ease .8s both; }
-.hero-ice-offer .bar { width: 46px; height: 1px; background: rgba(255, 255, 255, 0.55); }
 .hero-ice.paused .hero-ice-bg, .hero-ice.paused .hero-ice-tint { animation-play-state: paused; }
 @keyframes ice-descend { from { transform: translateY(0); } to { transform: translateY(-28%); } }
 @keyframes ice-tint { from { opacity: 0; } to { opacity: .7; } }
@@ -444,3 +443,6 @@ body:has(.hero-ice) .site-header[data-scrolled="false"]:not([data-nav-open="true
   .hero-ice-tint { animation: none; opacity: .35; }
   .hero-ice-bg { will-change: transform; }
 }
+
+/* Стрелки в ссылках: рисуем значком, в шрифте Onest стрелки нет */
+.ar { display: inline-block; vertical-align: -2px; margin-left: 2px; }
