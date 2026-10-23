@@ -10,3 +10,11 @@ dist/
 *.docx
 *.pptx
 Разбор *.html
+
+# Рабочие файлы в корне проекта: картинки-исходники, превью шрифтов, брифы, логотипы для себя
+/*.png
+/*.jpg
+/font-preview.html
+/baikal-visual-brief.md
+/claude-design-hero-brief.md
+/brand/

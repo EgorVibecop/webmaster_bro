@@ -73,7 +73,6 @@ img, svg { display: block; max-width: 100%; }
   }
 }
 
-.container { max-width: var(--container); margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
 
 .eyebrow {
   font-size: var(--fs-label);
