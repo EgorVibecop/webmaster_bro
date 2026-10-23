@@ -66,7 +66,7 @@ const jsonLd = {
               <ul>{s.page.deliverables.slice(0, 3).map((d) => <li>{d}</li>)}</ul>
             </div>
           </div>
-          <a class="svc-card-link" href={`/uslugi/${s.slug}/`} aria-label={`Подробнее об услуге: ${s.title}`}>Подробнее об услуге <span aria-hidden="true">→</span></a>
+          <a class="svc-card-link" href={`/uslugi/${s.slug}/`} aria-label={`Подробнее об услуге: ${s.title}`}>Подробнее об услуге <span aria-hidden="true"><svg class="ar" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
         </article>
       ))}
     </div>
