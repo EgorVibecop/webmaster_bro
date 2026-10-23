@@ -331,7 +331,7 @@ img, svg { display: block; max-width: 100%; }
   .svc-row:hover { transform: none; box-shadow: none; }
   .svc-body { gap: 4px; }
   .svc-body h3 { font-size: 20px; }
-  .svc-body p { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 15px; }
+  .svc-body p { font-size: 15px; }
   .svc-more { margin: 0; padding: 4px 0 0; font-size: 0; }
   .svc-more span { font-size: 17px; }
 }
@@ -435,5 +435,12 @@ body:has(.hero-ice) .site-header { position: fixed; left: 0; right: 0; transitio
 body:has(.hero-ice) .site-header[data-scrolled="false"]:not([data-nav-open="true"]) { background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom-color: transparent; }
 
 /* Зерно поверх фото первого экрана: маскирует мягкость увеличенного снимка */
-.hero-ice::after { content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: .10; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.hero-ice::after { content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: .06; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E"); }
 .hero-ice-content, .hero-ice-offer { z-index: 1; }
+
+/* Телефон: облегчаем первый экран, чтобы картинка не зависала */
+@media (max-width: 880px), (hover: none) {
+  .hero-ice::after { display: none; }
+  .hero-ice-tint { animation: none; opacity: .35; }
+  .hero-ice-bg { will-change: transform; }
+}

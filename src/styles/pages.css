@@ -218,3 +218,21 @@
 
 /* На телефоне контакты уже показаны карточкой над подвалом: второй раз подряд не повторяем */
 @media (max-width: 880px) { .footer-contacts { display: none; } }
+
+/* Страница «Услуги»: подробные карточки */
+.svc-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
+.svc-card { display: flex; flex-direction: column; gap: 14px; padding: 24px; background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-card); }
+.svc-card h2 { margin: 0; font-size: var(--fs-h3); line-height: 1.25; }
+.svc-card h2 a { color: var(--ink); }
+.svc-card h2 a:hover { color: var(--accent-text); }
+.svc-card-lead { color: var(--ink-soft); font-size: 15px; line-height: 1.55; }
+.svc-card-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.svc-card-cols h3 { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 8px; }
+.svc-card-cols ul { margin: 0; padding-left: 18px; font-size: 15px; line-height: 1.5; display: flex; flex-direction: column; gap: 6px; }
+.svc-card-link { margin-top: auto; font-weight: 600; font-size: 15px; }
+@media (max-width: 880px) { .svc-cards { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .svc-card-cols { grid-template-columns: 1fr; } .svc-card-cols > div:first-child { display: none; } .svc-card { padding: 20px; gap: 12px; } }
+
+/* Калькулятор: свернутый текст для поиска */
+.calc-more { margin-top: 36px; }
+.calc-more-body { padding-top: 6px; }
