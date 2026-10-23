@@ -68,7 +68,7 @@ const jsonLd = {
   title="Baikal Research (Байкал Рисерч) – исследования и бизнес-консалтинг"
   description={description}
 >
-  <link slot="head" rel="preload" as="image" href="/hero/ice-m.avif" type="image/avif" media="(max-width: 700px)" fetchpriority="high" />
+  <link slot="head" rel="preload" as="image" href="/hero/ice-m.webp" type="image/webp" media="(max-width: 700px)" fetchpriority="high" />
   <link slot="head" rel="preload" as="image" href="/hero/ice.avif" type="image/avif" media="(min-width: 701px)" fetchpriority="high" />
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <SiteHeader contactHref="#contact" />
@@ -78,7 +78,6 @@ const jsonLd = {
   <section class="hero-ice" aria-label="Baikal Research">
     <div class="hero-ice-bg" data-anim>
       <picture>
-        <source media="(max-width: 700px)" srcset="/hero/ice-m.avif" type="image/avif" />
         <source media="(max-width: 700px)" srcset="/hero/ice-m.webp" type="image/webp" />
         <source srcset="/hero/ice.avif" type="image/avif" />
         <img src="/hero/ice.webp" alt="Прозрачный байкальский лед с трещинами и пузырьками уходит вглубь, на горизонте заснеженный мыс" width="1585" height="992" fetchpriority="high" decoding="async" />
@@ -116,7 +115,7 @@ const jsonLd = {
         </a>
       ))}
     </div>
-    <a class="section-link" href="/uslugi/">Все услуги и вопросы, с которыми приходят <span aria-hidden="true">→</span></a>
+    <a class="section-link" href="/uslugi/">Все услуги <span aria-hidden="true">→</span></a>
   </section>
 
   <section id="process" class="process">
