@@ -87,19 +87,29 @@ const jsonLd = {
       <div class="pl-step" id="pl-step-groups">
         <div class="pl-num">2</div>
         <div class="pl-body">
-          <h3>Какие это группы?</h3>
-          <p class="pl-help">Перечислите группы, по каждой из которых нужен отдельный вывод. Если группу нужно разделить еще на части (например, на два возрастных диапазона), отметьте это в строке группы.</p>
+          <h3>Для каких групп людей нужен отдельный вывод?</h3>
+          <p class="pl-help">Группа – это категория людей, про которую вы хотите отдельно сказать «среди них столько-то процентов». Например, действующие клиенты и потенциальные, жители Москвы и регионов, мужчины и женщины. Название можно не заполнять: оно нужно только для вашего удобства.</p>
+          <div class="pl-chips" aria-label="Быстрые примеры">
+            <span class="pl-chips-label">Подставить пример:</span>
+            <button type="button" class="pl-chip" data-groups="Действующие клиенты|Потенциальные клиенты">клиенты и потенциальные</button>
+            <button type="button" class="pl-chip" data-groups="Москва|Регионы">Москва и регионы</button>
+            <button type="button" class="pl-chip" data-groups="Мужчины|Женщины">мужчины и женщины</button>
+            <button type="button" class="pl-chip" data-groups="До 35 лет|35 лет и старше">до 35 и старше</button>
+          </div>
           <div id="pl-groups"></div>
           <button type="button" class="pl-add" id="pl-add">+ Добавить группу</button>
+          <details class="pl-adv">
+            <summary>Дополнительно: разбить каждую группу еще на части (по полу или возрасту)</summary>
           <div class="pl-cut">
-            <label class="field-label" for="pl-cut">Нужны ли выводы еще и по признаку внутри каждой группы (например, по полу или возрасту)?</label>
+            <label class="field-label" for="pl-cut">На сколько частей разбить каждую группу?</label>
             <select class="field" id="pl-cut">
-              <option value="1" selected>Нет, только по группам</option>
+              <option value="1" selected>Не разбивать</option>
               <option value="2">Да, на 2 части (например, мужчины и женщины)</option>
               <option value="3">Да, на 3 части (например, три возраста)</option>
               <option value="4">Да, на 4 части</option>
             </select>
           </div>
+          </details>
         </div>
       </div>
 
