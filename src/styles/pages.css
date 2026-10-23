@@ -3,16 +3,16 @@
 .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 40px 56px; }
 .footer-brand { display: flex; flex-direction: column; gap: 6px; }
 .footer-brand-name { font-family: var(--font-display); font-weight: 600; font-size: 22px; color: #FFFFFF; }
-.footer-brand-tag { font-size: var(--fs-small); color: var(--on-night-soft); }
+.footer-brand-tag { font-size: 13px; font-weight: 600; color: var(--on-night-soft); }
 .footer-contacts { display: flex; flex-direction: column; gap: 2px; margin-top: 14px; }
-.footer-contacts a { color: #FFFFFF; font-size: 17px; padding: 6px 0; }
+.footer-contacts a { color: #FFFFFF; font-size: 17px; font-weight: 600; padding: 6px 0; }
 .footer-contacts a:hover { color: var(--on-night-soft); }
 .footer-col { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
 .footer-col-title { font-size: var(--fs-label); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dark-label); margin-bottom: 10px; }
-.footer-col a { color: var(--on-night); font-size: var(--fs-small); padding: 6px 0; }
-.footer-col a:hover { color: #FFFFFF; text-decoration: underline; text-underline-offset: 3px; }
+.footer-col a { color: var(--on-night-soft); font-size: var(--fs-small); font-weight: 600; padding: 6px 0; }
+.footer-col a:hover { color: #FFFFFF; }
 .site-footer :where(a):focus-visible { outline-color: #FFFFFF; }
-.footer-legal { display: flex; flex-direction: column; gap: 6px; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.12); font-size: 13px; line-height: 1.5; color: var(--dark-label); }
+.footer-legal { display: flex; flex-direction: column; gap: 6px; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.12); font-size: 13px; font-weight: 600; line-height: 1.5; color: var(--dark-label); }
 
 /* Service pages */
 .page { max-width: 860px; margin: 0 auto; padding: 32px var(--gutter) 56px; }
