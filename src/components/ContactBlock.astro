@@ -2,7 +2,7 @@
 // Единый блок «форма + прямые контакты». Используется на главной, на каждой
 // странице услуги и в каждой статье блога – чтобы человек не уходил с
 // прочитанной страницы, чтобы задать вопрос.
-import { FORM_ENDPOINT } from '../config.js';
+import { FORM_ENDPOINT, FORM_ENDPOINT_RU } from '../config.js';
 
 interface Props {
   heading?: string;
@@ -23,7 +23,7 @@ const {
         <h2>{heading}</h2>
         {subheading && <p class="contact-subheading">{subheading}</p>}
       </div>
-      <form class="form-grid" id="lead-form" name="brief" data-endpoint={FORM_ENDPOINT}>
+      <form class="form-grid" id="lead-form" name="brief" novalidate data-endpoint={FORM_ENDPOINT} data-endpoint-ru={FORM_ENDPOINT_RU || undefined}>
         <div>
           <label class="field-label" for="f-name">Имя <span class="req">*</span></label>
           <input class="field" id="f-name" name="name" type="text" autocomplete="name" maxlength="100" placeholder="Как к вам обращаться" required />
@@ -71,6 +71,7 @@ const {
       <div>
         <div class="label">Email</div>
         <a class="value" href="mailto:baikalresearch@yandex.ru">baikalresearch@yandex.ru</a>
+        <button type="button" class="copy-btn" data-copy="baikalresearch@yandex.ru">Скопировать</button>
       </div>
       <div class="fine-print">Отвечаем на заявки в течение одного рабочего дня.</div>
     </div>
