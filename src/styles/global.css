@@ -271,7 +271,7 @@ img, svg { display: block; max-width: 100%; }
 .contact-subheading { font-size: var(--fs-body); line-height: 1.55; color: var(--ink-soft); margin-top: 12px; max-width: 52ch; }
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .form-grid .full { grid-column: 1 / -1; }
-.field-label { font-size: 13px; color: var(--ink-soft); margin-bottom: 6px; display: block; }
+.field-label { font-size: 15px; font-weight: 600; color: var(--ink-soft); margin-bottom: 6px; display: block; }
 .field-label .req { color: var(--accent-text); }
 .field {
   font-family: var(--font); font-size: 17px; color: var(--ink);
@@ -280,7 +280,7 @@ img, svg { display: block; max-width: 100%; }
 }
 .field::placeholder { color: #94A3AF; }
 .submit-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-.required-note { font-size: 13px; color: var(--ink-soft); }
+.required-note { font-size: 13px; font-weight: 600; color: var(--ink-soft); }
 .required-note .req { color: var(--accent-text); }
 
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
@@ -302,8 +302,8 @@ img, svg { display: block; max-width: 100%; }
   background: var(--ink); border-radius: var(--radius-card); padding: 40px;
   display: flex; flex-direction: column; gap: 26px;
 }
-.contact-card .label { font-size: 13px; color: var(--dark-label); margin-bottom: 8px; }
-.contact-card .value { color: var(--bg); font-size: 17px; }
+.contact-card .label { font-size: 15px; font-weight: 600; color: var(--dark-label); margin-bottom: 8px; }
+.contact-card .value { color: var(--bg); font-size: 17px; font-weight: 600; }
 .contact-card a.value:hover { color: var(--accent); }
 .contact-card .phone-link {
   color: var(--bg); font-size: 22px; font-family: var(--font); font-weight: 600;
@@ -312,7 +312,7 @@ img, svg { display: block; max-width: 100%; }
   transform: translateZ(0);
 }
 .contact-card .divider { height: 1px; background: var(--dark-line); }
-.contact-card .fine-print { margin-top: 6px; font-size: 15px; line-height: 1.5; color: var(--dark-text); }
+.contact-card .fine-print { margin-top: 6px; font-size: 15px; font-weight: 600; line-height: 1.5; color: var(--dark-text); }
 
 /* Responsive */
 @media (max-width: 880px) {
