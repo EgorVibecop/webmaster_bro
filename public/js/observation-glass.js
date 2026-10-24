@@ -1,4 +1,5 @@
 // Стекло темнеет и светлеет вслед за прокруткой, в обе стороны и каждый раз.
+// Считаем только пока блок рядом с экраном: вне экрана прокрутка эту работу не вызывает.
 (function () {
   var room = document.getElementById('observation-room');
   var glass = document.getElementById('observation-glass');
@@ -7,6 +8,7 @@
   var MIN_OPACITY = 0.2;
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var queued = false;
+  var active = true;
 
   function update() {
     queued = false;
@@ -20,13 +22,20 @@
   }
 
   function schedule() {
-    if (!queued) {
+    if (active && !queued) {
       queued = true;
       requestAnimationFrame(update);
     }
   }
 
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      active = entries[0].isIntersecting;
+      if (active) schedule();
+    }, { rootMargin: '200px 0px' }).observe(room);
+  }
+
   window.addEventListener('scroll', schedule, { passive: true });
   window.addEventListener('resize', schedule);
-  update();
+  schedule();
 })();
