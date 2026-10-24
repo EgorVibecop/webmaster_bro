@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: Восстановить предыдущий статус
         id: cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: .uptime-status
           key: uptime-status-${{ github.run_id }}
@@ -60,7 +60,7 @@ jobs:
 
       - name: Сохранить статус
         if: always()
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6
         with:
           path: .uptime-status
           key: uptime-status-${{ github.run_id }}
