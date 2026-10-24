@@ -177,7 +177,7 @@ img, svg { display: block; max-width: 100%; }
 .services { padding: clamp(20px, 3vw, 36px) var(--gutter); display: flex; flex-direction: column; gap: clamp(20px, 3vw, 32px); background: var(--bg-alt); }
 .section-head { max-width: none; }
 .section-head p { max-width: 640px; }
-.section-head h2 { font-weight: 600; letter-spacing: -0.02em; font-size: var(--fs-h2); line-height: 1.12; margin-top: 14px; }
+.section-head h2 { font-weight: 600; letter-spacing: -0.02em; font-size: var(--fs-h2); line-height: 1.12; margin-top: 0; }
 .section-head p { font-size: var(--fs-body); line-height: 1.6; color: var(--ink-soft); margin-top: 14px; }
 .svc-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 .svc-row {
@@ -266,7 +266,7 @@ img, svg { display: block; max-width: 100%; }
 .contact { background: var(--bg-alt); padding: clamp(20px, 3vw, 36px) var(--gutter); }
 .contact-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: start; }
 .contact-form-col { display: flex; flex-direction: column; gap: 28px; }
-.contact-form-col h2 { font-weight: 600; font-size: var(--fs-h2); line-height: 1.25; margin-top: 14px; }
+.contact-form-col h2 { font-weight: 600; font-size: var(--fs-h2); line-height: 1.25; margin-top: 0; }
 .contact-subheading { font-size: var(--fs-body); line-height: 1.55; color: var(--ink-soft); margin-top: 12px; max-width: 52ch; }
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .form-grid .full { grid-column: 1 / -1; }
