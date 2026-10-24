@@ -1,0 +1,42 @@
+name: Deploy to Russian hosting
+
+# Запускается вручную (Actions -> Deploy to Russian hosting -> Run workflow).
+# Чтобы после каждого push сайт сам выкладывался на российский хостинг, замените `on:` на
+#   on:
+#     push:
+#       branches: [main]
+# Нужны секреты репозитория: RU_FTP_HOST, RU_FTP_USER, RU_FTP_PASSWORD, RU_FTP_DIR (подробности в MIGRATION-RU.md).
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Добавить серверные файлы (правила Apache и приемник заявок)
+        run: |
+          cp server/.htaccess dist/.htaccess
+          mkdir -p dist/api
+          cp server/api/lead.php dist/api/lead.php
+      - name: Загрузить на хостинг по FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.RU_FTP_HOST }}
+          username: ${{ secrets.RU_FTP_USER }}
+          password: ${{ secrets.RU_FTP_PASSWORD }}
+          server-dir: ${{ secrets.RU_FTP_DIR }}
+          local-dir: ./dist/
+          protocol: ftps
