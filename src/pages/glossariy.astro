@@ -7,7 +7,7 @@ import { glossary } from '../data/glossary.js';
 
 const SITE = 'https://baikalresearch.ru';
 const url = `${SITE}/glossariy/`;
-const description = 'Словарь терминов маркетинговых и продуктовых исследований: выборка, погрешность, CAWI и CATI, NPS, кастдев, JTBD, юзабилити-тестирование. Короткие определения простым языком.';
+const description = 'Словарь терминов исследований: выборка, погрешность, CAWI и CATI, NPS, CSAT, кастдев, JTBD, юзабилити-тестирование. Короткие определения простым языком.';
 const items = [...glossary].sort((a, b) => a.term.localeCompare(b.term, 'ru'));
 const id = (t) => 'term-' + t.toLowerCase().replace(/[^a-zа-я0-9]+/gi, '-');
 
