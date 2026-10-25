@@ -9,6 +9,8 @@ ErrorDocument 404 /404.html
   # www -> без www, http -> https (если хостинг сообщает схему через заголовок прокси, учитываем его)
   RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
   RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+  # Проверочные файлы выпуска сертификата (Let's Encrypt) должны открываться по http без перенаправления
+  RewriteCond %{REQUEST_URI} !^/.well-known/acme-challenge/ [NC]
   RewriteCond %{HTTPS} !=on
   RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
