@@ -5,4 +5,4 @@ export const FORM_ENDPOINT = 'https://lead.example.invalid';
 
 // Запасной адрес приема заявок на российском сервере (если указан, форма пробует его первым).
 // Пока пусто: заявки идут через внешний сервис.
-export const FORM_ENDPOINT_RU = '';
+export const FORM_ENDPOINT_RU = '/api/lead.php';
