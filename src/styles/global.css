@@ -457,7 +457,3 @@ body:has(.hero-ice) .site-header[data-scrolled="false"]:not([data-nav-open="true
 .field[aria-invalid="true"] { border-color: #B3261E; }
 .consent input[aria-invalid="true"] { outline: 2px solid #B3261E; outline-offset: 2px; }
 
-/* Кнопка «Скопировать» рядом с почтой */
-.copy-btn { font: inherit; font-size: 13px; font-weight: 600; color: var(--accent); background: transparent; border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 999px; padding: 5px 12px; margin-top: 10px; cursor: pointer; align-self: flex-start; }
-.copy-btn:hover { border-color: #FFFFFF; color: #FFFFFF; }
-.footer-contacts .copy-btn { margin-top: 2px; color: var(--on-night-soft); }
