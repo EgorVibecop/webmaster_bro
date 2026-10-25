@@ -38,9 +38,10 @@
       try { host = s.ref ? new URL(s.ref).hostname : ''; } catch (e) { host = s.ref; }
       var parts = [
         'Откуда пришел: ' + (host || 'прямой заход или закрытый источник'),
-        'Первая страница: ' + s.landing,
-        'Заявка с страницы: ' + location.pathname,
       ];
+      if (s.landing !== location.pathname + location.search) {
+        parts.push('Зашел через: ' + s.landing, 'Заявка со страницы: ' + location.pathname);
+      }
       if (s.utm) parts.push('Метки: ' + s.utm);
       if (cid) parts.push('ClientID Метрики: ' + cid);
       cb(parts.join('\n'));

@@ -7,7 +7,7 @@
 
   var button = form.querySelector('button[type="submit"]');
   var openedAt = Date.now();
-  var EMAIL = 'baikalresearch@yandex.ru';
+  var EMAIL = 'info@baikalresearch.ru';
   var TIMEOUT_MS = 5000;
 
   function setStatus(text, kind) {
