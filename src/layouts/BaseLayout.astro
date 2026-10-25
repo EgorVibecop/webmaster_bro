@@ -24,7 +24,7 @@ const ogImage = new URL(image, site).href;
 
 // Политика безопасности через meta (GitHub Pages не дает задавать HTTP-заголовки).
 // Только в боевой сборке: в режиме разработки она мешает горячей перезагрузке.
-// connect-src: адрес функции приема заявок (*example.invalid), при своем домене для нее добавить его сюда.
+// connect-src: заявки уходят на наш же домен (/api/lead.php), поэтому внешние адреса не нужны.
 // frame-src – GTM-контейнер (noscript-iframe) и служебный фрейм Метрики match.html (синхронизация кук).
 // GTM сам грузит другие скрипты по настройке в его панели; при добавлении
 // там нового тега может понадобиться открыть его домен здесь же.
@@ -34,7 +34,7 @@ const csp = [
   "style-src 'self'",
   "font-src 'self' data:",
   "img-src 'self' data: https://mc.yandex.ru https://mc.yandex.com",
-  "connect-src 'self' https://*example.invalid https://mc.yandex.ru https://mc.yandex.com",
+  "connect-src 'self' https://mc.yandex.ru https://mc.yandex.com",
   "frame-src https://mc.yandex.ru https://mc.yandex.com",
   "form-action 'self'",
   "base-uri 'self'",

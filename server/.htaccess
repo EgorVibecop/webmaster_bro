@@ -53,6 +53,6 @@ ErrorDocument 404 /404.html
   <If "%{REQUEST_URI} =~ m#^/_astro/#">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </If>
-  # Включите после проверки, что https работает на всех страницах:
-  # Header always set Strict-Transport-Security "max-age=31536000"
+  # HTTPS работает на всех страницах и сертификат выпущен: браузеры теперь запоминают, что сайт только по https
+  Header always set Strict-Transport-Security "max-age=31536000"
 </IfModule>
