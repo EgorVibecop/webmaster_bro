@@ -126,7 +126,15 @@
         if (ok) {
           if (window.baikalGoal) window.baikalGoal('lead_submit');
           form.reset();
-          setStatus('Спасибо! Заявка отправлена, мы ответим в течение рабочего дня.', 'ok');
+          setStatus('', '');
+          var done = document.getElementById('form-success');
+          if (done) {
+            form.hidden = true;
+            done.hidden = false;
+            done.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          } else {
+            setStatus('Заявка успешно отправлена. Мы ответим в течение рабочего дня.', 'ok');
+          }
         } else {
           setFallback(payload);
         }

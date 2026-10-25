@@ -86,6 +86,7 @@ $text = implode("\n", [
 ]);
 
 $via = [];
+$tgFail = '';
 
 // 1. Telegram
 if (!empty($cfg['telegram_token']) && !empty($cfg['telegram_chat_id'])) {
@@ -100,8 +101,10 @@ if (!empty($cfg['telegram_token']) && !empty($cfg['telegram_chat_id'])) {
     ]);
     $resp = curl_exec($ch);
     $code = (int)curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
+    $curlErr = curl_errno($ch);
     curl_close($ch);
     if ($resp !== false && $code === 200) $via[] = 'telegram';
+    else $tgFail = 'http' . $code . '/curl' . $curlErr;
 }
 
 // 2. Письмо на почту (запасной канал, срабатывает всегда, если Telegram недоступен)
@@ -114,7 +117,7 @@ if (!empty($cfg['mail_to'])) {
 }
 
 // Журнал без персональных данных: время и каналы доставки (файл лежит вне папки сайта)
-@file_put_contents(__DIR__ . '/../../lead.log', date('c') . ' via=' . (implode(',', $via) ?: 'none') . "\n", FILE_APPEND);
+@file_put_contents(__DIR__ . '/../../lead.log', date('c') . ' via=' . (implode(',', $via) ?: 'none') . ($tgFail !== '' ? ' tg=' . $tgFail : '') . "\n", FILE_APPEND);
 
 if (!$via) reply(['ok' => false, 'error' => 'delivery'], 502);
 
