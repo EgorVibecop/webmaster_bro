@@ -35,6 +35,11 @@ a=$(H -I "https://$IP/hero/ice.avif" | grep -i "content-type"); echo "$a" | grep
 a=$(H -I "https://$IP/_astro/" | head -1); true
 cc=$(H -I "https://$IP/hero/ice.avif" | grep -i "cache-control\|expires" | tr -d '\r' | tr '\n' ' '); [ -n "$cc" ] && pass "кэш для картинок задан: $cc" || fail "кэш для картинок не задан"
 
+echo "== Сертификат"
+c=$(echo | openssl s_client -connect "$IP:443" -servername "$DOMAIN" 2>/dev/null | openssl x509 -noout -subject -issuer -enddate 2>/dev/null | tr "
+" " ")
+if [ -n "$c" ]; then echo "$c" | grep -qi "CN *= *$DOMAIN" && pass "сертификат для $DOMAIN: $c" || fail "сертификат выдан не на $DOMAIN: $c"; else fail "сертификат не получен"; fi
+
 echo "== Приемник заявок"
 c=$(H -o /dev/null -w "%{http_code}" -X OPTIONS -H "Origin: https://$DOMAIN" "https://$IP/api/lead.php"); [ "$c" = "204" ] && pass "/api/lead.php отвечает на предварительный запрос (204)" || fail "/api/lead.php OPTIONS -> $c (404: файл не загружен; 500: нет lead.config.php; 405: не PHP-обработчик)"
 c=$(H -X POST -H "Origin: https://$DOMAIN" -H "Content-Type: application/json" -d '{"name":"","email":"x","consent":false,"elapsed":5000}' "https://$IP/api/lead.php"); echo "$c" | grep -q '"error":"validation"' && pass "проверка данных работает (ответ: $c)" || fail "ожидался ответ validation, получено: $(echo "$c" | head -c 200)"
@@ -46,5 +51,4 @@ fi
 
 echo
 echo "Итого: ок $ok, ошибок $bad"
-echo "Сертификат проверьте после переключения DNS (по IP он не проверяется: у домена свой сертификат, а проверка идет без имени сайта)."
 [ "$bad" -eq 0 ]
