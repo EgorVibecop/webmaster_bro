@@ -1,14 +1,16 @@
 name: Deploy to Russian hosting
 
-# Запускается вручную (Actions -> Deploy to Russian hosting -> Run workflow).
-# Чтобы после каждого push сайт сам выкладывался на российский хостинг, замените `on:` на
-#   on:
-#     push:
-#       branches: [main]
+# Выкладывает сайт на российский хостинг при каждом push в main и по кнопке (Actions -> Run workflow).
 # Нужны секреты репозитория: RU_FTP_HOST, RU_FTP_USER, RU_FTP_PASSWORD, RU_FTP_DIR (подробности в MIGRATION-RU.md).
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
+
+concurrency:
+  group: deploy-ru
+  cancel-in-progress: false
 
 permissions:
   contents: read
