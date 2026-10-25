@@ -46,7 +46,7 @@ c=$(H -X POST -H "Origin: https://$DOMAIN" -H "Content-Type: application/json" -
 c=$(H -o /dev/null -w "%{http_code}" "https://$IP/lead.config.php"); [ "$c" = "404" ] || [ "$c" = "403" ] && pass "файл с токеном не доступен из интернета ($c)" || fail "файл lead.config.php открывается из интернета! (код $c)"
 if [ "${2:-}" = "--lead" ]; then
   c=$(H -m 30 -X POST -H "Origin: https://$DOMAIN" -H "Content-Type: application/json" -d '{"name":"Проверка переезда","company":"Baikal Research","email":"test@example.com","phone":"","service":"","message":"Тестовая заявка после переезда на хостинг. Если видите ее, форма работает.","consent":true,"elapsed":9000}' "https://$IP/api/lead.php")
-  echo "$c" | grep -q '"ok":true' && pass "тестовая заявка принята: проверьте Telegram и почту" || fail "тестовая заявка не принята: $(echo "$c" | head -c 200)"
+  echo "$c" | grep -q '"ok":true' && pass "тестовая заявка принята: $c (в "via" каналы доставки; проверьте Telegram и почту)" || fail "тестовая заявка не принята: $(echo "$c" | head -c 200)"
 fi
 
 echo

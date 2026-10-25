@@ -85,7 +85,7 @@ $text = implode("\n", [
     $lead['message'] ?: '(без комментария)',
 ]);
 
-$sent = false;
+$via = [];
 
 // 1. Telegram
 if (!empty($cfg['telegram_token']) && !empty($cfg['telegram_chat_id'])) {
@@ -101,7 +101,7 @@ if (!empty($cfg['telegram_token']) && !empty($cfg['telegram_chat_id'])) {
     $resp = curl_exec($ch);
     $code = (int)curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
     curl_close($ch);
-    $sent = $resp !== false && $code === 200;
+    if ($resp !== false && $code === 200) $via[] = 'telegram';
 }
 
 // 2. Письмо на почту (запасной канал, срабатывает всегда, если Telegram недоступен)
@@ -109,12 +109,15 @@ if (!empty($cfg['mail_to'])) {
     $subject = '=?UTF-8?B?' . base64_encode('Заявка с сайта: ' . $lead['name']) . '?=';
     $from = $cfg['mail_from'] ?? ('noreply@' . ($_SERVER['HTTP_HOST'] ?? 'baikalresearch.ru'));
     $headers = "From: $from\r\nReply-To: {$lead['email']}\r\nContent-Type: text/plain; charset=UTF-8\r\n";
-    $mailOk = @mail($cfg['mail_to'], $subject, $text, $headers);
-    $sent = $sent || $mailOk;
+    $mailOk = @mail($cfg['mail_to'], $subject, $text, $headers, '-f' . $from);
+    if ($mailOk) $via[] = 'mail';
 }
 
-if (!$sent) reply(['ok' => false, 'error' => 'delivery'], 502);
+// Журнал без персональных данных: время и каналы доставки (файл лежит вне папки сайта)
+@file_put_contents(__DIR__ . '/../../lead.log', date('c') . ' via=' . (implode(',', $via) ?: 'none') . "\n", FILE_APPEND);
+
+if (!$via) reply(['ok' => false, 'error' => 'delivery'], 502);
 
 $hits[] = $now;
 @file_put_contents($rateFile, json_encode($hits));
-reply(['ok' => true]);
+reply(['ok' => true, 'via' => $via]);
