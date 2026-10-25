@@ -62,7 +62,13 @@
     var em = email.value.trim();
     if (!em) bad(email, 'Укажите адрес почты, например name@company.ru.');
     else if (/[А-Яа-яЁё]/.test(em)) bad(email, 'Адрес почты нужно вводить латиницей, например name@company.ru.');
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)) bad(email, 'Проверьте адрес почты: например, name@company.ru.');
+    else if (/\s/.test(em)) bad(email, 'В адресе почты не должно быть пробелов.');
+    else if ((em.match(/@/g) || []).length !== 1) bad(email, 'В адресе почты должен быть ровно один знак @, например name@company.ru.');
+    else if (/[^A-Za-z0-9.@_%+\-]/.test(em)) {
+      var wrong = em.match(/[^A-Za-z0-9.@_%+\-]/g).filter(function (c, i, a) { return a.indexOf(c) === i; }).join(' ');
+      bad(email, 'В адресе почты нельзя использовать символы: ' + wrong + '. Допустимы латинские буквы, цифры и . _ % + -');
+    }
+    else if (!/^[A-Za-z0-9._%+\-]+@[A-Za-z0-9\-]+(\.[A-Za-z0-9\-]+)*\.[A-Za-z]{2,}$/.test(em) || /\.\./.test(em) || /^\.|\.@/.test(em)) bad(email, 'Проверьте адрес почты: например, name@company.ru.');
     if (!consent.checked) bad(consent, 'Подтвердите согласие на обработку персональных данных.');
     if (first) { first.focus(); }
     return !first;
