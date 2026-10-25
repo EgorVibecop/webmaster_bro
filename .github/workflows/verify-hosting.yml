@@ -1,0 +1,25 @@
+name: Verify Russian hosting
+
+# Ручной запуск: проверяет сайт на новом хостинге до переключения DNS (с серверов GitHub, то есть «снаружи России»).
+on:
+  workflow_dispatch:
+    inputs:
+      ip:
+        description: IP хостинга
+        default: '31.31.197.39'
+      lead:
+        description: Отправить тестовую заявку (придет в Telegram и на почту)
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Проверка хостинга
+        run: |
+          if [ "${{ inputs.lead }}" = "true" ]; then bash scripts/verify-hosting.sh "${{ inputs.ip }}" --lead; else bash scripts/verify-hosting.sh "${{ inputs.ip }}"; fi
