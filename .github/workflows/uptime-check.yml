@@ -6,7 +6,7 @@ name: Uptime check
 #
 # Нужны два секрета в Settings → Secrets and variables → Actions этого
 # репозитория: TELEGRAM_BOT_TOKEN и TELEGRAM_CHAT_ID — те же значения,
-# что уже заведены в внешний сервис (см. worker/README.md).
+# что использует форма заявок на сайте (lead.config.php на хостинге).
 
 on:
   schedule:

@@ -54,7 +54,7 @@ button, input, select, textarea { font-family: inherit; }
 h1, h2 { font-family: var(--font-display); }
 ::selection { background: var(--accent-text); color: #FFFFFF; }
 [id] { scroll-margin-top: 88px; }
-.nps-scale, .trust-line, .timeline-num, time { font-variant-numeric: tabular-nums; }
+.nps-scale, .timeline-num, time { font-variant-numeric: tabular-nums; }
 p { margin: 0; text-wrap: pretty; }
 a { color: var(--accent-text); text-decoration: none; }
 a:hover { color: var(--ink); }
@@ -171,7 +171,6 @@ img, svg { display: block; max-width: 100%; }
   }
 }
 
-.trust-line { display: flex; align-items: center; gap: 10px; margin-top: 18px; font-size: 15px; color: var(--ink-soft); }
 
 /* Services */
 .services { padding: clamp(20px, 3vw, 36px) var(--gutter); display: flex; flex-direction: column; gap: clamp(20px, 3vw, 32px); background: var(--bg-alt); }
@@ -227,7 +226,6 @@ img, svg { display: block; max-width: 100%; }
 }
 .approach h2 { font-weight: 600; letter-spacing: -0.02em; font-size: var(--fs-h2); line-height: 1.15; max-width: 980px; }
 .approach p { font-size: var(--fs-body); line-height: 1.6; color: var(--ink-soft); max-width: 680px; }
-.approach .trust-line { justify-content: flex-start; margin-top: 6px; }
 
 /* Cases / observation */
 .cases { padding: clamp(12px, 1.8vw, 22px) var(--gutter) clamp(20px, 3vw, 36px); display: flex; flex-direction: column; gap: clamp(20px, 3.5vw, 36px); }
