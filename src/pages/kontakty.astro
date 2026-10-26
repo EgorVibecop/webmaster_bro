@@ -33,7 +33,7 @@ const jsonLd = {
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <SiteHeader contactHref="#contact" />
 
-  <main class="page">
+  <main class="page page-wide">
     <nav class="breadcrumbs" aria-label="Хлебные крошки">
       <a href="/">Главная</a><span aria-hidden="true">/</span>
       <span aria-current="page">Контакты</span>
@@ -42,11 +42,26 @@ const jsonLd = {
     <h1>Контакты</h1>
     <p class="lead">Позвоните, напишите на почту или оставьте заявку в форме ниже. Отвечаем в течение одного рабочего дня.</p>
 
+    <div class="contact-facts">
+      <div class="contact-fact">
+        <div class="label">Телефон</div>
+        <a class="value" href="tel:+79774437588">+7 977 443-75-88</a>
+      </div>
+      <div class="contact-fact">
+        <div class="label">Email</div>
+        <a class="value" href="mailto:info@baikalresearch.ru">info@baikalresearch.ru</a>
+      </div>
+      <div class="contact-fact">
+        <div class="label">Срок ответа</div>
+        <div class="value">В течение рабочего дня</div>
+      </div>
+    </div>
   </main>
 
   <ContactBlock
     heading="Расскажите о задаче"
     subheading="Предложим метод, выборку и сроки под вашу задачу и бюджет."
+    showCard={false}
   />
   <SiteFooter />
 </BaseLayout>

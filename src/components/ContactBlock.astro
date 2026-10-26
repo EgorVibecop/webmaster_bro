@@ -13,9 +13,10 @@ const {
   heading = 'Расскажите о задаче – предложим метод и сроки',
   subheading,
   presetService,
+  showCard = true,
 } = Astro.props;
 ---
-<section id="contact" class="contact">
+<section id="contact" class={showCard ? 'contact' : 'contact contact-solo'}>
   <div class="contact-grid">
     <div class="contact-form-col">
       <div>
@@ -66,7 +67,7 @@ const {
       </div>
     </div>
 
-    <div class="contact-card">
+    {showCard && <div class="contact-card">
       <div>
         <div class="label">Телефон</div>
         <a class="phone-link" href="tel:+79774437588">+7 977 443-75-88</a>
@@ -77,7 +78,7 @@ const {
         <a class="value" href="mailto:info@baikalresearch.ru">info@baikalresearch.ru</a>
       </div>
       <div class="fine-print">Отвечаем на заявки в течение одного рабочего дня.</div>
-    </div>
+    </div>}
   </div>
 </section>
 
