@@ -10,7 +10,7 @@
 2. **GitHub.** Создайте аккаунт (если нет) и **публичный** репозиторий, например `baikal-research`. На бесплатном тарифе Pages работает только с публичными репозиториями. Не кладите в репозиторий ключи и токены.
 3. **Загрузка кода.** В папке проекта:
    ```bash
-   git remote add origin https://github.com/EgorVibecop/webmaster_bro.git
+   git remote add origin https://github.com/<ваш-аккаунт>/<репозиторий>.git
    git add .
    git commit -m "Initial site"
    git push -u origin main
@@ -23,7 +23,7 @@
    @    A      185.199.109.153
    @    A      185.199.110.153
    @    A      185.199.111.153
-   www  CNAME  EgorVibecop.github.io.
+   www  CNAME  <ваш-аккаунт>.github.io.
    ```
    Актуальные IP сверьте в документации GitHub, раздел «Managing a custom domain for your GitHub Pages site». Обновление DNS занимает от 10 минут до нескольких часов.
 7. **Проверка.** Откройте `https://baikalresearch.ru` с мобильного интернета и с домашнего Wi-Fi. Если у части провайдеров сайт не грузится, переходите к варианту B.
