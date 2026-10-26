@@ -117,7 +117,7 @@
     setStatus('Отправляем…', '');
 
     (window.baikalSource || function (cb) { cb(''); })(function (src) {
-      if (src) payload.message = String(payload.message || '').slice(0, 1700) + '\n\n– Источник –\n' + src;
+      if (src) payload.message = String(payload.message || '').slice(0, 1700) + '\n\n' + src;
       var chain = Promise.resolve(false);
       endpoints.forEach(function (ep) {
         chain = chain.then(function (done) { return done ? true : post(ep, payload); });
