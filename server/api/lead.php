@@ -131,28 +131,26 @@ $text = implode("\n", [
 ]);
 
 $via = [];
-$tgFail = '';
+$err = '';
+$replied = false;
 
-// 1. Telegram
-if (!empty($cfg['telegram_token']) && !empty($cfg['telegram_chat_id'])) {
-    $ch = curl_init('https://api.telegram.org/bot' . $cfg['telegram_token'] . '/sendMessage');
-    curl_setopt_array($ch, [
-        CURLOPT_POST => true,
-        CURLOPT_HTTPHEADER => ['Content-Type: application/json'],
-        CURLOPT_POSTFIELDS => json_encode(['chat_id' => $cfg['telegram_chat_id'], 'text' => $text, 'disable_web_page_preview' => true], JSON_UNESCAPED_UNICODE),
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_CONNECTTIMEOUT => 4,
-        CURLOPT_TIMEOUT => 8,
-    ]);
-    $resp = curl_exec($ch);
-    $code = (int)curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
-    $curlErr = curl_errno($ch);
-    curl_close($ch);
-    if ($resp !== false && $code === 200) $via[] = 'telegram';
-    else $tgFail = 'tg-http' . $code . '/curl' . $curlErr;
+// Ответ сайту отправляется сразу, остальная работа (Telegram с повтором) идет уже после ответа
+function early_reply(array $body): void {
+    ignore_user_abort(true);
+    $json = json_encode($body, JSON_UNESCAPED_UNICODE);
+    http_response_code(200);
+    header('Content-Length: ' . strlen($json));
+    header('Connection: close');
+    echo $json;
+    if (function_exists('fastcgi_finish_request')) {
+        fastcgi_finish_request();
+    } else {
+        while (ob_get_level() > 0) @ob_end_flush();
+        flush();
+    }
 }
 
-// 2. Письмо на почту (запасной канал, срабатывает всегда, если Telegram недоступен)
+// 1. Письмо на почту (быстрый канал)
 if (!empty($cfg['mail_to'])) {
     $subject = '=?UTF-8?B?' . base64_encode('Заявка с сайта: ' . $lead['name']) . '?=';
     $from = $cfg['mail_from'] ?? ('noreply@' . ($_SERVER['HTTP_HOST'] ?? 'baikalresearch.ru'));
@@ -161,8 +159,8 @@ if (!empty($cfg['mail_to'])) {
     if (!empty($cfg['smtp_host']) && !empty($cfg['smtp_user']) && !empty($cfg['smtp_pass'])) {
         $smtpErr = '';
         $mailOk = smtp_send($cfg, $from, $cfg['mail_to'], $subject, $text, $lead['email'], $smtpErr);
-        if (!$mailOk) $tgFail .= ($tgFail !== '' ? ' ' : '') . 'smtp=' . $smtpErr;
         if ($mailOk) $via[] = 'smtp';
+        else $err .= ' smtp=' . $smtpErr;
     }
     if (!$mailOk) {
         $headers = "From: $from\r\nReply-To: {$lead['email']}\r\nContent-Type: text/plain; charset=UTF-8\r\n";
@@ -170,9 +168,40 @@ if (!empty($cfg['mail_to'])) {
     }
 }
 
-// Журнал без персональных данных: время и каналы доставки (файл лежит вне папки сайта)
-@file_put_contents(__DIR__ . '/../../lead.log', date('c') . ' via=' . (implode(',', $via) ?: 'none') . ($tgFail !== '' ? ' err=' . $tgFail : '') . "\n", FILE_APPEND);
+// Если письмо ушло, сайт получает ответ сразу: Telegram иногда отвечает медленно
+if ($via) {
+    $hits[] = $now;
+    @file_put_contents($rateFile, json_encode($hits));
+    early_reply(['ok' => true, 'via' => $via]);
+    $replied = true;
+}
 
+// 2. Telegram: две попытки
+if (!empty($cfg['telegram_token']) && !empty($cfg['telegram_chat_id'])) {
+    for ($try = 1; $try <= 2; $try++) {
+        $ch = curl_init('https://api.telegram.org/bot' . $cfg['telegram_token'] . '/sendMessage');
+        curl_setopt_array($ch, [
+            CURLOPT_POST => true,
+            CURLOPT_HTTPHEADER => ['Content-Type: application/json'],
+            CURLOPT_POSTFIELDS => json_encode(['chat_id' => $cfg['telegram_chat_id'], 'text' => $text, 'disable_web_page_preview' => true], JSON_UNESCAPED_UNICODE),
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_CONNECTTIMEOUT => 4,
+            CURLOPT_TIMEOUT => 8,
+        ]);
+        $resp = curl_exec($ch);
+        $code = (int)curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
+        $curlErr = curl_errno($ch);
+        curl_close($ch);
+        if ($resp !== false && $code === 200) { $via[] = 'telegram'; break; }
+        $err .= ' tg' . $try . '=http' . $code . '/curl' . $curlErr;
+        if ($try < 2) sleep(1);
+    }
+}
+
+// Журнал без персональных данных: время и каналы доставки (файл лежит вне папки сайта)
+@file_put_contents(__DIR__ . '/../../lead.log', date('c') . ' via=' . (implode(',', $via) ?: 'none') . ($err !== '' ? ' err=' . trim($err) : '') . "\n", FILE_APPEND);
+
+if ($replied) exit;
 if (!$via) reply(['ok' => false, 'error' => 'delivery'], 502);
 
 $hits[] = $now;
