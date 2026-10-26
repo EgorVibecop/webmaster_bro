@@ -240,10 +240,6 @@ img, svg { display: block; max-width: 100%; }
 .observation-photo, .observation-glass { position: absolute; inset: 0; width: 100%; height: 100%; }
 .observation-photo, .observation-glass { object-fit: cover; }
 .observation-glass { opacity: var(--glass, 1); will-change: opacity; }
-.observation-caption {
-  position: absolute; left: 16px; bottom: 14px; font-size: 13px; color: #DCE6ED;
-  background: rgba(8, 14, 22, .55); padding: 6px 10px; border-radius: 4px;
-}
 
 .nps-card {
   background: var(--ink); border-radius: var(--radius-card); padding: 40px;
