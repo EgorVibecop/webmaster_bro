@@ -118,6 +118,11 @@ foreach (LIMITS as $key => $max) $lead[$key] = tidy($data[$key] ?? '', $max, $ke
 if ($lead['name'] === '' || !filter_var($lead['email'], FILTER_VALIDATE_EMAIL)) reply(['ok' => false, 'error' => 'validation'], 400);
 if (($data['consent'] ?? false) !== true) reply(['ok' => false, 'error' => 'consent'], 400);
 
+// Повтор той же заявки в течение 5 минут (например, человек нажал еще раз после долгого ожидания) не рассылаем снова.
+$dupeFile = sys_get_temp_dir() . '/baikal-lead-dupe-' . md5(implode('|', [$lead['name'], $lead['email'], $lead['phone'], $lead['message']])) . '.txt';
+if (is_file($dupeFile) && filemtime($dupeFile) > $now - 300) reply(['ok' => true, 'via' => ['duplicate']]);
+@file_put_contents($dupeFile, (string)$now);
+
 $text = implode("\n", [
     'Новая заявка с baikalresearch.ru',
     '',
@@ -202,7 +207,7 @@ if (!empty($cfg['telegram_token']) && !empty($cfg['telegram_chat_id'])) {
 @file_put_contents(__DIR__ . '/../../lead.log', date('c') . ' via=' . (implode(',', $via) ?: 'none') . ($err !== '' ? ' err=' . trim($err) : '') . "\n", FILE_APPEND);
 
 if ($replied) exit;
-if (!$via) reply(['ok' => false, 'error' => 'delivery'], 502);
+if (!$via) { @unlink($dupeFile); reply(['ok' => false, 'error' => 'delivery'], 502); }
 
 $hits[] = $now;
 @file_put_contents($rateFile, json_encode($hits));
