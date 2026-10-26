@@ -7,6 +7,11 @@ return [
     'telegram_chat_id' => 'ВСТАВЬТЕ_ВАШ_CHAT_ID',
     // Запасной канал: письмо с заявкой. Можно оставить пустым, если не нужно.
     'mail_to'          => 'baikalresearch@yandex.ru',
-    'mail_from'        => 'noreply@baikalresearch.ru',
+    'mail_from'        => 'info@baikalresearch.ru',
+    // Отправка через SMTP ящика (меньше риск спама). Без этих строк письма уходят обычным mail().
+    // 'smtp_host'     => 'ИМЯ_СЕРВЕРА_ПОЧТЫ_ИЗ_ПАНЕЛИ_ХОСТИНГА',
+    // 'smtp_port'     => 465,
+    // 'smtp_user'     => 'info@baikalresearch.ru',
+    // 'smtp_pass'     => 'ПАРОЛЬ_ЯЩИКА',
     'allowed_origins'  => ['https://baikalresearch.ru', 'https://www.baikalresearch.ru'],
 ];
