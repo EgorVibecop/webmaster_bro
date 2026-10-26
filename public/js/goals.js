@@ -29,26 +29,9 @@
     var utm = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].map(function (k) { return q.get(k) ? k.replace('utm_', '') + '=' + q.get(k) : ''; }).filter(Boolean).join(', ');
     write({ landing: location.pathname + location.search, ref: document.referrer || '', utm: utm });
   }
+  // В заявку попадают только рекламные метки (если они есть): остальное в ней лишнее.
   window.baikalSource = function (cb) {
-    var s = read() || { landing: location.pathname, ref: document.referrer || '', utm: '' };
-    var done = false;
-    function finish(cid) {
-      if (done) return; done = true;
-      var host = '';
-      try { host = s.ref ? new URL(s.ref).hostname : ''; } catch (e) { host = s.ref; }
-      var parts = [
-        'Откуда пришел: ' + (host || 'прямой заход или закрытый источник'),
-      ];
-      if (s.landing !== location.pathname + location.search) {
-        parts.push('Зашел через: ' + s.landing, 'Заявка со страницы: ' + location.pathname);
-      }
-      if (s.utm) parts.push('Метки: ' + s.utm);
-      if (cid) parts.push('ClientID Метрики: ' + cid);
-      cb(parts.join('\n'));
-    }
-    try {
-      if (typeof window.ym === 'function') window.ym(113551309, 'getClientID', function (id) { finish(id); });
-    } catch (e) { /* без ClientID */ }
-    setTimeout(function () { finish(''); }, 800);
+    var s = read();
+    cb(s && s.utm ? 'Метки: ' + s.utm : '');
   };
 })();
