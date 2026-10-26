@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+
+const SITE = 'https://baikalresearch.ru';
+const url = `${SITE}/partneram/`;
+const description = 'Партнерская программа Baikal Research: агентская комиссия до 30% за привлечение клиентов на исследования. Индивидуальные условия для агентств и консультантов.';
+const mail = 'mailto:info@baikalresearch.ru?subject=' + encodeURIComponent('Партнерство с Baikal Research');
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Главная', item: `${SITE}/` },
+        { '@type': 'ListItem', position: 2, name: 'Партнерам', item: url },
+      ],
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${url}#page`,
+      url,
+      name: 'Партнерам Baikal Research',
+      isPartOf: { '@id': `${SITE}/#website` },
+      about: { '@id': `${SITE}/#org` },
+    },
+  ],
+};
+---
+<BaseLayout title="Партнерам: агентская комиссия до 30% – Baikal Research" description={description}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <SiteHeader contactHref="#contact" />
+
+  <main class="page">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки">
+      <a href="/">Главная</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Партнерам</span>
+    </nav>
+
+    <h1>Партнерам</h1>
+    <p class="lead">Приводите клиентам исследования, а мы проводим их и платим агентскую комиссию до 30% от стоимости проекта. Условия обсуждаем индивидуально с каждым партнером.</p>
+
+    <h2>Как это работает</h2>
+    <ul class="checks">
+      <li>Вы знакомите нас с клиентом или передаете его запрос на исследование.</li>
+      <li>Мы обсуждаем задачу с клиентом, готовим предложение и проводим исследование.</li>
+      <li>После оплаты проекта клиентом вы получаете агентскую комиссию.</li>
+    </ul>
+
+    <h2>Кому подойдет</h2>
+    <ul class="checks">
+      <li>Маркетинговым, рекламным и digital-агентствам, у которых клиенты спрашивают про исследования.</li>
+      <li>Консультантам и продуктовым студиям, которым нужны данные для решений клиента.</li>
+      <li>Фрилансерам и экспертам, которые работают с бизнесом и видят потребность в опросах и интервью.</li>
+    </ul>
+
+    <h2>Условия</h2>
+    <ul class="checks">
+      <li>Комиссия до 30% от стоимости привлеченного проекта. Размер зависит от объема работ и от того, насколько регулярно вы приводите клиентов.</li>
+      <li>Порядок выплат, срок и формат договора фиксируем письменно до старта первого проекта.</li>
+      <li>Клиент остается вашим: мы держим вас в курсе хода проекта и согласуем с вами общение с клиентом.</li>
+      <li>Работаем с юридическими лицами, индивидуальными предпринимателями и физическими лицами.</li>
+    </ul>
+
+    <h2>Как начать</h2>
+    <p class="lead">Напишите нам на <a href="mailto:info@baikalresearch.ru">info@baikalresearch.ru</a>: кто вы, с какими клиентами работаете и какие исследования им бывают нужны. Мы ответим в течение рабочего дня и предложим условия. Можно и оставить заявку в форме ниже.</p>
+    <div class="page-actions">
+      <a class="btn btn-primary" href={mail}>Написать на почту</a>
+    </div>
+  </main>
+
+  <ContactBlock
+    heading="Обсудим сотрудничество"
+    subheading="Расскажите о вашем агентстве и клиентах, предложим условия."
+    presetService="Партнерская программа"
+  />
+  <SiteFooter />
+</BaseLayout>

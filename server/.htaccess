@@ -41,8 +41,8 @@ ErrorDocument 404 /404.html
   ExpiresByType image/svg+xml "access plus 7 days"
   ExpiresByType font/woff2 "access plus 1 year"
   ExpiresByType text/css "access plus 7 days"
-  ExpiresByType application/javascript "access plus 7 days"
-  ExpiresByType text/javascript "access plus 7 days"
+  ExpiresByType application/javascript "access plus 1 hour"
+  ExpiresByType text/javascript "access plus 1 hour"
 </IfModule>
 <IfModule mod_headers.c>
   <FilesMatch "^.*$">

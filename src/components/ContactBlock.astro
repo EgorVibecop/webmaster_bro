@@ -2,7 +2,7 @@
 // Единый блок «форма + прямые контакты». Используется на главной, на каждой
 // странице услуги и в каждой статье блога – чтобы человек не уходил с
 // прочитанной страницы, чтобы задать вопрос.
-import { FORM_ENDPOINT_RU } from '../config.js';
+import { FORM_ENDPOINT_RU, ASSET_V } from '../config.js';
 
 interface Props {
   heading?: string;
@@ -33,7 +33,8 @@ const {
         </div>
         <div>
           <label class="field-label" for="f-email">Email <span class="req">*</span></label>
-          <input class="field" id="f-email" name="email" type="email" autocomplete="email" maxlength="150" placeholder="you@company.ru" required />
+          <input class="field" id="f-email" name="email" type="email" autocomplete="email" maxlength="150" placeholder="you@company.ru" aria-describedby="f-email-hint" required />
+          <small class="field-hint" id="f-email-hint">Только латиница и цифры, без пробелов</small>
         </div>
         <div>
           <label class="field-label" for="f-phone">Телефон</label>
@@ -80,4 +81,4 @@ const {
   </div>
 </section>
 
-<script is:inline src="/js/lead-form.js" defer></script>
+<script is:inline src={`/js/lead-form.js?v=${ASSET_V}`} defer></script>

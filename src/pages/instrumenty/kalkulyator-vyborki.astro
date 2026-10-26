@@ -1,4 +1,5 @@
 ---
+import { ASSET_V } from '../../config.js';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
@@ -305,6 +306,6 @@ const jsonLd = {
     subheading="Подберем метод, выборку и сроки."
   />
   <SiteFooter />
-  <script is:inline src="/js/planner.js" defer></script>
-  <script is:inline src="/js/calc.js" defer></script>
+  <script is:inline src={`/js/planner.js?v=${ASSET_V}`} defer></script>
+  <script is:inline src={`/js/calc.js?v=${ASSET_V}`} defer></script>
 </BaseLayout>

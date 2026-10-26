@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+const SITE = 'https://baikalresearch.ru';
+const url = `${SITE}/vakansii/`;
+const description = 'Вакансии Baikal Research: ищем проектных менеджеров для исследовательских проектов. Отклик отправляйте на почту.';
+const mail = 'mailto:info@baikalresearch.ru?subject=' + encodeURIComponent('Вакансия: проектный менеджер');
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Главная', item: `${SITE}/` },
+        { '@type': 'ListItem', position: 2, name: 'Вакансии', item: url },
+      ],
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${url}#page`,
+      url,
+      name: 'Вакансии Baikal Research',
+      isPartOf: { '@id': `${SITE}/#website` },
+      about: { '@id': `${SITE}/#org` },
+    },
+  ],
+};
+---
+<BaseLayout title="Вакансии: проектный менеджер – Baikal Research" description={description}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <SiteHeader />
+
+  <main class="page">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки">
+      <a href="/">Главная</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Вакансии</span>
+    </nav>
+
+    <h1>Вакансии</h1>
+    <p class="lead">Мы ищем проектных менеджеров в исследовательские проекты: опросы, интервью, юзабилити-тесты, анализ рынка. Если вам нравится доводить работу от запроса клиента до понятного отчета, напишите нам.</p>
+
+    <h2>Что предстоит делать</h2>
+    <ul class="checks">
+      <li>Вести исследовательские проекты от брифа до сдачи отчета: сроки, бюджет, качество.</li>
+      <li>Общаться с клиентами: уточнять задачу, согласовывать методику и результаты.</li>
+      <li>Организовывать работу исполнителей: интервьюеров, рекрутеров респондентов, аналитиков.</li>
+      <li>Следить, чтобы выводы отчета опирались на данные и были понятны тем, кто принимает решения.</li>
+    </ul>
+
+    <h2>Что для нас важно</h2>
+    <ul class="checks">
+      <li>Опыт ведения проектов и общения с клиентами.</li>
+      <li>Внимательность к деталям и умение держать несколько задач в срок.</li>
+      <li>Умение объяснять сложное простыми словами.</li>
+      <li>Опыт в исследованиях, маркетинге или аналитике будет плюсом, но не обязателен.</li>
+    </ul>
+
+    <h2>Условия</h2>
+    <p class="lead">Формат работы, занятость и оплату обсуждаем индивидуально по итогам знакомства.</p>
+
+    <h2>Как откликнуться</h2>
+    <p class="lead">Отправьте письмо на <a href="mailto:info@baikalresearch.ru">info@baikalresearch.ru</a> с темой «Вакансия: проектный менеджер». Расскажите коротко о себе и приложите резюме или ссылку на него. Мы ответим всем, кто откликнулся.</p>
+    <div class="page-actions">
+      <a class="btn btn-primary" href={mail}>Откликнуться по почте</a>
+    </div>
+  </main>
+
+  <SiteFooter />
+</BaseLayout>

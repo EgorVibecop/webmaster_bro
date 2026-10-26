@@ -1,4 +1,5 @@
 ---
+import { ASSET_V } from '../config.js';
 import '@fontsource-variable/onest';
 import '../styles/global.css';
 import '../styles/pages.css';
@@ -81,9 +82,9 @@ const csp = [
 </head>
 <body>
   <slot />
-  <script is:inline src="/js/metrika.js" defer></script>
-  <script is:inline src="/js/goals.js" defer></script>
-  <script is:inline src="/js/motion.js" defer></script>
+  <script is:inline src={`/js/metrika.js?v=${ASSET_V}`} defer></script>
+  <script is:inline src={`/js/goals.js?v=${ASSET_V}`} defer></script>
+  <script is:inline src={`/js/motion.js?v=${ASSET_V}`} defer></script>
   <noscript><div><img src="https://mc.yandex.ru/watch/113551309" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 </body>
 </html>
