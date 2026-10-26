@@ -26,12 +26,12 @@ function tidy($value, int $max, bool $keepNewlines = false): string {
 }
 
 // Отправка письма по SMTP с авторизацией (без библиотек). Возвращает true, если сервер принял письмо.
-function smtp_send(array $cfg, string $from, string $to, string $subject, string $body, string $replyTo): bool {
+function smtp_send(array $cfg, string $from, string $to, string $subject, string $body, string $replyTo, string &$fail = ''): bool {
     $host = (string)$cfg['smtp_host'];
     $port = (int)($cfg['smtp_port'] ?? 465);
     $secure = $cfg['smtp_secure'] ?? ($port === 465 ? 'ssl' : 'tls');
     $fp = @stream_socket_client(($secure === 'ssl' ? 'ssl://' : 'tcp://') . $host . ':' . $port, $errno, $errstr, 8);
-    if (!$fp) return false;
+    if (!$fp) { $fail = 'connect' . $errno; return false; }
     stream_set_timeout($fp, 8);
     $read = function () use ($fp): string {
         $out = '';
@@ -46,19 +46,25 @@ function smtp_send(array $cfg, string $from, string $to, string $subject, string
         return str_starts_with($read(), $ok);
     };
     $ehlo = 'EHLO baikalresearch.ru';
+    $stage = 'hello';
     $ok = str_starts_with($read(), '220') && $cmd($ehlo, '250');
     if ($ok && $secure === 'tls') {
+        $stage = 'tls';
         $ok = $cmd('STARTTLS', '220') && @stream_socket_enable_crypto($fp, true, STREAM_CRYPTO_METHOD_TLS_CLIENT) && $cmd($ehlo, '250');
     }
+    if ($ok) $stage = 'auth';
     $ok = $ok && $cmd('AUTH LOGIN', '334') && $cmd(base64_encode((string)$cfg['smtp_user']), '334') && $cmd(base64_encode((string)$cfg['smtp_pass']), '235');
+    if ($ok) $stage = 'rcpt';
     $ok = $ok && $cmd('MAIL FROM:<' . $from . '>', '250') && $cmd('RCPT TO:<' . $to . '>', '250') && $cmd('DATA', '354');
     if ($ok) {
         $msg = "From: $from\r\nTo: $to\r\nReply-To: $replyTo\r\nSubject: $subject\r\nDate: " . date('r')
             . "\r\nMessage-ID: <" . bin2hex(random_bytes(8)) . '@baikalresearch.ru>'
             . "\r\nMIME-Version: 1.0\r\nContent-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n"
             . chunk_split(base64_encode($body));
+        $stage = 'data';
         $ok = $cmd($msg . '.', '250');
     }
+    if (!$ok) $fail = $stage;
     @fwrite($fp, "QUIT\r\n");
     fclose($fp);
     return $ok;
@@ -143,7 +149,7 @@ if (!empty($cfg['telegram_token']) && !empty($cfg['telegram_chat_id'])) {
     $curlErr = curl_errno($ch);
     curl_close($ch);
     if ($resp !== false && $code === 200) $via[] = 'telegram';
-    else $tgFail = 'http' . $code . '/curl' . $curlErr;
+    else $tgFail = 'tg-http' . $code . '/curl' . $curlErr;
 }
 
 // 2. Письмо на почту (запасной канал, срабатывает всегда, если Telegram недоступен)
@@ -153,7 +159,9 @@ if (!empty($cfg['mail_to'])) {
     $mailOk = false;
     // Сначала SMTP с авторизацией ящика (письмо подписывается и реже попадает в спам), при сбое обычный mail()
     if (!empty($cfg['smtp_host']) && !empty($cfg['smtp_user']) && !empty($cfg['smtp_pass'])) {
-        $mailOk = smtp_send($cfg, $from, $cfg['mail_to'], $subject, $text, $lead['email']);
+        $smtpErr = '';
+        $mailOk = smtp_send($cfg, $from, $cfg['mail_to'], $subject, $text, $lead['email'], $smtpErr);
+        if (!$mailOk) $tgFail .= ($tgFail !== '' ? ' ' : '') . 'smtp=' . $smtpErr;
         if ($mailOk) $via[] = 'smtp';
     }
     if (!$mailOk) {
@@ -163,7 +171,7 @@ if (!empty($cfg['mail_to'])) {
 }
 
 // Журнал без персональных данных: время и каналы доставки (файл лежит вне папки сайта)
-@file_put_contents(__DIR__ . '/../../lead.log', date('c') . ' via=' . (implode(',', $via) ?: 'none') . ($tgFail !== '' ? ' tg=' . $tgFail : '') . "\n", FILE_APPEND);
+@file_put_contents(__DIR__ . '/../../lead.log', date('c') . ' via=' . (implode(',', $via) ?: 'none') . ($tgFail !== '' ? ' err=' . $tgFail : '') . "\n", FILE_APPEND);
 
 if (!$via) reply(['ok' => false, 'error' => 'delivery'], 502);
 
