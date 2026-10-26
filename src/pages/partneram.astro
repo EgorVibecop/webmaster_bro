@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import ContactBlock from '../components/ContactBlock.astro';
 
 const SITE = 'https://baikalresearch.ru';
 const url = `${SITE}/partneram/`;
@@ -32,7 +31,7 @@ const jsonLd = {
 ---
 <BaseLayout title="Партнерам: агентская комиссия до 30% – Baikal Research" description={description}>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-  <SiteHeader contactHref="#contact" />
+  <SiteHeader contactHref={mail} />
 
   <main class="page">
     <nav class="breadcrumbs" aria-label="Хлебные крошки">
@@ -66,16 +65,11 @@ const jsonLd = {
     </ul>
 
     <h2>Как начать</h2>
-    <p class="lead">Напишите нам на <a href="mailto:info@baikalresearch.ru">info@baikalresearch.ru</a>: кто вы, с какими клиентами работаете и какие исследования им бывают нужны. Мы ответим в течение рабочего дня и предложим условия. Можно и оставить заявку в форме ниже.</p>
+    <p class="lead">Напишите нам на <a href="mailto:info@baikalresearch.ru">info@baikalresearch.ru</a>: кто вы, с какими клиентами работаете и какие исследования им бывают нужны. Мы ответим в течение рабочего дня и предложим условия.</p>
     <div class="page-actions">
       <a class="btn btn-primary" href={mail}>Написать на почту</a>
     </div>
   </main>
 
-  <ContactBlock
-    heading="Обсудим сотрудничество"
-    subheading="Расскажите о вашем агентстве и клиентах, предложим условия."
-    presetService="Партнерская программа"
-  />
   <SiteFooter />
 </BaseLayout>
