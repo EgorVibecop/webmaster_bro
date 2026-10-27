@@ -130,6 +130,8 @@
           var done = document.getElementById('form-success');
           if (done) {
             form.hidden = true;
+            var head = document.getElementById('contact-head');
+            if (head) head.hidden = true;
             done.hidden = false;
             done.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
           } else {
