@@ -353,6 +353,8 @@ img, svg { display: block; max-width: 100%; }
 
 /* Анимации */
 /* Первый экран: элементы появляются по очереди при загрузке. */
+/* Фразы первого экрана выезжают слева по очереди */
+@keyframes slide-in { from { opacity: 0; translate: -64px 0; } to { opacity: 1; translate: 0 0; } }
 @keyframes rise { from { opacity: 0; translate: 0 18px; } to { opacity: 1; translate: 0 0; } }
 
 /* Блоки появляются при прокрутке: JS ставит .motion на html и data-reveal на блоки. */
@@ -416,16 +418,16 @@ img, svg { display: block; max-width: 100%; }
   linear-gradient(270deg, rgba(3, 9, 15, 0.55) 0%, rgba(3, 9, 15, 0) 28%); }
 .hero-ice-content { position: relative; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 26px; padding: 96px var(--gutter) 84px; }
 .hero-ice h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(32px, 5.4vw, 78px); line-height: 1.06; letter-spacing: -0.02em; text-shadow: 0 2px 40px rgba(3, 9, 15, 0.75); }
-.hero-ice h1 .hl { display: block; animation: rise .8s cubic-bezier(.2, .7, .2, 1) both; }
-.hero-ice h1 .hl:nth-child(1) { animation-delay: .05s; }
-.hero-ice h1 .hl:nth-child(2) { animation-delay: .2s; }
-.hero-ice h1 .hl:nth-child(3) { animation-delay: .35s; }
-.hero-actions { display: none; gap: 14px; flex-wrap: wrap; animation: rise .8s cubic-bezier(.2, .7, .2, 1) .6s both; }
-.hero-ice-offer { position: absolute; left: var(--gutter); bottom: 34px; display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #D2E1EB; animation: rise .8s ease .8s both; }
+.hero-ice h1 .hl { display: block; animation: slide-in 1s cubic-bezier(.2, .7, .2, 1) both; }
+.hero-ice h1 .hl:nth-child(1) { animation-delay: .3s; }
+.hero-ice h1 .hl:nth-child(2) { animation-delay: 1.3s; }
+.hero-ice h1 .hl:nth-child(3) { animation-delay: 2.3s; }
+.hero-actions { display: none; gap: 14px; flex-wrap: wrap; animation: rise .8s cubic-bezier(.2, .7, .2, 1) 3.2s both; }
+.hero-ice-offer { position: absolute; left: var(--gutter); bottom: 34px; display: flex; align-items: center; gap: 16px; font-size: 15px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #D2E1EB; animation: rise .8s ease 3.4s both; }
 .hero-ice.paused .hero-ice-bg, .hero-ice.paused .hero-ice-tint { animation-play-state: paused; }
 @keyframes ice-descend { from { transform: translateY(0); } to { transform: translateY(-28%); } }
 @keyframes ice-tint { from { opacity: 0; } to { opacity: .7; } }
-@media (prefers-reduced-motion: reduce) { .hero-ice [data-anim] { animation: none !important; } .hero-ice-tint { opacity: .3; } }
+@media (prefers-reduced-motion: reduce) { .hero-ice [data-anim], .hero-ice h1 .hl, .hero-actions, .hero-ice-offer { animation: none !important; } .hero-ice-tint { opacity: .3; } }
 @media (max-width: 880px) {
   .hero-actions { display: flex; }
   .hero-ice-content { justify-content: flex-end; padding-top: 90px; padding-bottom: 78px; gap: 20px; }
