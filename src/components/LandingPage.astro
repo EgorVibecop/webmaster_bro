@@ -1,0 +1,113 @@
+---
+// Шаблон посадочной страницы под рекламный или поисковый запрос (данные: src/data/landings.js).
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from './SiteHeader.astro';
+import SiteFooter from './SiteFooter.astro';
+import ContactBlock from './ContactBlock.astro';
+
+interface Props {
+  landing: any;
+}
+const { landing } = Astro.props;
+
+const SITE = 'https://baikalresearch.ru';
+const url = `${SITE}/${landing.slug}/`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Главная', item: `${SITE}/` },
+        { '@type': 'ListItem', position: 2, name: landing.title, item: url },
+      ],
+    },
+    {
+      '@type': 'Service',
+      '@id': `${url}#service`,
+      name: landing.h1,
+      serviceType: landing.title,
+      description: landing.metaDescription,
+      url,
+      provider: { '@id': `${SITE}/#org` },
+      areaServed: { '@type': 'Country', name: 'Россия' },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: landing.faq.map((item) => ({
+        '@type': 'Question',
+        name: item.q,
+        acceptedAnswer: { '@type': 'Answer', text: item.a },
+      })),
+    },
+  ],
+};
+---
+<BaseLayout title={landing.metaTitle} description={landing.metaDescription}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <SiteHeader contactHref="#contact" />
+
+  <main class="page">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки">
+      <a href="/">Главная</a><span aria-hidden="true">/</span>
+      <span aria-current="page">{landing.title}</span>
+    </nav>
+
+    <h1>{landing.h1}</h1>
+    <p class="lead">{landing.lead}</p>
+    <div class="page-actions">
+      <a class="btn btn-primary" href="#contact">Обсудить задачу</a>
+    </div>
+
+    {landing.sections.map((s) => (
+      <>
+        <h2>{s.h2}</h2>
+        {s.intro && <p class="landing-intro">{s.intro}</p>}
+        {s.type === 'checks' && (
+          <ul class="checks">{s.items.map((item) => <li>{item}</li>)}</ul>
+        )}
+        {s.type === 'steps' && (
+          <ol class="steps">
+            {s.items.map((step) => (
+              <li>
+                <div>
+                  <h3>{step.title}</h3>
+                  <p>{step.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        )}
+        {s.type === 'links' && (
+          <div class="post-list">
+            {s.items.map((item) => (
+              <article class="post-card">
+                <h3><a href={item.href}>{item.title}</a></h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+        )}
+        {s.type === 'text' && <p class="landing-text">{s.text}</p>}
+      </>
+    ))}
+
+    <h2>Частые вопросы</h2>
+    <div class="faq">
+      {landing.faq.map((item) => (
+        <details>
+          <summary>{item.q}</summary>
+          <p>{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </main>
+
+  <ContactBlock
+    heading="Расскажите о задаче"
+    subheading="Предложим метод, выборку и сроки под вашу задачу и бюджет."
+    presetService={landing.title}
+  />
+  <SiteFooter contactHref="#contact" />
+</BaseLayout>

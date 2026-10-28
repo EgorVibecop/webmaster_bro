@@ -1,0 +1,5 @@
+---
+import LandingPage from '../components/LandingPage.astro';
+import { landings } from '../data/landings.js';
+---
+<LandingPage landing={landings.find((l) => l.slug === 'b2b-issledovaniya')} />

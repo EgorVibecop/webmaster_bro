@@ -242,3 +242,6 @@
 .contact-solo .contact-grid { grid-template-columns: 1fr; max-width: calc(1100px - 2 * var(--gutter)); margin: 0 auto; }
 .contact-solo .contact-form-col { max-width: 760px; }
 @media (max-width: 880px) { .contact-facts { grid-template-columns: 1fr; } }
+
+.landing-intro { margin-bottom: 16px; color: var(--ink-soft); font-size: var(--fs-body); line-height: 1.65; }
+.landing-text { font-size: var(--fs-body); line-height: 1.7; color: var(--ink-soft); }

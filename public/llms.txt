@@ -9,6 +9,8 @@
 - [Опросы CATI и CAWI](https://baikalresearch.ru/uslugi/cati-cawi-oprosy/): телефонные и онлайн-опросы, расчет выборки, NPS.
 - [Юзабилити-тестирование](https://baikalresearch.ru/uslugi/usability-testirovanie/): тесты сайтов и приложений.
 - [Кастдев и глубинные интервью](https://baikalresearch.ru/uslugi/custdev-glubinnye-intervyu/): интервью с клиентами, JTBD.
+- [Агентство маркетинговых исследований](https://baikalresearch.ru/agentstvo-marketingovyh-issledovanij/): какие исследования проводим, как проходит работа, как выбрать агентство.
+- [B2B-исследования](https://baikalresearch.ru/b2b-issledovaniya/): интервью с ЛПР, телефонные опросы специалистов, анализ рынка для компаний, которые продают бизнесу.
 
 ## Инструменты
 - [Сколько людей опросить: калькулятор выборки](https://baikalresearch.ru/instrumenty/kalkulyator-vyborki/): расчет числа респондентов по группам, погрешность, значимость различий.
