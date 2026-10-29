@@ -13,6 +13,24 @@
   }
 
   var heroIce = document.querySelector('.hero-ice');
+  // Фото первого экрана: при сбое мобильной сети пробуем загрузить еще раз, а пока прячем значок «битой» картинки.
+  var heroImg = heroIce && heroIce.querySelector('.hero-ice-bg img');
+  if (heroImg) {
+    var tries = 0;
+    var retry = function () {
+      if (tries >= 3) { heroImg.style.visibility = 'hidden'; return; }
+      tries += 1;
+      heroImg.style.visibility = 'hidden';
+      setTimeout(function () {
+        var src = heroImg.getAttribute('src');
+        heroImg.removeAttribute('src');
+        heroImg.setAttribute('src', src);
+      }, 1500 * tries);
+    };
+    heroImg.addEventListener('error', retry);
+    heroImg.addEventListener('load', function () { heroImg.style.visibility = ''; });
+    if (heroImg.complete && heroImg.naturalWidth === 0 && heroImg.currentSrc) retry();
+  }
   if (heroIce && 'IntersectionObserver' in window) {
     new IntersectionObserver(function (entries) {
       heroIce.classList.toggle('paused', !entries[0].isIntersecting);
