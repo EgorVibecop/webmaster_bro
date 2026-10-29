@@ -366,21 +366,17 @@ img, svg { display: block; max-width: 100%; }
 }
 .motion [data-reveal].in { opacity: 1; translate: 0 0; }
 
-/* Линия процесса дорисовывается, номера шагов загораются по очереди. */
-.motion .timeline-line { transform: scaleX(0); transform-origin: left; transition: transform 5s linear .3s; }
+/* Шаги процесса видны сразу, прокрашиваются только линия и кружки: каждые 0,5 секунды. */
+.motion .timeline-line { transform: scaleX(0); transform-origin: left; transition: transform 1.5s linear; }
 .motion .timeline.drawn .timeline-line { transform: scaleX(1); }
-.motion .timeline-num { transition: border-color .7s ease, color .7s ease, background .7s ease; }
+.motion .timeline-num { transition: border-color .35s ease, color .35s ease; }
+.motion .timeline-item { transition: border-color .35s ease; }
 .motion .timeline.drawn .timeline-num { border-color: var(--accent-text); color: var(--accent-text); }
-.motion .timeline.drawn .timeline-item:nth-child(1) .timeline-num { transition-delay: .3s; }
-.motion .timeline.drawn .timeline-item:nth-child(2) .timeline-num { transition-delay: 1.97s; }
-.motion .timeline.drawn .timeline-item:nth-child(3) .timeline-num { transition-delay: 3.63s; }
-.motion .timeline.drawn .timeline-item:nth-child(4) .timeline-num { transition-delay: 5.3s; }
-/* Линия идет медленно, блоки шагов появляются быстро в момент, когда линия до них доходит */
-.motion .timeline-item[data-reveal] { transition-duration: .5s, .5s, .16s, .16s, .16s; }
-.motion .timeline-item:nth-child(1) { --d: .1s !important; }
-.motion .timeline-item:nth-child(2) { --d: 1.8s !important; }
-.motion .timeline-item:nth-child(3) { --d: 3.5s !important; }
-.motion .timeline-item:nth-child(4) { --d: 5.1s !important; }
+.motion .timeline.drawn .timeline-item { border-left-color: var(--accent-text); }
+.motion .timeline.drawn .timeline-item:nth-child(1), .motion .timeline.drawn .timeline-item:nth-child(1) .timeline-num { transition-delay: 0s; }
+.motion .timeline.drawn .timeline-item:nth-child(2), .motion .timeline.drawn .timeline-item:nth-child(2) .timeline-num { transition-delay: .5s; }
+.motion .timeline.drawn .timeline-item:nth-child(3), .motion .timeline.drawn .timeline-item:nth-child(3) .timeline-num { transition-delay: 1s; }
+.motion .timeline.drawn .timeline-item:nth-child(4), .motion .timeline.drawn .timeline-item:nth-child(4) .timeline-num { transition-delay: 1.5s; }
 
 /* При прокрутке у шапки появляется тень (высоту не меняем: это сдвигало страницу). */
 .site-header { transition: box-shadow .25s ease; }

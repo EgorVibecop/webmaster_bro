@@ -41,7 +41,7 @@
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   var SELECTORS = [
-    '.section-head', '.svc-row', '.timeline-item', '.tool-card', '.approach > *',
+    '.section-head', '.svc-row', '.tool-card', '.approach > *',
     '.cases-grid > *', '.clients > *', '.contact-grid > *',
     '.page > h2', '.page .steps li', '.page .callout', '.glossary-item'
   ].join(',');
@@ -75,7 +75,7 @@
           tio.disconnect();
         }
       });
-    }, { threshold: 0.35 });
+    }, { threshold: 0, rootMargin: '0px 0px -12% 0px' });
     tio.observe(timeline);
   }
 
@@ -85,7 +85,7 @@
       Array.prototype.forEach.call(els, function (el) {
         if (!el.classList.contains('in') && el.getBoundingClientRect().top < window.innerHeight) el.classList.add('in');
       });
-      if (timeline && timeline.getBoundingClientRect().top < window.innerHeight * 0.8) timeline.classList.add('drawn');
+      if (timeline && timeline.getBoundingClientRect().top < window.innerHeight) timeline.classList.add('drawn');
     }, 2500);
   });
 })();
