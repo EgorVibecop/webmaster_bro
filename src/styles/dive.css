@@ -1,0 +1,55 @@
+/* «Глубина погружения»: процесс работы в виде спуска на дно Байкала. Линия и номера шагов загораются при прокрутке (public/js/dive.js). */
+.dive { position: relative; isolation: isolate; overflow: hidden; background: linear-gradient(180deg, #0C1A28 0%, #08121C 55%, #04090F 100%); color: var(--on-night); padding: clamp(56px, 8vw, 110px) var(--gutter); }
+.dive-wrap { max-width: var(--container); margin: 0 auto; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
+.dive-side { position: sticky; top: 110px; display: flex; flex-direction: column; gap: 18px; }
+.dive h2.dive-eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #5CC4F2; }
+.dive h2 { color: #FFFFFF; font-weight: 600; font-size: var(--fs-h2); line-height: 1.15; letter-spacing: -0.02em; }
+.dive-depth { display: flex; align-items: baseline; gap: 10px; margin-top: 8px; color: #FFFFFF; font-size: clamp(64px, 9vw, 120px); font-weight: 600; line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; text-shadow: 0 0 40px rgba(56, 189, 248, .35); }
+.dive-depth small { font-size: .32em; color: #5CC4F2; letter-spacing: 0; }
+.dive-fact { max-width: 420px; color: var(--dark-label); font-size: var(--fs-small); line-height: 1.55; }
+
+.dive-track { position: relative; padding-left: 64px; }
+.dive-rail { position: absolute; left: 15px; top: 16px; bottom: 16px; width: 2px; border-radius: 2px; background: rgba(255, 255, 255, .14); }
+.dive-fill { position: absolute; left: 0; top: 0; width: 100%; height: calc(var(--p, 1) * 100%); border-radius: 2px; background: linear-gradient(180deg, #5CC4F2, #0284C7); box-shadow: 0 0 12px rgba(56, 189, 248, .7); }
+.dive-probe { position: absolute; left: 50%; top: calc(var(--p, 1) * 100%); width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 0 0 5px rgba(56, 189, 248, .25), 0 0 24px 6px rgba(56, 189, 248, .6); }
+.dive-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: clamp(32px, 4.5vw, 52px); }
+.dive-step { position: relative; }
+.dive-dot { position: absolute; left: -64px; top: 0; width: 32px; height: 32px; display: grid; place-items: center; border-radius: 50%; background: #0C1A28; border: 2px solid #2A3F52; color: #6F8497; font-size: 14px; font-weight: 600; transition: border-color .35s ease, color .35s ease, background .35s ease, box-shadow .35s ease; }
+.dive-meta { margin-bottom: 6px; color: var(--dark-label); font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; font-variant-numeric: tabular-nums; }
+.dive-step h3 { margin-bottom: 8px; color: #FFFFFF; font-size: 22px; font-weight: 600; transition: color .35s ease; }
+.dive-step p { color: var(--on-night-soft); font-size: var(--fs-body); line-height: 1.6; transition: color .35s ease; }
+.dive-js .dive-step:not(.reached) h3 { color: #8FA3B5; }
+.dive-js .dive-step:not(.reached) p { color: #8396A8; }
+.dive-step.reached .dive-dot { background: #0A4A6E; border-color: #5CC4F2; color: #FFFFFF; box-shadow: 0 0 0 6px rgba(56, 189, 248, .15), 0 0 20px rgba(56, 189, 248, .5); }
+
+.dive-foot { max-width: var(--container); margin: clamp(40px, 6vw, 72px) auto 0; padding-top: 28px; border-top: 1px solid rgba(255, 255, 255, .1); display: flex; flex-wrap: wrap; gap: 16px 48px; }
+.dive-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.dive-chips span { padding: 6px 14px; border: 1px solid rgba(255, 255, 255, .18); border-radius: 999px; color: #D2E1EB; font-size: 14px; }
+.dive-chips .dive-chips-label { padding: 0 6px 0 0; border: none; color: var(--dark-label); font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+
+.dive-bubbles { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.dive-bubbles span { position: absolute; bottom: -40px; border-radius: 50%; border: 1px solid rgba(160, 220, 250, .35); background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, .22), rgba(255, 255, 255, 0) 60%); opacity: 0; animation: dive-rise linear infinite; }
+.dive-bubbles span:nth-child(1) { left: 6%; width: 10px; height: 10px; animation-duration: 14s; animation-delay: 0s; }
+.dive-bubbles span:nth-child(2) { left: 17%; width: 22px; height: 22px; animation-duration: 19s; animation-delay: 3s; }
+.dive-bubbles span:nth-child(3) { left: 31%; width: 8px; height: 8px; animation-duration: 12s; animation-delay: 6s; }
+.dive-bubbles span:nth-child(4) { left: 46%; width: 16px; height: 16px; animation-duration: 17s; animation-delay: 1s; }
+.dive-bubbles span:nth-child(5) { left: 58%; width: 12px; height: 12px; animation-duration: 15s; animation-delay: 8s; }
+.dive-bubbles span:nth-child(6) { left: 71%; width: 26px; height: 26px; animation-duration: 21s; animation-delay: 4s; }
+.dive-bubbles span:nth-child(7) { left: 84%; width: 9px; height: 9px; animation-duration: 13s; animation-delay: 9s; }
+.dive-bubbles span:nth-child(8) { left: 94%; width: 18px; height: 18px; animation-duration: 18s; animation-delay: 2s; }
+@keyframes dive-rise {
+  0% { transform: translate(0, 0); opacity: 0; }
+  10% { opacity: .8; }
+  50% { transform: translate(14px, -450px); }
+  90% { opacity: .45; }
+  100% { transform: translate(-10px, -1100px); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .dive-bubbles { display: none; } }
+@media (max-width: 880px) {
+  .dive-wrap { grid-template-columns: 1fr; gap: 36px; }
+  .dive-side { position: static; }
+  .dive-depth { font-size: 72px; }
+  .dive-track { padding-left: 52px; }
+  .dive-dot { left: -52px; width: 28px; height: 28px; font-size: 13px; }
+  .dive-rail { left: 13px; top: 14px; bottom: 14px; }
+}
