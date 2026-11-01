@@ -29,22 +29,38 @@
 .dive-chips span { padding: 6px 14px; border: 1px solid rgba(255, 255, 255, .18); border-radius: 999px; color: #D2E1EB; font-size: 14px; }
 .dive-chips .dive-chips-label { padding: 0 6px 0 0; border: none; color: var(--dark-label); font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
 
-.dive-bubbles { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
-.dive-bubbles span { position: absolute; bottom: -40px; border-radius: 50%; border: 1px solid rgba(160, 220, 250, .35); background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, .22), rgba(255, 255, 255, 0) 60%); opacity: 0; animation: dive-rise linear infinite; }
-.dive-bubbles span:nth-child(1) { left: 6%; width: 10px; height: 10px; animation-duration: 14s; animation-delay: 0s; }
-.dive-bubbles span:nth-child(2) { left: 17%; width: 22px; height: 22px; animation-duration: 19s; animation-delay: 3s; }
-.dive-bubbles span:nth-child(3) { left: 31%; width: 8px; height: 8px; animation-duration: 12s; animation-delay: 6s; }
-.dive-bubbles span:nth-child(4) { left: 46%; width: 16px; height: 16px; animation-duration: 17s; animation-delay: 1s; }
-.dive-bubbles span:nth-child(5) { left: 58%; width: 12px; height: 12px; animation-duration: 15s; animation-delay: 8s; }
-.dive-bubbles span:nth-child(6) { left: 71%; width: 26px; height: 26px; animation-duration: 21s; animation-delay: 4s; }
-.dive-bubbles span:nth-child(7) { left: 84%; width: 9px; height: 9px; animation-duration: 13s; animation-delay: 9s; }
-.dive-bubbles span:nth-child(8) { left: 94%; width: 18px; height: 18px; animation-duration: 18s; animation-delay: 2s; }
+.dive-bubbles { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; container-type: size; }
+.dive-bubbles span { position: absolute; bottom: -40px; border-radius: 50%; opacity: 0; will-change: transform, translate;
+  background:
+    radial-gradient(circle at 30% 26%, rgba(255, 255, 255, .95) 0 7%, rgba(255, 255, 255, 0) 14%),
+    radial-gradient(circle at 72% 80%, rgba(255, 255, 255, .35), rgba(255, 255, 255, 0) 32%),
+    radial-gradient(circle at 50% 50%, rgba(150, 215, 245, .03) 52%, rgba(160, 222, 250, .4) 76%, rgba(225, 247, 255, .85) 100%);
+  box-shadow: inset 0 0 3px rgba(220, 245, 255, .45), 0 0 6px rgba(120, 200, 240, .18);
+  animation: dive-rise var(--rise) cubic-bezier(.3, .1, .6, 1) var(--delay) infinite, dive-sway var(--sway-t) ease-in-out var(--delay) infinite alternate; }
+.dive-bubbles span:nth-child(1) { left: 4%; width: 10px; height: 10px; --rise: 13s; --delay: -0s; --sway: 10px; --sway-t: 3.1s; }
+.dive-bubbles span:nth-child(2) { left: 9%; width: 21px; height: 21px; --rise: 18s; --delay: -4s; --sway: 16px; --sway-t: 4.4s; }
+.dive-bubbles span:nth-child(3) { left: 15%; width: 7px; height: 7px; --rise: 11s; --delay: -9s; --sway: 8px; --sway-t: 2.6s; }
+.dive-bubbles span:nth-child(4) { left: 22%; width: 14px; height: 14px; --rise: 15s; --delay: -2s; --sway: 12px; --sway-t: 3.5s; }
+.dive-bubbles span:nth-child(5) { left: 29%; width: 34px; height: 34px; --rise: 22s; --delay: -7s; --sway: 20px; --sway-t: 5.2s; }
+.dive-bubbles span:nth-child(6) { left: 36%; width: 8px; height: 8px; --rise: 12s; --delay: -11s; --sway: 9px; --sway-t: 2.9s; }
+.dive-bubbles span:nth-child(7) { left: 43%; width: 18px; height: 18px; --rise: 17s; --delay: -1s; --sway: 14px; --sway-t: 4s; }
+.dive-bubbles span:nth-child(8) { left: 50%; width: 11px; height: 11px; --rise: 13s; --delay: -6s; --sway: 11px; --sway-t: 3.2s; }
+.dive-bubbles span:nth-child(9) { left: 57%; width: 28px; height: 28px; --rise: 20s; --delay: -10s; --sway: 18px; --sway-t: 4.8s; }
+.dive-bubbles span:nth-child(10) { left: 64%; width: 7px; height: 7px; --rise: 11s; --delay: -3s; --sway: 8px; --sway-t: 2.7s; }
+.dive-bubbles span:nth-child(11) { left: 71%; width: 39px; height: 39px; --rise: 24s; --delay: -5s; --sway: 22px; --sway-t: 5.6s; }
+.dive-bubbles span:nth-child(12) { left: 78%; width: 13px; height: 13px; --rise: 14s; --delay: -12s; --sway: 12px; --sway-t: 3.4s; }
+.dive-bubbles span:nth-child(13) { left: 85%; width: 22px; height: 22px; --rise: 18s; --delay: -8s; --sway: 15px; --sway-t: 4.2s; }
+.dive-bubbles span:nth-child(14) { left: 91%; width: 8px; height: 8px; --rise: 12s; --delay: -2s; --sway: 9px; --sway-t: 2.8s; }
+.dive-bubbles span:nth-child(15) { left: 96%; width: 17px; height: 17px; --rise: 16s; --delay: -13s; --sway: 13px; --sway-t: 3.8s; }
 @keyframes dive-rise {
-  0% { transform: translate(0, 0); opacity: 0; }
-  10% { opacity: .8; }
-  50% { transform: translate(14px, -450px); }
-  90% { opacity: .45; }
-  100% { transform: translate(-10px, -1100px); opacity: 0; }
+  0% { transform: translateY(0) scale(.7); opacity: 0; }
+  8% { opacity: .9; }
+  85% { opacity: .75; }
+  100% { transform: translateY(-112cqh) scale(1.25); opacity: 0; }
+}
+@keyframes dive-sway {
+  from { translate: calc(var(--sway) * -1) 0; }
+  to { translate: var(--sway) 0; }
 }
 @media (prefers-reduced-motion: reduce) { .dive-bubbles { display: none; } }
 @media (max-width: 880px) {
