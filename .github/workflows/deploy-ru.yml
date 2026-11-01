@@ -34,7 +34,7 @@ jobs:
           mkdir -p dist/api
           cp server/api/lead.php dist/api/lead.php
       - name: Загрузить на хостинг по FTPS
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.RU_FTP_HOST }}
           username: ${{ secrets.RU_FTP_USER }}
