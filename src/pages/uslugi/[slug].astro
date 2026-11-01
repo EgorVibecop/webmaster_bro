@@ -65,7 +65,7 @@ const jsonLd = {
 
     <h1>{page.h1}</h1>
     <p class="lead">{page.lead}</p>
-    <div class="page-actions">
+    <div class="page-actions page-actions-cta">
       <a class="btn btn-primary" href="#contact">Связаться с нами</a>
     </div>
 
@@ -85,6 +85,15 @@ const jsonLd = {
         </li>
       ))}
     </ol>
+
+    {page.options && (
+      <>
+        <h2>{page.optionsTitle || 'Добавляем под задачу'}</h2>
+        <ul class="checks">
+          {page.options.map((o) => <li><strong>{o.title}.</strong> {o.text}</li>)}
+        </ul>
+      </>
+    )}
 
     {page.note && (
       <aside class="callout">
