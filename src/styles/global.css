@@ -241,6 +241,7 @@ img, svg { display: block; max-width: 100%; }
 .observation-photo, .observation-glass { position: absolute; inset: 0; width: 100%; height: 100%; }
 .observation-photo, .observation-glass { object-fit: cover; }
 .observation-glass { opacity: var(--glass, 1); will-change: opacity; }
+.observation-caption { position: absolute; z-index: 2; left: 16px; bottom: 16px; padding: 8px 14px; border-radius: 6px; background: rgba(8, 14, 22, .6); color: #F2F6F9; font-size: 15px; font-weight: 600; }
 
 .nps-card {
   background: var(--ink); border-radius: var(--radius-card); padding: 40px;
