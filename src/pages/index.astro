@@ -14,11 +14,11 @@ const clients = [
   { name: 'СберЗдоровье', file: 'sberzdorovye.png', w: 342, h: 96 },
 ];
 
-const process = [
-  { title: 'Бриф и методология', desc: 'Обсуждаем задачу, предлагаем метод и выборку, фиксируем сроки и стоимость.' },
-  { title: 'Сбор данных', desc: 'CATI/CAWI-опрос, интервью или тестирование по согласованному сценарию. Следим за качеством рекрута.' },
-  { title: 'Анализ', desc: 'В опросах считаем статистику и проверяем данные на искажения, в интервью выделяем причины и барьеры. Находим закономерности.' },
-  { title: 'Отчет с рекомендациями', desc: 'Выводы, которые можно внедрить с пользой для бизнеса.' },
+const dive = [
+  { depth: '0 м', m: 0, title: 'Бриф и методология', desc: 'Обсуждаем задачу, предлагаем метод и выборку, фиксируем сроки и стоимость. Для проверки гипотезы часто хватает 10 интервью, для оценки доли хватает опроса на 400 человек.' },
+  { depth: '120 м', m: 120, title: 'Сбор данных', desc: 'CATI/CAWI-опрос, интервью или тестирование по согласованному сценарию. Следим за качеством рекрута.' },
+  { depth: '600 м', m: 600, title: 'Анализ', desc: 'В опросах считаем статистику и проверяем данные на искажения, в интервью выделяем причины и барьеры. Наблюдения сверяем с аналитикой, чтобы выводы опирались на оба источника.' },
+  { depth: '1 642 м', m: 1642, title: 'Отчет с рекомендациями', desc: 'Выводы, которые можно внедрить с пользой для бизнеса.' },
 ];
 
 
@@ -115,23 +115,32 @@ const jsonLd = {
     </div>
   </section>
 
-  <section id="process" class="process">
-    <div class="section-head">
-      <h2>Из брифа в решение за понятный срок</h2>
-    </div>
-    <div class="timeline">
-      <div class="timeline-line"></div>
-      <div class="timeline-row">
-        {process.map((step, i) => (
-          <div class="timeline-item">
-            <div class="timeline-num">{String(i + 1).padStart(2, '0')}</div>
+  <section id="process" class="dive" aria-labelledby="dive-title">
+    <div class="dive-bubbles" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="dive-wrap">
+      <div class="dive-side">
+        <h2 class="dive-eyebrow" id="dive-title">Глубина погружения</h2>
+        <div class="dive-depth" aria-hidden="true"><span id="dive-num">1 642</span><small>м</small></div>
+        <p class="dive-fact">Байкал – самое глубокое озеро планеты. Мы идем вглубь задачи до тех пор, пока выводы не станут опорой для решения.</p>
+      </div>
+      <div class="dive-track">
+      <div class="dive-rail" aria-hidden="true"><span class="dive-fill"></span><span class="dive-probe"></span></div>
+      <ol class="dive-steps">
+        {dive.map((step, i) => (
+          <li class="dive-step" data-m={step.m}>
+            <span class="dive-dot" aria-hidden="true">{i + 1}</span>
+            <div class="dive-meta">{step.depth}</div>
             <h3>{step.title}</h3>
             <p>{step.desc}</p>
-          </div>
+          </li>
         ))}
+      </ol>
       </div>
     </div>
-    <a class="section-link" href="/kak-my-rabotaem/">Подробнее о формате взаимодействия <span aria-hidden="true"><svg class="ar" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
+    <div class="dive-foot">
+      <div class="dive-chips"><span class="dive-chips-label">Работаем с</span><span>юрлицами</span><span>ИП</span><span>физлицами</span></div>
+      <div class="dive-chips"><span class="dive-chips-label">Оплата</span><span>предоплата</span><span>по этапам</span><span>после сдачи</span></div>
+    </div>
   </section>
 
   <section class="tool-band" aria-labelledby="tool-title">
@@ -145,16 +154,9 @@ const jsonLd = {
     </div>
   </section>
 
-  <section class="approach">
-    <h2>Подбираем исследование под задачу и бюджет</h2>
-    <p>Метод и размер выборки зависят от цели исследования. Для проверки гипотезы часто хватает 10 интервью, для оценки доли хватает опроса на 400 человек. Работаем с юрлицами, ИП и физлицами, берем и небольшие проекты. Оплату согласуем индивидуально: предоплата, по этапам или после сдачи.</p>
-    <a class="section-link" href="/o-nas/">О нас <span aria-hidden="true"><svg class="ar" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
-  </section>
-
   <section id="cases" class="cases">
     <div class="section-head">
       <h2>Изучаем поведение пользователей</h2>
-      <p>Наблюдения сверяем с аналитикой, чтобы выводы опирались на оба источника.</p>
     </div>
 
     <div class="cases-grid">
@@ -200,4 +202,5 @@ const jsonLd = {
 
   <script is:inline src={`/js/observation-glass.js?v=${ASSET_V}`} defer></script>
   <script is:inline src={`/js/count-up.js?v=${ASSET_V}`} defer></script>
+  <script is:inline src={`/js/dive.js?v=${ASSET_V}`} defer></script>
 </BaseLayout>
