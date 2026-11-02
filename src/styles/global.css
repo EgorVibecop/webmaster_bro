@@ -54,7 +54,7 @@ button, input, select, textarea { font-family: inherit; }
 h1, h2 { font-family: var(--font-display); }
 ::selection { background: var(--accent-text); color: #FFFFFF; }
 [id] { scroll-margin-top: 88px; }
-.nps-scale, .timeline-num, time { font-variant-numeric: tabular-nums; }
+.nps-scale, time { font-variant-numeric: tabular-nums; }
 p { margin: 0; text-wrap: pretty; }
 a { color: var(--accent-text); text-decoration: none; }
 a:hover { color: var(--ink); }
@@ -74,14 +74,6 @@ img, svg { display: block; max-width: 100%; }
 }
 
 
-.eyebrow {
-  font-size: var(--fs-label);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--accent-text);
-  text-transform: uppercase;
-}
-
 .btn {
   display: inline-flex;
   align-items: center;
@@ -98,15 +90,11 @@ img, svg { display: block; max-width: 100%; }
 .btn:active { transform: translateY(1px); }
 .btn-primary { background: var(--accent-text); color: var(--accent-ink); border-color: var(--accent-text); }
 .btn-primary:hover { background: var(--accent-text-hover); border-color: var(--accent-text-hover); color: var(--accent-ink); }
-.btn-ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
-.btn-ghost:hover { background: var(--ink); color: var(--bg); }
 .btn-sm { padding: 12px 22px; font-size: 15px; }
 
 /* На темном фоне главная кнопка белая: инверсия читается дороже синей заливки. */
 .btn-on-dark { background: #FFFFFF; color: var(--night); border-color: #FFFFFF; }
 .btn-on-dark:hover { background: var(--on-night); border-color: var(--on-night); color: var(--night); }
-.btn-ghost-on-dark { background: transparent; color: #FFFFFF; border-color: rgba(255, 255, 255, 0.4); }
-.btn-ghost-on-dark:hover { background: transparent; color: #FFFFFF; border-color: rgba(255, 255, 255, 0.75); }
 
 /* Header: темная шапка на всех страницах, полупрозрачная с размытием. */
 .site-header {
@@ -200,34 +188,6 @@ img, svg { display: block; max-width: 100%; }
 .svc-more span { display: inline-block; transition: transform .16s ease; }
 .svc-row:hover .svc-more span { transform: translateX(3px); }
 
-/* Process */
-.process { padding: clamp(20px, 3vw, 36px) var(--gutter); display: flex; flex-direction: column; gap: clamp(20px, 3.5vw, 36px); }
-.timeline { position: relative; }
-/* Линия идет от центра первого кружка до центра последнего: при 4 равных
-   колонках их центры лежат на 1/8 и 7/8 ширины. */
-.timeline-line { position: absolute; top: 28px; left: calc(100% / 8); width: calc(100% - 100% / 4); height: 2px; background: var(--line); z-index: 0; }
-.timeline-row { display: flex; justify-content: space-between; gap: 20px; position: relative; z-index: 1; flex-wrap: wrap; }
-.timeline-item { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; max-width: 280px; flex: 1 1 220px; }
-.timeline-num {
-  width: 56px; height: 56px; border-radius: 50%;
-  background: var(--bg); border: 2px solid var(--line);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font); font-weight: 600; font-size: 17px; color: var(--ink-soft);
-}
-.timeline-item h3 { font-size: 17px; font-weight: 600; }
-.timeline-item p { font-size: var(--fs-small); line-height: 1.55; color: var(--ink-soft); }
-
-/* Approach highlight */
-.approach {
-  background: var(--bg-alt);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  padding: clamp(20px, 3vw, 32px) var(--gutter);
-  display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 18px;
-}
-.approach h2 { font-weight: 600; letter-spacing: -0.02em; font-size: var(--fs-h2); line-height: 1.15; max-width: 980px; }
-.approach p { font-size: var(--fs-body); line-height: 1.6; color: var(--ink-soft); max-width: 680px; }
-
 /* Cases / observation */
 .cases { padding: clamp(12px, 1.8vw, 22px) var(--gutter) clamp(20px, 3vw, 36px); display: flex; flex-direction: column; gap: clamp(20px, 3.5vw, 36px); }
 .cases .section-head p { font-size: var(--fs-body); line-height: 1.6; color: var(--ink-soft); margin-top: 14px; }
@@ -317,10 +277,6 @@ img, svg { display: block; max-width: 100%; }
 @media (max-width: 880px) {
   .svc-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .cases-grid, .contact-grid { grid-template-columns: 1fr; }
-  .timeline-line { display: none; }
-  .timeline-row { flex-direction: column; gap: 32px; }
-  /* В колонке базовые 220px из flex превращаются в высоту и дают пустоту под текстом. */
-  .timeline-item { max-width: none; flex: 0 0 auto; padding-left: 18px; border-left: 2px solid var(--line); }
 }
 @media (max-width: 640px) {
   .form-grid { grid-template-columns: 1fr; }
@@ -334,20 +290,6 @@ img, svg { display: block; max-width: 100%; }
   .svc-more { margin: 0; padding: 4px 0 0; font-size: 0; }
   .svc-more span { font-size: 17px; }
 }
-
-.section-link { align-self: flex-start; font-size: var(--fs-body); font-weight: 600; color: var(--accent-text); }
-.section-link span { display: inline-block; transition: transform .16s ease; }
-.section-link:hover span { transform: translateX(3px); }
-
-/* Блок калькулятора на главной */
-.tool-band { padding: 0 var(--gutter) clamp(20px, 3vw, 36px); }
-.tool-card { background: var(--night); color: #FFFFFF; border-radius: var(--radius-card); padding: clamp(24px, 4vw, 40px); display: flex; align-items: center; justify-content: space-between; gap: 24px 40px; flex-wrap: wrap; }
-.tool-card > div { max-width: 640px; }
-.tool-card h2 { font-weight: 600; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.15; letter-spacing: -0.02em; margin: 10px 0 10px; color: #FFFFFF; }
-.tool-card p { font-size: var(--fs-body); line-height: 1.55; color: var(--on-night-soft); }
-.tool-eyebrow { color: var(--on-night-soft); }
-
-/* Предложение под кнопками первого экрана */
 
 /* Клиенты */
 .clients { padding: 0 var(--gutter) clamp(24px, 3.5vw, 40px); }
@@ -366,18 +308,6 @@ img, svg { display: block; max-width: 100%; }
   transition: opacity .65s ease var(--d, 0s), translate .65s cubic-bezier(.2, .7, .2, 1) var(--d, 0s), transform .16s ease, border-color .16s ease, box-shadow .16s ease;
 }
 .motion [data-reveal].in { opacity: 1; translate: 0 0; }
-
-/* Шаги процесса видны сразу, прокрашиваются только линия и кружки: каждые 0,5 секунды. */
-.motion .timeline-line { transform: scaleX(0); transform-origin: left; transition: transform 1.5s linear; }
-.motion .timeline.drawn .timeline-line { transform: scaleX(1); }
-.motion .timeline-num { transition: border-color .35s ease, color .35s ease; }
-.motion .timeline-item { transition: border-color .35s ease; }
-.motion .timeline.drawn .timeline-num { border-color: var(--accent-text); color: var(--accent-text); }
-.motion .timeline.drawn .timeline-item { border-left-color: var(--accent-text); }
-.motion .timeline.drawn .timeline-item:nth-child(1), .motion .timeline.drawn .timeline-item:nth-child(1) .timeline-num { transition-delay: 0s; }
-.motion .timeline.drawn .timeline-item:nth-child(2), .motion .timeline.drawn .timeline-item:nth-child(2) .timeline-num { transition-delay: .5s; }
-.motion .timeline.drawn .timeline-item:nth-child(3), .motion .timeline.drawn .timeline-item:nth-child(3) .timeline-num { transition-delay: 1s; }
-.motion .timeline.drawn .timeline-item:nth-child(4), .motion .timeline.drawn .timeline-item:nth-child(4) .timeline-num { transition-delay: 1.5s; }
 
 /* При прокрутке у шапки появляется тень (высоту не меняем: это сдвигало страницу). */
 .site-header { transition: box-shadow .25s ease; }

@@ -41,7 +41,7 @@
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   var SELECTORS = [
-    '.section-head', '.svc-row', '.tool-card', '.approach > *',
+    '.section-head', '.svc-row',
     '.cases-grid > *', '.clients > *', '.contact-grid > *',
     '.page > h2', '.page .steps li', '.page .callout', '.glossary-item'
   ].join(',');
@@ -66,26 +66,12 @@
     io.observe(el);
   });
 
-  var timeline = document.querySelector('.timeline');
-  if (timeline) {
-    var tio = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          timeline.classList.add('drawn');
-          tio.disconnect();
-        }
-      });
-    }, { threshold: 0, rootMargin: '0px 0px -12% 0px' });
-    tio.observe(timeline);
-  }
-
   // Страховка: что уже в зоне видимости, но не проявилось, показываем через пару секунд.
   window.addEventListener('load', function () {
     setTimeout(function () {
       Array.prototype.forEach.call(els, function (el) {
         if (!el.classList.contains('in') && el.getBoundingClientRect().top < window.innerHeight) el.classList.add('in');
       });
-      if (timeline && timeline.getBoundingClientRect().top < window.innerHeight) timeline.classList.add('drawn');
     }, 2500);
   });
 })();
