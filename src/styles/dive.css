@@ -1,5 +1,5 @@
 /* «Глубина погружения»: процесс работы в виде спуска на дно Байкала. Линия и номера шагов загораются при прокрутке (public/js/dive.js). */
-.dive { position: relative; isolation: isolate; overflow: hidden; background: linear-gradient(180deg, #0C1A28 0%, #08121C 55%, #04090F 100%); color: var(--on-night); padding: clamp(56px, 8vw, 110px) var(--gutter); }
+.dive { position: relative; isolation: isolate; overflow: hidden; background: linear-gradient(180deg, #0C1A28 0%, #08121C 55%, #04090F 100%); color: var(--on-night); padding: clamp(36px, 4.5vw, 64px) var(--gutter) clamp(32px, 3.5vw, 48px); }
 .dive-wrap { max-width: var(--container); margin: 0 auto; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
 .dive-side { position: sticky; top: 110px; display: flex; flex-direction: column; gap: 18px; }
 .dive h2.dive-eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #5CC4F2; }
@@ -24,7 +24,7 @@
 .dive-js .dive-step:not(.reached) p { color: #8396A8; }
 .dive-step.reached .dive-dot { background: #0A4A6E; border-color: #5CC4F2; color: #FFFFFF; box-shadow: 0 0 0 6px rgba(56, 189, 248, .15), 0 0 20px rgba(56, 189, 248, .5); }
 
-.dive-foot { max-width: var(--container); margin: clamp(40px, 6vw, 72px) auto 0; padding-top: 28px; border-top: 1px solid rgba(255, 255, 255, .1); display: flex; flex-wrap: wrap; gap: 16px 48px; }
+.dive-foot { max-width: var(--container); margin: clamp(28px, 4vw, 48px) auto 0; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, .1); display: flex; flex-wrap: wrap; gap: 16px 48px; }
 .dive-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .dive-chips span { padding: 6px 14px; border: 1px solid rgba(255, 255, 255, .18); border-radius: 999px; color: #D2E1EB; font-size: 14px; }
 .dive-chips .dive-chips-label { padding: 0 6px 0 0; border: none; color: var(--dark-label); font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
