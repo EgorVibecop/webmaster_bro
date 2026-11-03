@@ -13,10 +13,9 @@ const {
   heading = 'Расскажите о задаче – предложим метод и сроки',
   subheading,
   presetService,
-  showCard = true,
 } = Astro.props;
 ---
-<section id="contact" class={showCard ? 'contact' : 'contact contact-solo'}>
+<section id="contact" class="contact">
   <div class="contact-grid">
     <div class="contact-form-col">
       <div id="contact-head">
@@ -44,7 +43,7 @@ const {
         {presetService && <input type="hidden" name="service" value={presetService} />}
         <div class="full">
           <label class="field-label" for="f-message">Коротко о задаче</label>
-          <textarea class="field" id="f-message" name="message" rows="4" maxlength="2000" placeholder="Что нужно узнать и к какому сроку"></textarea>
+          <textarea class="field" id="f-message" name="message" rows="3" maxlength="2000" placeholder="Что нужно узнать и к какому сроку"></textarea>
         </div>
         <div class="hp" aria-hidden="true">
           <label>Не заполняйте это поле <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
@@ -66,19 +65,6 @@ const {
         <p>Спасибо! Мы ответим в течение рабочего дня.</p>
       </div>
     </div>
-
-    {showCard && <div class="contact-card">
-      <div>
-        <div class="label">Телефон</div>
-        <a class="phone-link" href="tel:+79774437588">+7 977 443-75-88</a>
-      </div>
-      <div class="divider"></div>
-      <div>
-        <div class="label">Email</div>
-        <a class="value" href="mailto:info@baikalresearch.ru">info@baikalresearch.ru</a>
-      </div>
-      <div class="fine-print">Отвечаем на заявки в течение одного рабочего дня.</div>
-    </div>}
   </div>
 </section>
 
