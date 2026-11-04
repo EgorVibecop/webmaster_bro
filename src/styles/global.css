@@ -338,7 +338,7 @@ img, svg { display: block; max-width: 100%; }
 .hero-ice-content { position: relative; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 26px; padding: 96px var(--gutter) 84px; }
 .hero-ice h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(32px, 5.4vw, 78px); line-height: 1.16; letter-spacing: -0.02em; text-shadow: 0 2px 40px rgba(3, 9, 15, 0.75); }
 .hero-ice h1 .hl { display: block; animation: slide-in 1s cubic-bezier(.2, .7, .2, 1) both; }
-.hero-ice h1 .hl + .hl { margin-top: .1em; }
+.hero-ice h1 .hl + .hl { margin-top: .24em; }
 .hero-ice h1 .hl:nth-child(1) { animation-delay: .3s; }
 .hero-ice h1 .hl:nth-child(2) { animation-delay: 1.3s; }
 .hero-ice h1 .hl:nth-child(3) { animation-delay: 2.3s; }
@@ -351,10 +351,10 @@ img, svg { display: block; max-width: 100%; }
 @media (max-width: 1180px) { .hero-actions { display: flex; } }
 @media (max-width: 880px) {
   .hero-actions { display: flex; }
-  .hero-ice-content { justify-content: flex-end; padding-top: 90px; padding-bottom: 78px; gap: 20px; }
+  .hero-ice-content { justify-content: center; padding-top: 90px; padding-bottom: 120px; gap: 24px; }
   .hero-ice-offer { bottom: 26px; font-size: var(--fs-label); letter-spacing: 0.08em; }
   .hero-ice h1 { line-height: 1.26; }
-  .hero-ice h1 .hl + .hl { margin-top: .32em; }
+  .hero-ice h1 .hl + .hl { margin-top: .6em; }
 }
 
 /* Шапка на главной прозрачная поверх фото, при прокрутке становится плотной */
