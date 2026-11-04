@@ -2,9 +2,9 @@
 .dive { position: relative; isolation: isolate; overflow: hidden; background: linear-gradient(180deg, #0C1A28 0%, #08121C 55%, #04090F 100%); color: var(--on-night); padding: clamp(36px, 4.5vw, 64px) var(--gutter) clamp(32px, 3.5vw, 48px); }
 .dive-wrap { max-width: var(--container); margin: 0 auto; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
 .dive-side { position: sticky; top: 110px; display: flex; flex-direction: column; gap: 18px; }
-.dive h2.dive-eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #5CC4F2; }
+.dive h2.dive-eyebrow { font-size: var(--fs-label); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #5CC4F2; }
 .dive h2 { color: #FFFFFF; font-weight: 600; font-size: var(--fs-h2); line-height: 1.15; letter-spacing: -0.02em; }
-.dive-depth { display: flex; align-items: baseline; gap: 10px; margin-top: 8px; color: #FFFFFF; font-size: clamp(64px, 9vw, 120px); font-weight: 600; line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; text-shadow: 0 0 40px rgba(56, 189, 248, .35); }
+.dive-depth { display: flex; align-items: baseline; gap: 10px; margin-top: 8px; color: #FFFFFF; font-size: clamp(64px, 9vw, 120px); font-weight: 600; line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; text-shadow: 0 0 40px rgba(56, 189, 248, .35); }
 .dive-depth small { font-size: .32em; color: #5CC4F2; letter-spacing: 0; }
 .dive-fact { max-width: 480px; color: var(--on-night-soft); font-size: var(--fs-body); line-height: 1.6; }
 
@@ -16,9 +16,9 @@
 .dive-probe circle:first-child { fill: #0C1A28; }
 .dive-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: clamp(32px, 4.5vw, 52px); }
 .dive-step { position: relative; }
-.dive-dot { position: absolute; left: -64px; top: 0; width: 32px; height: 32px; display: grid; place-items: center; border-radius: 50%; background: #0C1A28; border: 2px solid #2A3F52; color: #6F8497; font-size: 14px; font-weight: 600; transition: border-color .35s ease, color .35s ease, background .35s ease, box-shadow .35s ease; }
-.dive-meta { margin-bottom: 6px; color: var(--dark-label); font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; font-variant-numeric: tabular-nums; }
-.dive-step h3 { margin-bottom: 8px; color: #FFFFFF; font-size: 22px; font-weight: 600; transition: color .35s ease; }
+.dive-dot { position: absolute; left: -64px; top: 0; width: 32px; height: 32px; display: grid; place-items: center; border-radius: 50%; background: #0C1A28; border: 2px solid #2A3F52; color: #6F8497; font-size: var(--fs-small); font-weight: 600; transition: border-color .35s ease, color .35s ease, background .35s ease, box-shadow .35s ease; }
+.dive-meta { margin-bottom: 6px; color: var(--dark-label); font-size: var(--fs-label); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; font-variant-numeric: tabular-nums; }
+.dive-step h3 { margin-bottom: 8px; color: #FFFFFF; font-size: var(--fs-h3); font-weight: 600; transition: color .35s ease; }
 .dive-step p { color: var(--on-night-soft); font-size: var(--fs-body); line-height: 1.6; transition: color .35s ease; }
 .dive-js .dive-step:not(.reached) h3 { color: #8FA3B5; }
 .dive-js .dive-step:not(.reached) p { color: #8396A8; }
@@ -26,8 +26,8 @@
 
 .dive-foot { max-width: var(--container); margin: clamp(28px, 4vw, 48px) auto 0; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, .1); display: flex; flex-wrap: wrap; gap: 16px 48px; }
 .dive-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-.dive-chips span { padding: 6px 14px; border: 1px solid rgba(255, 255, 255, .18); border-radius: 999px; color: #D2E1EB; font-size: 14px; }
-.dive-chips .dive-chips-label { padding: 0 6px 0 0; border: none; color: var(--dark-label); font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+.dive-chips span { padding: 6px 14px; border: 1px solid rgba(255, 255, 255, .18); border-radius: 999px; color: #D2E1EB; font-size: var(--fs-small); }
+.dive-chips .dive-chips-label { padding: 0 6px 0 0; border: none; color: var(--dark-label); font-size: var(--fs-label); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
 
 .dive-bubbles { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; container-type: size; }
 .dive-bubbles span { position: absolute; bottom: -40px; border-radius: 50%; opacity: 0; will-change: transform, translate;
@@ -68,6 +68,6 @@
   .dive-side { position: static; }
   .dive-depth { font-size: 72px; }
   .dive-track { padding-left: 52px; }
-  .dive-dot { left: -52px; width: 28px; height: 28px; font-size: 13px; }
+  .dive-dot { left: -52px; width: 28px; height: 28px; font-size: var(--fs-label); }
   .dive-rail { left: 13px; top: 14px; bottom: 14px; }
 }
