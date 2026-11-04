@@ -351,9 +351,9 @@ img, svg { display: block; max-width: 100%; }
 @media (max-width: 1180px) { .hero-actions { display: flex; } }
 @media (max-width: 880px) {
   .hero-actions { display: flex; }
-  .hero-ice-content { justify-content: center; padding-top: 90px; padding-bottom: 120px; gap: 24px; }
+  .hero-ice-content { justify-content: flex-end; padding-top: 90px; padding-bottom: 78px; gap: 20px; }
   .hero-ice-offer { bottom: 26px; font-size: var(--fs-label); letter-spacing: 0.08em; }
-  .hero-ice h1 { line-height: 1.26; }
+  .hero-ice h1 { line-height: 1.26; margin-bottom: 150px; }
   .hero-ice h1 .hl + .hl { margin-top: .6em; }
 }
 
