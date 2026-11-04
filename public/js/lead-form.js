@@ -80,6 +80,15 @@
     el.addEventListener('change', function () { clearError(el); });
   });
 
+  // Подсказка про символы в адресе появляется, только если в поле уже пробелы или неподходящие знаки.
+  var emailEl = fieldOf('email');
+  var hintEl = document.getElementById('f-email-hint');
+  if (emailEl && hintEl) {
+    emailEl.addEventListener('input', function () {
+      hintEl.hidden = !/[^A-Za-z0-9.@_%+-]/.test(emailEl.value);
+    });
+  }
+
   function post(endpoint, payload) {
     var ctrl = typeof AbortController === 'function' ? new AbortController() : null;
     var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, TIMEOUT_MS);
