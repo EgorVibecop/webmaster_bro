@@ -1,0 +1,76 @@
+---
+// Анимированная иллюстрация к карточке услуги. Анимация только на CSS (классы в pages.css).
+const { slug } = Astro.props;
+---
+<svg class={`art art-${slug}`} viewBox="0 0 320 150" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+  {slug === 'strategiya-i-analiz-rynka' && (
+    <>
+      <circle class="a-line" cx="160" cy="75" r="62" />
+      <circle class="a-line" cx="160" cy="75" r="40" />
+      <circle class="a-fill-soft" cx="95" cy="48" r="14" />
+      <circle class="a-fill-soft" cx="232" cy="104" r="18" />
+      <circle class="a-fill-soft" cx="236" cy="40" r="9" />
+      <circle class="a-pulse" cx="160" cy="75" r="12" />
+      <circle class="a-fill" cx="160" cy="75" r="9" />
+      <path class="a-draw" d="M160 75 L214 98" />
+    </>
+  )}
+  {slug === 'marketingovye-issledovaniya' && (
+    <>
+      <path class="a-line" d="M52 118 H268" />
+      <rect class="a-bar a-bar-1" x="68" y="40" width="28" height="78" rx="4" />
+      <rect class="a-bar a-bar-2" x="112" y="40" width="28" height="78" rx="4" />
+      <rect class="a-bar a-bar-3" x="156" y="40" width="28" height="78" rx="4" />
+      <rect class="a-bar a-bar-4" x="200" y="40" width="28" height="78" rx="4" />
+      <path class="a-draw a-draw-slow" d="M70 84 L124 62 L170 70 L232 32" />
+    </>
+  )}
+  {slug === 'produktovye-issledovaniya' && (
+    <>
+      <rect class="a-line" x="48" y="28" width="224" height="94" rx="10" />
+      <path class="a-line" d="M72 56 H128 M72 76 H128 M72 96 H128" />
+      <path class="a-line-soft" d="M148 56 H248 M148 76 H248 M148 96 H248" />
+      <circle class="a-fill a-knob a-knob-1" cx="148" cy="56" r="6" />
+      <circle class="a-fill a-knob a-knob-2" cx="248" cy="76" r="6" />
+      <circle class="a-fill a-knob a-knob-3" cx="148" cy="96" r="6" />
+    </>
+  )}
+  {slug === 'cati-cawi-oprosy' && (
+    <>
+      <rect class="a-line" x="118" y="14" width="84" height="122" rx="14" />
+      <path class="a-line" d="M150 24 H170" />
+      <path class="a-line-soft" d="M138 52 H182 M138 80 H182 M138 108 H182" />
+      <path class="a-check a-check-1" d="M130 52 l4 4 l8 -9" />
+      <path class="a-check a-check-2" d="M130 80 l4 4 l8 -9" />
+      <path class="a-check a-check-3" d="M130 108 l4 4 l8 -9" />
+      <path class="a-wave a-wave-1" d="M82 58 q-10 17 0 34" />
+      <path class="a-wave a-wave-2" d="M66 48 q-17 27 0 54" />
+      <path class="a-wave a-wave-1" d="M238 58 q10 17 0 34" />
+      <path class="a-wave a-wave-2" d="M254 48 q17 27 0 54" />
+    </>
+  )}
+  {slug === 'usability-testirovanie' && (
+    <>
+      <rect class="a-line" x="40" y="14" width="240" height="122" rx="10" />
+      <path class="a-line" d="M40 38 H280" />
+      <circle class="a-fill-soft" cx="56" cy="26" r="3" />
+      <circle class="a-fill-soft" cx="68" cy="26" r="3" />
+      <rect class="a-fill-soft" x="62" y="54" width="104" height="14" rx="4" />
+      <rect class="a-line-soft" x="62" y="80" width="150" height="8" rx="4" />
+      <rect class="a-line-soft" x="62" y="98" width="120" height="8" rx="4" />
+      <rect class="a-btn" x="198" y="104" width="62" height="20" rx="6" />
+      <circle class="a-ripple" cx="229" cy="114" r="8" />
+      <path class="a-cursor" d="M0 0 L0 17 L5 13 L9 21 L12 19.500 L8 12 L14 12 Z" />
+    </>
+  )}
+  {slug === 'custdev-glubinnye-intervyu' && (
+    <>
+      <path class="a-bubble a-bubble-1" d="M52 30 h118 a10 10 0 0 1 10 10 v26 a10 10 0 0 1 -10 10 h-70 l-18 16 v-16 h-30 a10 10 0 0 1 -10 -10 v-26 a10 10 0 0 1 10 -10 z" />
+      <path class="a-line-soft" d="M66 48 H150 M66 62 H124" />
+      <path class="a-bubble a-bubble-2" d="M268 68 h-90 a10 10 0 0 0 -10 10 v26 a10 10 0 0 0 10 10 h42 l24 16 v-16 h24 a10 10 0 0 0 10 -10 v-26 a10 10 0 0 0 -10 -10 z" />
+      <circle class="a-fill a-dot a-dot-1" cx="204" cy="91" r="4" />
+      <circle class="a-fill a-dot a-dot-2" cx="220" cy="91" r="4" />
+      <circle class="a-fill a-dot a-dot-3" cx="236" cy="91" r="4" />
+    </>
+  )}
+</svg>
