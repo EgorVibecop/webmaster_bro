@@ -95,6 +95,7 @@
 
 /* Каталог услуг, контакты, «Как мы работаем» */
 .page-wide { max-width: 1100px; }
+.page-services { max-width: 1480px; }
 .page-wide .svc-list { margin-top: 36px; }
 .svc-row h2 { font-family: var(--font-display); font-weight: 600; font-size: var(--fs-h3); line-height: 1.3; letter-spacing: -0.02em; margin: 0; }
 
@@ -210,7 +211,7 @@
 .svc-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
 .svc-card { display: flex; flex-direction: column; gap: 16px; padding: 22px 22px 18px; background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-card); color: var(--ink); text-decoration: none; transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease; }
 .svc-card:hover { transform: translateY(-2px); border-color: var(--line-strong); box-shadow: 0 6px 20px rgba(12, 26, 40, 0.06); color: var(--ink); }
-.svc-card h2 { margin: 0; font-size: var(--fs-h3); line-height: 1.3; }
+.svc-card h2 { margin: 0; font-size: var(--fs-h3); line-height: 1.3; white-space: nowrap; }
 .svc-card:hover h2 { color: var(--accent-text); }
 .svc-card-art { background: var(--bg-alt); border-radius: 10px; padding: 8px; margin-top: auto; }
 .art { display: block; width: 100%; height: auto; stroke: var(--accent-text); stroke-width: 2; }
@@ -253,5 +254,6 @@
   .art .a-draw-slow, .art .a-check { stroke-dashoffset: 0; }
   .art .a-bar { transform: none; }
 }
-@media (max-width: 960px) { .svc-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 1180px) { .svc-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .svc-cards { grid-template-columns: 1fr; } .svc-card { padding: 18px; } }
+@media (max-width: 350px) { .svc-card h2 { white-space: normal; } }
