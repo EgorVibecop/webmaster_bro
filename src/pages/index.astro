@@ -22,6 +22,8 @@ const dive = [
 ];
 
 
+// Версия картинок первого экрана: должна совпадать с VER в scripts/build-hero.cjs (имя файла меняется, чтобы браузер не держал старую картинку).
+const HERO_V = 'v3';
 const SITE = 'https://baikalresearch.ru';
 const description = 'Исследование рынка и конкурентов, опросы, кастдевы, глубинные интервью и юзабилити-тесты. Проводим исследования полного цикла и даем рабочие рекомендации.';
 const jsonLd = {
@@ -69,7 +71,7 @@ const jsonLd = {
   title="Маркетинговые исследования на заказ – Baikal Research (Байкал Рисерч)"
   description={description}
 >
-  <script slot="head" is:inline src={`/js/hero-time.js?v=${ASSET_V}`}></script>
+  <script slot="head" is:inline src={`/js/hero-time.js?v=${ASSET_V}`} data-v={HERO_V}></script>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <SiteHeader contactHref="#contact" />
 
@@ -78,14 +80,14 @@ const jsonLd = {
   <section class="hero-ice" aria-label="Baikal Research">
     <div class="hero-ice-bg" data-anim>
       <picture class="hero-pic hero-pic-day">
-        <source media="(max-width: 700px)" srcset="/hero/day-m-v3.webp" type="image/webp" />
-        <source srcset="/hero/day-d-v3.avif" type="image/avif" />
-        <img src="/hero/day-d-v3.webp" alt="Байкальский лед с трещинами и пузырьками уходит вглубь, над ним заснеженные горы днем" width="1585" height="992" loading="lazy" fetchpriority="high" decoding="async" />
+        <source media="(max-width: 700px)" srcset={`/hero/day-m-${HERO_V}.webp`} type="image/webp" />
+        <source srcset={`/hero/day-d-${HERO_V}.avif`} type="image/avif" />
+        <img src={`/hero/day-d-${HERO_V}.webp`} alt="Байкальский лед с трещинами и пузырьками уходит вглубь, над ним заснеженные горы днем" width="1585" height="992" loading="lazy" fetchpriority="high" decoding="async" />
       </picture>
       <picture class="hero-pic hero-pic-night">
-        <source media="(max-width: 700px)" srcset="/hero/night-m-v3.webp" type="image/webp" />
-        <source srcset="/hero/night-d-v3.avif" type="image/avif" />
-        <img src="/hero/night-d-v3.webp" alt="Байкальский лед с трещинами уходит вглубь, над заснеженными горами звездное небо" width="1585" height="992" loading="lazy" fetchpriority="high" decoding="async" />
+        <source media="(max-width: 700px)" srcset={`/hero/night-m-${HERO_V}.webp`} type="image/webp" />
+        <source srcset={`/hero/night-d-${HERO_V}.avif`} type="image/avif" />
+        <img src={`/hero/night-d-${HERO_V}.webp`} alt="Байкальский лед с трещинами уходит вглубь, над заснеженными горами звездное небо" width="1585" height="992" loading="lazy" fetchpriority="high" decoding="async" />
       </picture>
     </div>
     <div class="hero-ice-tint" data-anim></div>

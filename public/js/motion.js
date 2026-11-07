@@ -36,9 +36,9 @@
   // Лента собирается из той же картинки: берем ее часть ниже горизонта и ставим плитки одну за другой, каждую вторую зеркально.
   // Высота линии горизонта в готовых картинках: 146 px (компьютер, 1585x992) и 167 px (телефон, 700x1013).
   var heroBg = heroIce && heroIce.querySelector('.hero-ice-bg');
-  var FLOW_SPEED = 15;    // скорость движения, px в секунду: и горы, и лед идут с одной скоростью
+  var FLOW_SPEED = 30;    // скорость движения, px в секунду: и горы, и лед идут с одной скоростью
   var START = 500;        // мс до начала движения
-  var born = Date.now();
+  var animStart = 0;       // когда впервые собрали ленту: с этого момента идет анимация гор
   var flow = null;
   var builtW = 0;
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -65,7 +65,9 @@
     flow.className = 'hero-flow';
     flow.setAttribute('aria-hidden', 'true');
     var dur = leave / FLOW_SPEED;                      // за это время горы уходят целиком
-    var late = Date.now() - born > START + dur * 1000 - 100;
+    if (!animStart) animStart = Date.now();
+    var delay = START / 1000 + dur - 0.04 - (Date.now() - animStart) / 1000;   // сколько еще ждать до передачи ленте
+    var late = delay <= 0;
     if (late) flow.classList.add('late');
     var n = Math.max(3, Math.ceil(2 + heroH / tileH));
     for (var i = 0; i < n; i++) {
@@ -80,7 +82,7 @@
     st.setProperty('--flow-bg-h', (nh * s).toFixed(1) + 'px');
     st.setProperty('--flow-bg-x', ((w - nw * s) / 2).toFixed(1) + 'px');
     st.setProperty('--flow-bg-y', (-r0 * s).toFixed(1) + 'px');
-    st.setProperty('--flow-delay', (START / 1000 + dur - 0.04).toFixed(2) + 's');
+    st.setProperty('--flow-delay', Math.max(0, delay).toFixed(2) + 's');
     st.setProperty('--flow-dur', ((2 * tileH) / FLOW_SPEED).toFixed(0) + 's');
     heroBg.style.setProperty('--leave', leave.toFixed(1) + 'px');
     heroBg.style.setProperty('--leave-dur', dur.toFixed(2) + 's');

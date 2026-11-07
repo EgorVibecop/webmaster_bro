@@ -6,11 +6,12 @@
   var root = document.documentElement;
   root.setAttribute('data-hero', night ? 'night' : 'day');
   var name = night ? 'night' : 'day';
+  var ver = (document.currentScript && document.currentScript.getAttribute('data-v')) || 'v3';
   var mobile = window.matchMedia && window.matchMedia('(max-width: 700px)').matches;
   var link = document.createElement('link');
   link.rel = 'preload';
   link.as = 'image';
-  link.href = '/hero/' + name + (mobile ? '-m-v2.webp' : '-d-v2.avif');
+  link.href = '/hero/' + name + (mobile ? '-m-' + ver + '.webp' : '-d-' + ver + '.avif');
   link.type = mobile ? 'image/webp' : 'image/avif';
   link.setAttribute('fetchpriority', 'high');
   document.head.appendChild(link);
