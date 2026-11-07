@@ -32,7 +32,7 @@
     if (heroImg.complete && heroImg.naturalWidth === 0 && heroImg.currentSrc) retry();
   });
 
-  // Поверхность с горами видна около 4 секунд, потом картинка уходит вниз так, чтобы горизонт скрылся полностью.
+  // Через 0,5 с картинка начинает уходить вниз и за 6 с полностью скрывает горизонт (тайминг в keyframes ice-descend).
   // Высота линии горизонта в готовых картинках: 333 px (компьютер, 1585x1179) и 375 px (телефон, 700x1221).
   var heroBg = heroIce && heroIce.querySelector('.hero-ice-bg');
   if (heroBg) {
