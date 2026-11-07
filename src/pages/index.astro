@@ -69,8 +69,7 @@ const jsonLd = {
   title="Baikal Research (Байкал Рисерч) – исследования и бизнес-консалтинг"
   description={description}
 >
-  <link slot="head" rel="preload" as="image" href="/hero/ice-m.webp" type="image/webp" media="(max-width: 700px)" fetchpriority="high" />
-  <link slot="head" rel="preload" as="image" href="/hero/ice.avif" type="image/avif" media="(min-width: 701px)" fetchpriority="high" />
+  <script slot="head" is:inline src={`/js/hero-time.js?v=${ASSET_V}`}></script>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <SiteHeader contactHref="#contact" />
 
@@ -78,10 +77,15 @@ const jsonLd = {
 
   <section class="hero-ice" aria-label="Baikal Research">
     <div class="hero-ice-bg" data-anim>
-      <picture>
-        <source media="(max-width: 700px)" srcset="/hero/ice-m.webp" type="image/webp" />
-        <source srcset="/hero/ice.avif" type="image/avif" />
-        <img src="/hero/ice.webp" alt="Прозрачный байкальский лед с трещинами и пузырьками уходит вглубь, на горизонте заснеженный мыс" width="1585" height="992" fetchpriority="high" decoding="async" />
+      <picture class="hero-pic hero-pic-day">
+        <source media="(max-width: 700px)" srcset="/hero/day-m.webp" type="image/webp" />
+        <source srcset="/hero/day-d.avif" type="image/avif" />
+        <img src="/hero/day-d.webp" alt="Байкальский лед с трещинами и пузырьками уходит вглубь, над ним заснеженные горы днем" width="1585" height="1179" loading="lazy" fetchpriority="high" decoding="async" />
+      </picture>
+      <picture class="hero-pic hero-pic-night">
+        <source media="(max-width: 700px)" srcset="/hero/night-m.webp" type="image/webp" />
+        <source srcset="/hero/night-d.avif" type="image/avif" />
+        <img src="/hero/night-d.webp" alt="Байкальский лед с трещинами уходит вглубь, над заснеженными горами звездное небо" width="1585" height="1179" loading="lazy" fetchpriority="high" decoding="async" />
       </picture>
     </div>
     <div class="hero-ice-tint" data-anim></div>

@@ -14,8 +14,8 @@
 
   var heroIce = document.querySelector('.hero-ice');
   // Фото первого экрана: при сбое мобильной сети пробуем загрузить еще раз, а пока прячем значок «битой» картинки.
-  var heroImg = heroIce && heroIce.querySelector('.hero-ice-bg img');
-  if (heroImg) {
+  var heroImgs = heroIce ? Array.prototype.slice.call(heroIce.querySelectorAll('.hero-ice-bg img')) : [];
+  heroImgs.forEach(function (heroImg) {
     var tries = 0;
     var retry = function () {
       if (tries >= 3) { heroImg.style.visibility = 'hidden'; return; }
@@ -30,6 +30,25 @@
     heroImg.addEventListener('error', retry);
     heroImg.addEventListener('load', function () { heroImg.style.visibility = ''; });
     if (heroImg.complete && heroImg.naturalWidth === 0 && heroImg.currentSrc) retry();
+  });
+
+  // Поверхность с горами видна около 4 секунд, потом картинка уходит вниз так, чтобы горизонт скрылся полностью.
+  // Высота линии горизонта в готовых картинках: 333 px (компьютер, 1585x1179) и 375 px (телефон, 700x1221).
+  var heroBg = heroIce && heroIce.querySelector('.hero-ice-bg');
+  if (heroBg) {
+    var setLeave = function () {
+      var mobile = window.matchMedia && window.matchMedia('(max-width: 700px)').matches;
+      var nw = mobile ? 700 : 1585, nh = mobile ? 1221 : 1179, hz = mobile ? 375 : 333;
+      var w = heroBg.clientWidth, h = heroBg.clientHeight;
+      var room = h - heroIce.clientHeight - 4; // дальше картинку двигать нельзя: покажется край
+      var scale = Math.max(w / nw, h / nh);
+      var leave = Math.min(room, hz * scale + 36);
+      var end = Math.min(room, leave + (room - leave) * 0.5);
+      heroBg.style.setProperty('--leave', leave.toFixed(0) + 'px');
+      heroBg.style.setProperty('--end', end.toFixed(0) + 'px');
+    };
+    setLeave();
+    window.addEventListener('resize', setLeave);
   }
   if (heroIce && 'IntersectionObserver' in window) {
     new IntersectionObserver(function (entries) {

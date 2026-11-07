@@ -21,3 +21,4 @@ dist/
 
 # Исключение: шаблон гайда для скачивания лежит на сайте
 !public/files/*.docx
+scripts/hero-preview/
