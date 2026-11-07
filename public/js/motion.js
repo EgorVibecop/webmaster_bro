@@ -32,12 +32,12 @@
     if (heroImg.complete && heroImg.naturalWidth === 0 && heroImg.currentSrc) retry();
   });
 
-  // Первый экран: через 0,5 с картинка начинает уходить вниз и за 6 с полностью скрывает горы, дальше лед идет бесконечной лентой.
+  // Первый экран: через 0,5 с картинка начинает уходить вниз и за 2 с полностью скрывает горы, дальше лед идет бесконечной лентой.
   // Лента собирается из той же картинки: берем ее часть ниже горизонта и ставим плитки одну за другой, каждую вторую зеркально.
-  // Высота линии горизонта в готовых картинках: 333 px (компьютер, 1585x1179) и 375 px (телефон, 700x1221).
+  // Высота линии горизонта в готовых картинках: 92 px (компьютер, 1585x938) и 107 px (телефон, 700x953).
   var heroBg = heroIce && heroIce.querySelector('.hero-ice-bg');
   var FLOW_SPEED = 7.5;   // скорость ленты, px в секунду
-  var HANDOFF = 6450;     // мс: когда лента подхватывает картинку
+  var HANDOFF = 2450;     // мс: когда лента подхватывает картинку
   var born = Date.now();
   var flow = null;
   var builtW = 0;
@@ -53,7 +53,7 @@
     var img = visibleHeroImg();
     if (!img || !img.currentSrc || !img.naturalWidth) return;
     var nw = img.naturalWidth, nh = img.naturalHeight;
-    var hz = nw <= 800 ? 375 : 333;
+    var hz = nw <= 800 ? 107 : 92;
     var r0 = hz + 45;                                  // строка картинки, с которой начинается лента
     var w = heroBg.clientWidth, h = heroBg.clientHeight, heroH = heroIce.clientHeight;
     var s = Math.max(w / nw, h / nh);                  // так картинку растягивает object-fit: cover
@@ -89,7 +89,7 @@
   // Запасной вариант без ленты: картинка уходит вниз и чуть дрейфует.
   function setLeave() {
     var mobile = window.matchMedia && window.matchMedia('(max-width: 700px)').matches;
-    var nw = mobile ? 700 : 1585, nh = mobile ? 1221 : 1179, hz = mobile ? 375 : 333;
+    var nw = mobile ? 700 : 1585, nh = mobile ? 953 : 938, hz = mobile ? 107 : 92;
     var w = heroBg.clientWidth, h = heroBg.clientHeight;
     var room = h - heroIce.clientHeight - 4;
     var scale = Math.max(w / nw, h / nh);

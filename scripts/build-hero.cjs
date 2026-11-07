@@ -13,8 +13,8 @@ const TMP = process.env.TEMP || '.';
 
 // Параметры вариантов: куда обрезать фото, где в леде линия горизонта.
 const VARIANTS = {
-  d: { w: 1585, base: 'ice-base-d.webp', horizon: 146, crop: { x: 0, w: 2350, top: 250, h: 535 } },
-  m: { w: 700, base: 'ice-base-m.webp', horizon: 146, crop: { x: 540, w: 790, top: 330, h: 455 } },
+  d: { w: 1585, base: 'ice-base-d.webp', horizon: 146, crop: { x: 0, w: 2350, top: 607, h: 178 } },
+  m: { w: 700, base: 'ice-base-m.webp', horizon: 146, crop: { x: 540, w: 790, top: 633, h: 152 } },
 };
 const OVERLAP = 28;
 
@@ -145,7 +145,7 @@ async function compose(name, v, band, iceTint) {
   // полоса с плавным растворением в нижней части
   const rgba = Buffer.alloc(band.w * band.h * 4);
   for (let y = 0; y < band.h; y++) {
-    const a = y < band.h - OVERLAP ? 255 : Math.round(255 * (band.h - y) / OVERLAP);
+    const a = Math.round(Math.min(y < band.h - OVERLAP ? 255 : 255 * (band.h - y) / OVERLAP, 255 * Math.min(1, y / 26)));
     for (let x = 0; x < band.w; x++) {
       const i = y * band.w + x;
       rgba[i * 4] = band.data[i * 3]; rgba[i * 4 + 1] = band.data[i * 3 + 1]; rgba[i * 4 + 2] = band.data[i * 3 + 2]; rgba[i * 4 + 3] = a;
