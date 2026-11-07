@@ -326,7 +326,7 @@ img, svg { display: block; max-width: 100%; }
 
 /* Первый экран: байкальский лед, камера медленно уходит вглубь */
 .hero-ice { position: relative; isolation: isolate; overflow: hidden; background: var(--night-deep); color: #FFFFFF; height: clamp(560px, 92svh, 860px); }
-.hero-ice-bg { position: absolute; left: 0; right: 0; top: 0; height: 170%; transform-origin: 50% 0; animation: ice-descend 22s linear 1 forwards; }
+.hero-ice-bg { position: absolute; left: 0; right: 0; top: 0; height: 200%; transform-origin: 50% 0; animation: ice-descend 22s linear 1 forwards; }
 .hero-ice-bg picture, .hero-ice-bg img { display: block; width: 100%; height: 100%; }
 .hero-ice-bg picture { position: absolute; inset: 0; }
 .hero-ice-bg .hero-pic-night, html[data-hero="night"] .hero-ice-bg .hero-pic-day { display: none; }
@@ -347,12 +347,25 @@ html[data-hero="night"] .hero-ice-bg .hero-pic-night { display: block; }
 .hero-ice h1 .hl:nth-child(3) { animation-delay: 2.3s; }
 .hero-actions { display: none; gap: 14px; flex-wrap: wrap; animation: rise .8s cubic-bezier(.2, .7, .2, 1) 3.2s both; }
 .hero-ice-offer { position: absolute; left: var(--gutter); bottom: 34px; display: flex; align-items: center; gap: 16px; font-size: var(--fs-small); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--on-night); animation: rise .8s ease 3.4s both; }
-.hero-ice.paused .hero-ice-bg, .hero-ice.paused .hero-ice-tint { animation-play-state: paused; }
+.hero-ice.paused .hero-ice-bg, .hero-ice.paused .hero-ice-tint, .hero-ice.paused .hero-flow { animation-play-state: paused; }
 /* Через 0,5 с после открытия камера начинает уходить вглубь льда и за 6 с полностью скрывает горы. --leave и --end считает public/js/motion.js */
 @keyframes ice-descend {
   0%, 2.27% { transform: translateY(0); animation-timing-function: cubic-bezier(.4, 0, .45, 1); }
   29.55% { transform: translateY(calc(-1 * var(--leave, 40%))); animation-timing-function: linear; }
   100% { transform: translateY(calc(-1 * var(--end, 44%))); }
+}
+/* Бесконечный спуск: после ухода гор вместо картинки идет бесконечная лента льда (public/js/motion.js собирает ее из той же картинки:
+   плитки идут по кругу, каждая вторая отражена по вертикали, поэтому стыков нет). */
+.hero-flow { position: absolute; left: 0; right: 0; top: 0; visibility: hidden; will-change: transform; animation: hero-flow-show 0s linear 6.45s forwards, hero-flow var(--flow-dur, 240s) linear 6.45s infinite; }
+.hero-flow.late { visibility: visible; animation: hero-flow var(--flow-dur, 240s) linear infinite; }
+.hero-flow-tile { height: var(--flow-h, 800px); background-image: var(--flow-img); background-repeat: no-repeat; background-size: var(--flow-bg-w, 100%) var(--flow-bg-h, auto); background-position: var(--flow-bg-x, 0) var(--flow-bg-y, 0); }
+.hero-flow-tile.flip { transform: scaleY(-1); }
+.hero-flow-on .hero-ice-bg { animation: ice-descend-flow 6.5s linear 1 forwards; }
+@keyframes hero-flow-show { to { visibility: visible; } }
+@keyframes hero-flow { from { transform: translateY(0); } to { transform: translateY(calc(-2 * var(--flow-h, 800px))); } }
+@keyframes ice-descend-flow {
+  0%, 7.69% { transform: translateY(0); animation-timing-function: cubic-bezier(.4, 0, .45, 1); }
+  100% { transform: translateY(calc(-1 * var(--leave, 40%))); visibility: hidden; }
 }
 @keyframes ice-tint { from { opacity: 0; } to { opacity: .7; } }
 @media (prefers-reduced-motion: reduce) { .hero-ice [data-anim], .hero-ice h1 .hl, .hero-actions, .hero-ice-offer { animation: none !important; } .hero-ice-tint { opacity: .3; } }

@@ -32,23 +32,87 @@
     if (heroImg.complete && heroImg.naturalWidth === 0 && heroImg.currentSrc) retry();
   });
 
-  // Через 0,5 с картинка начинает уходить вниз и за 6 с полностью скрывает горизонт (тайминг в keyframes ice-descend).
+  // Первый экран: через 0,5 с картинка начинает уходить вниз и за 6 с полностью скрывает горы, дальше лед идет бесконечной лентой.
+  // Лента собирается из той же картинки: берем ее часть ниже горизонта и ставим плитки одну за другой, каждую вторую зеркально.
   // Высота линии горизонта в готовых картинках: 333 px (компьютер, 1585x1179) и 375 px (телефон, 700x1221).
   var heroBg = heroIce && heroIce.querySelector('.hero-ice-bg');
+  var FLOW_SPEED = 7.5;   // скорость ленты, px в секунду
+  var HANDOFF = 6450;     // мс: когда лента подхватывает картинку
+  var born = Date.now();
+  var flow = null;
+  var builtW = 0;
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function visibleHeroImg() {
+    var name = document.documentElement.getAttribute('data-hero') === 'night' ? 'night' : 'day';
+    return heroIce.querySelector('.hero-pic-' + name + ' img');
+  }
+
+  function buildFlow() {
+    if (!heroBg || reduceMotion) return;
+    var img = visibleHeroImg();
+    if (!img || !img.currentSrc || !img.naturalWidth) return;
+    var nw = img.naturalWidth, nh = img.naturalHeight;
+    var hz = nw <= 800 ? 375 : 333;
+    var r0 = hz + 45;                                  // строка картинки, с которой начинается лента
+    var w = heroBg.clientWidth, h = heroBg.clientHeight, heroH = heroIce.clientHeight;
+    var s = Math.max(w / nw, h / nh);                  // так картинку растягивает object-fit: cover
+    var leave = r0 * s;
+    if (leave > h - heroH - 2) return;                 // не хватает запаса, оставляем простую анимацию
+    var tileH = (nh - r0) * s;
+    if (flow && flow.parentNode) flow.parentNode.removeChild(flow);
+    flow = document.createElement('div');
+    flow.className = 'hero-flow';
+    flow.setAttribute('aria-hidden', 'true');
+    var late = Date.now() - born > HANDOFF - 100;
+    if (late) flow.classList.add('late');
+    var n = Math.max(3, Math.ceil(2 + heroH / tileH));
+    for (var i = 0; i < n; i++) {
+      var tile = document.createElement('div');
+      tile.className = 'hero-flow-tile' + (i % 2 ? ' flip' : '');
+      flow.appendChild(tile);
+    }
+    var st = flow.style;
+    st.setProperty('--flow-img', 'url("' + img.currentSrc + '")');
+    st.setProperty('--flow-h', tileH.toFixed(1) + 'px');
+    st.setProperty('--flow-bg-w', (nw * s).toFixed(1) + 'px');
+    st.setProperty('--flow-bg-h', (nh * s).toFixed(1) + 'px');
+    st.setProperty('--flow-bg-x', ((w - nw * s) / 2).toFixed(1) + 'px');
+    st.setProperty('--flow-bg-y', (-r0 * s).toFixed(1) + 'px');
+    st.setProperty('--flow-dur', ((2 * tileH) / FLOW_SPEED).toFixed(0) + 's');
+    heroBg.style.setProperty('--leave', leave.toFixed(1) + 'px');
+    heroBg.insertAdjacentElement('afterend', flow);
+    heroIce.classList.add('hero-flow-on');
+    builtW = w;
+  }
+
+  // Запасной вариант без ленты: картинка уходит вниз и чуть дрейфует.
+  function setLeave() {
+    var mobile = window.matchMedia && window.matchMedia('(max-width: 700px)').matches;
+    var nw = mobile ? 700 : 1585, nh = mobile ? 1221 : 1179, hz = mobile ? 375 : 333;
+    var w = heroBg.clientWidth, h = heroBg.clientHeight;
+    var room = h - heroIce.clientHeight - 4;
+    var scale = Math.max(w / nw, h / nh);
+    var leave = Math.min(room, hz * scale + 36);
+    heroBg.style.setProperty('--leave', leave.toFixed(0) + 'px');
+    heroBg.style.setProperty('--end', Math.min(room, leave + (room - leave) * 0.5).toFixed(0) + 'px');
+  }
+
   if (heroBg) {
-    var setLeave = function () {
-      var mobile = window.matchMedia && window.matchMedia('(max-width: 700px)').matches;
-      var nw = mobile ? 700 : 1585, nh = mobile ? 1221 : 1179, hz = mobile ? 375 : 333;
-      var w = heroBg.clientWidth, h = heroBg.clientHeight;
-      var room = h - heroIce.clientHeight - 4; // дальше картинку двигать нельзя: покажется край
-      var scale = Math.max(w / nw, h / nh);
-      var leave = Math.min(room, hz * scale + 36);
-      var end = Math.min(room, leave + (room - leave) * 0.5);
-      heroBg.style.setProperty('--leave', leave.toFixed(0) + 'px');
-      heroBg.style.setProperty('--end', end.toFixed(0) + 'px');
-    };
     setLeave();
-    window.addEventListener('resize', setLeave);
+    var tryBuild = function () { buildFlow(); };
+    var img0 = visibleHeroImg();
+    if (img0) {
+      if (img0.naturalWidth) tryBuild();
+      else img0.addEventListener('load', tryBuild);
+    }
+    var rt = null;
+    window.addEventListener('resize', function () {
+      clearTimeout(rt);
+      rt = setTimeout(function () {
+        if (Math.abs(heroBg.clientWidth - builtW) > 2) { setLeave(); buildFlow(); }  // высоту не трогаем: на телефоне она меняется при прокрутке
+      }, 200);
+    });
   }
   if (heroIce && 'IntersectionObserver' in window) {
     new IntersectionObserver(function (entries) {
