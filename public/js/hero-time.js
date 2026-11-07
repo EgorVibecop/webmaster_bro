@@ -10,7 +10,7 @@
   var link = document.createElement('link');
   link.rel = 'preload';
   link.as = 'image';
-  link.href = '/hero/' + name + (mobile ? '-m.webp' : '-d.avif');
+  link.href = '/hero/' + name + (mobile ? '-m-v2.webp' : '-d-v2.avif');
   link.type = mobile ? 'image/webp' : 'image/avif';
   link.setAttribute('fetchpriority', 'high');
   document.head.appendChild(link);

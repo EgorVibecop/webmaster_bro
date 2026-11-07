@@ -17,6 +17,8 @@ const VARIANTS = {
   m: { w: 700, base: 'ice-base-m.webp', horizon: 146, crop: { x: 540, w: 790, top: 633, h: 152 } },
 };
 const OVERLAP = 28;
+// Версия в имени файла: при любом изменении картинок увеличиваем, чтобы браузеры не держали старый файл (кэш на неделю).
+const VER = 'v2';
 
 // Простая случайность с seed, чтобы звезды были одинаковыми при каждой сборке.
 function rng(seed) {
@@ -158,8 +160,8 @@ async function compose(name, v, band, iceTint) {
   const png = await img.png().toBuffer();
   if (PREVIEW) { await sharp(png).jpeg({ quality: 85 }).toFile(path.join(TMP, `hero-${name}.jpg`)); return; }
   const pipe = () => sharp(png);
-  await pipe().webp({ quality: 80, effort: 5 }).toFile(path.join(OUT, `${name}.webp`));
-  if (name.endsWith('-d')) await pipe().avif({ quality: 55, effort: 5 }).toFile(path.join(OUT, `${name}.avif`));
+  await pipe().webp({ quality: 80, effort: 5 }).toFile(path.join(OUT, `${name}-${VER}.webp`));
+  if (name.endsWith('-d')) await pipe().avif({ quality: 55, effort: 5 }).toFile(path.join(OUT, `${name}-${VER}.avif`));
   console.log(name, band.w + 'x' + totalH);
 }
 

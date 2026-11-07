@@ -27,13 +27,13 @@ c=$(H -o /dev/null -w "%{http_code}" "https://$IP/net-takoy-stranicy/"); [ "$c" 
 n=$(H "https://$IP/net-takoy-stranicy/" | grep -c "Страница не найдена"); [ "$n" -ge 1 ] && pass "на 404 показывается наша страница" || fail "на 404 нет нашей страницы"
 
 echo "== Файлы и заголовки"
-for f in robots.txt llms.txt sitemap-index.xml favicon.svg hero/day-d.avif hero/day-d.webp og-image-v2.jpg files/gaid-glubinnogo-intervyu-shablon.docx; do c=$(H -o /dev/null -w "%{http_code}" "https://$IP/$f"); [ "$c" = "200" ] && pass "/$f" || fail "/$f -> $c"; done
+for f in robots.txt llms.txt sitemap-index.xml favicon.svg hero/day-d-v2.avif hero/day-d-v2.webp og-image-v2.jpg files/gaid-glubinnogo-intervyu-shablon.docx; do c=$(H -o /dev/null -w "%{http_code}" "https://$IP/$f"); [ "$c" = "200" ] && pass "/$f" || fail "/$f -> $c"; done
 h=$(H -I -H "Accept-Encoding: gzip" "https://$IP/")
 echo "$h" | grep -qi "content-encoding: \(gzip\|br\)" && pass "сжатие включено" || fail "сжатие не включено (html без gzip/br)"
 echo "$h" | grep -qi "x-content-type-options" && pass "заголовки безопасности (.htaccess работает)" || fail ".htaccess не применяется (нет заголовков безопасности)"
-a=$(H -I "https://$IP/hero/day-d.avif" | grep -i "content-type"); echo "$a" | grep -qi "image/avif" && pass "AVIF отдается с верным типом" || fail "AVIF отдается с неверным типом: $a"
+a=$(H -I "https://$IP/hero/day-d-v2.avif" | grep -i "content-type"); echo "$a" | grep -qi "image/avif" && pass "AVIF отдается с верным типом" || fail "AVIF отдается с неверным типом: $a"
 a=$(H -I "https://$IP/_astro/" | head -1); true
-cc=$(H -I "https://$IP/hero/day-d.avif" | grep -i "cache-control\|expires" | tr -d '\r' | tr '\n' ' '); [ -n "$cc" ] && pass "кэш для картинок задан: $cc" || fail "кэш для картинок не задан"
+cc=$(H -I "https://$IP/hero/day-d-v2.avif" | grep -i "cache-control\|expires" | tr -d '\r' | tr '\n' ' '); [ -n "$cc" ] && pass "кэш для картинок задан: $cc" || fail "кэш для картинок не задан"
 
 echo "== Сертификат"
 c=$(echo | openssl s_client -connect "$IP:443" -servername "$DOMAIN" 2>/dev/null | openssl x509 -noout -subject -issuer -enddate 2>/dev/null | tr "
