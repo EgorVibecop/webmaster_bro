@@ -37,6 +37,14 @@
     }).observe(heroIce);
   }
 
+  // Бегущая строка клиентов стоит на паузе, пока ее не видно.
+  var marquee = document.querySelector('.marquee');
+  if (marquee && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      marquee.classList.toggle('off-screen', !entries[0].isIntersecting);
+    }).observe(marquee);
+  }
+
   if (!('IntersectionObserver' in window)) return;
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
