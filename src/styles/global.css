@@ -325,7 +325,7 @@ img, svg { display: block; max-width: 100%; }
 }
 
 /* Первый экран: байкальский лед, камера медленно уходит вглубь */
-.hero-ice { position: relative; isolation: isolate; overflow: hidden; background: var(--night-deep); color: #FFFFFF; height: clamp(560px, 92svh, 860px); }
+.hero-ice { position: relative; isolation: isolate; overflow: hidden; background: var(--night-deep); color: #FFFFFF; height: max(560px, 100vh); height: max(560px, 100svh); }
 .hero-ice-bg { position: absolute; left: 0; right: 0; top: 0; height: 200%; transform-origin: 50% 0; animation: ice-descend 22s linear 1 forwards; }
 .hero-ice-bg picture, .hero-ice-bg img { display: block; width: 100%; height: 100%; }
 .hero-ice-bg picture { position: absolute; inset: 0; }
@@ -356,15 +356,15 @@ html[data-hero="night"] .hero-ice-bg .hero-pic-night { display: block; }
 }
 /* Бесконечный спуск: после ухода гор вместо картинки идет бесконечная лента льда (public/js/motion.js собирает ее из той же картинки:
    плитки идут по кругу, каждая вторая отражена по вертикали, поэтому стыков нет). */
-.hero-flow { position: absolute; left: 0; right: 0; top: 0; visibility: hidden; will-change: transform; animation: hero-flow-show 0s linear 2.45s forwards, hero-flow var(--flow-dur, 240s) linear 2.45s infinite; }
+.hero-flow { position: absolute; left: 0; right: 0; top: 0; visibility: hidden; will-change: transform; animation: hero-flow-show 0s linear var(--flow-delay, 2.45s) forwards, hero-flow var(--flow-dur, 240s) linear var(--flow-delay, 2.45s) infinite; }
 .hero-flow.late { visibility: visible; animation: hero-flow var(--flow-dur, 240s) linear infinite; }
 .hero-flow-tile { height: var(--flow-h, 800px); background-image: var(--flow-img); background-repeat: no-repeat; background-size: var(--flow-bg-w, 100%) var(--flow-bg-h, auto); background-position: var(--flow-bg-x, 0) var(--flow-bg-y, 0); }
 .hero-flow-tile.flip { transform: scaleY(-1); }
-.hero-flow-on .hero-ice-bg { animation: ice-descend-flow 2.5s linear 1 forwards; }
+.hero-flow-on .hero-ice-bg { animation: ice-descend-flow var(--leave-dur, 2s) linear .5s 1 forwards; }
 @keyframes hero-flow-show { to { visibility: visible; } }
 @keyframes hero-flow { from { transform: translateY(0); } to { transform: translateY(calc(-2 * var(--flow-h, 800px))); } }
 @keyframes ice-descend-flow {
-  0%, 20% { transform: translateY(0); animation-timing-function: cubic-bezier(.4, 0, .45, 1); }
+  0% { transform: translateY(0); }
   100% { transform: translateY(calc(-1 * var(--leave, 40%))); visibility: hidden; }
 }
 @keyframes ice-tint { from { opacity: 0; } to { opacity: .7; } }

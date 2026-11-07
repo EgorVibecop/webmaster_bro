@@ -32,12 +32,12 @@
     if (heroImg.complete && heroImg.naturalWidth === 0 && heroImg.currentSrc) retry();
   });
 
-  // Первый экран: через 0,5 с картинка начинает уходить вниз и за 2 с полностью скрывает горы, дальше лед идет бесконечной лентой.
+  // Первый экран: через 0,5 с картинка начинает уходить вниз с постоянной скоростью, горы уходят вместе со льдом, дальше лед идет бесконечной лентой с той же скоростью.
   // Лента собирается из той же картинки: берем ее часть ниже горизонта и ставим плитки одну за другой, каждую вторую зеркально.
-  // Высота линии горизонта в готовых картинках: 92 px (компьютер, 1585x938) и 107 px (телефон, 700x953).
+  // Высота линии горизонта в готовых картинках: 146 px (компьютер, 1585x992) и 167 px (телефон, 700x1013).
   var heroBg = heroIce && heroIce.querySelector('.hero-ice-bg');
-  var FLOW_SPEED = 7.5;   // скорость ленты, px в секунду
-  var HANDOFF = 2450;     // мс: когда лента подхватывает картинку
+  var FLOW_SPEED = 15;    // скорость движения, px в секунду: и горы, и лед идут с одной скоростью
+  var START = 500;        // мс до начала движения
   var born = Date.now();
   var flow = null;
   var builtW = 0;
@@ -53,7 +53,7 @@
     var img = visibleHeroImg();
     if (!img || !img.currentSrc || !img.naturalWidth) return;
     var nw = img.naturalWidth, nh = img.naturalHeight;
-    var hz = nw <= 800 ? 107 : 92;
+    var hz = nw <= 800 ? 167 : 146;
     var r0 = hz + 45;                                  // строка картинки, с которой начинается лента
     var w = heroBg.clientWidth, h = heroBg.clientHeight, heroH = heroIce.clientHeight;
     var s = Math.max(w / nw, h / nh);                  // так картинку растягивает object-fit: cover
@@ -64,7 +64,8 @@
     flow = document.createElement('div');
     flow.className = 'hero-flow';
     flow.setAttribute('aria-hidden', 'true');
-    var late = Date.now() - born > HANDOFF - 100;
+    var dur = leave / FLOW_SPEED;                      // за это время горы уходят целиком
+    var late = Date.now() - born > START + dur * 1000 - 100;
     if (late) flow.classList.add('late');
     var n = Math.max(3, Math.ceil(2 + heroH / tileH));
     for (var i = 0; i < n; i++) {
@@ -79,8 +80,10 @@
     st.setProperty('--flow-bg-h', (nh * s).toFixed(1) + 'px');
     st.setProperty('--flow-bg-x', ((w - nw * s) / 2).toFixed(1) + 'px');
     st.setProperty('--flow-bg-y', (-r0 * s).toFixed(1) + 'px');
+    st.setProperty('--flow-delay', (START / 1000 + dur - 0.04).toFixed(2) + 's');
     st.setProperty('--flow-dur', ((2 * tileH) / FLOW_SPEED).toFixed(0) + 's');
     heroBg.style.setProperty('--leave', leave.toFixed(1) + 'px');
+    heroBg.style.setProperty('--leave-dur', dur.toFixed(2) + 's');
     heroBg.insertAdjacentElement('afterend', flow);
     heroIce.classList.add('hero-flow-on');
     builtW = w;
@@ -89,7 +92,7 @@
   // Запасной вариант без ленты: картинка уходит вниз и чуть дрейфует.
   function setLeave() {
     var mobile = window.matchMedia && window.matchMedia('(max-width: 700px)').matches;
-    var nw = mobile ? 700 : 1585, nh = mobile ? 953 : 938, hz = mobile ? 107 : 92;
+    var nw = mobile ? 700 : 1585, nh = mobile ? 1013 : 992, hz = mobile ? 167 : 146;
     var w = heroBg.clientWidth, h = heroBg.clientHeight;
     var room = h - heroIce.clientHeight - 4;
     var scale = Math.max(w / nw, h / nh);
