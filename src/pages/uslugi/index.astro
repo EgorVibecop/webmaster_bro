@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
-import ContactBlock from '../../components/ContactBlock.astro';
 import ServiceArt from '../../components/ServiceArt.astro';
 import { services } from '../../data/services.js';
 
@@ -61,9 +60,5 @@ const jsonLd = {
     </div>
   </main>
 
-  <ContactBlock
-    heading="Расскажите о задаче"
-    subheading="Предложим метод, выборку и сроки под вашу задачу и бюджет."
-  />
   <SiteFooter />
 </BaseLayout>

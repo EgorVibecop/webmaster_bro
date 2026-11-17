@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import ContactBlock from '../components/ContactBlock.astro';
 import { glossary } from '../data/glossary.js';
 
 const SITE = 'https://baikalresearch.ru';
@@ -41,7 +40,7 @@ const jsonLd = {
 ---
 <BaseLayout title="Словарь терминов исследований – Baikal Research" description={description}>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-  <SiteHeader contactHref="#contact" />
+  <SiteHeader />
 
   <main class="page">
     <nav class="breadcrumbs" aria-label="Хлебные крошки">
@@ -65,9 +64,5 @@ const jsonLd = {
     </dl>
   </main>
 
-  <ContactBlock
-    heading="Нужна помощь с исследованием?"
-    subheading="Расскажите о задаче: предложим метод, выборку и сроки."
-  />
   <SiteFooter />
 </BaseLayout>

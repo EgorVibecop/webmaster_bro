@@ -3,7 +3,6 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
-import ContactBlock from '../../components/ContactBlock.astro';
 import { bySlug } from '../../data/services.js';
 import { readingMinutes } from '../../utils/readingTime';
 
@@ -69,7 +68,7 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
   publishedTime={data.date.toISOString()}
 >
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-  <SiteHeader contactHref="#contact" />
+  <SiteHeader />
 
   <main class="page article">
     <nav class="breadcrumbs" aria-label="Хлебные крошки">
@@ -127,10 +126,5 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
     )}
   </main>
 
-  <ContactBlock
-    heading="Расскажите о своей задаче"
-    subheading="Предложим метод, выборку и сроки под вашу задачу и бюджет."
-    presetService={service?.title}
-  />
-  <SiteFooter contactHref="#contact" />
+  <SiteFooter />
 </BaseLayout>

@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
-import ContactBlock from '../../components/ContactBlock.astro';
 import { getCollection } from 'astro:content';
 import { services } from '../../data/services.js';
 
@@ -54,7 +53,7 @@ const jsonLd = {
 ---
 <BaseLayout title={page.metaTitle} description={page.metaDescription}>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-  <SiteHeader contactHref="#contact" />
+  <SiteHeader />
 
   <main class="page">
     <nav class="breadcrumbs" aria-label="Хлебные крошки">
@@ -66,7 +65,7 @@ const jsonLd = {
     <h1>{page.h1}</h1>
     <p class="lead">{page.lead}</p>
     <div class="page-actions page-actions-cta">
-      <a class="btn btn-primary" href="#contact">Связаться с нами</a>
+      <a class="btn btn-primary" href="/#contact">Связаться с нами</a>
     </div>
 
     <h2>Когда это нужно</h2>
@@ -137,10 +136,5 @@ const jsonLd = {
     </nav>
   </main>
 
-  <ContactBlock
-    heading="Расскажите о задаче"
-    subheading="Предложим метод, выборку и сроки под вашу задачу и бюджет."
-    presetService={service.title}
-  />
-  <SiteFooter contactHref="#contact" />
+  <SiteFooter />
 </BaseLayout>
