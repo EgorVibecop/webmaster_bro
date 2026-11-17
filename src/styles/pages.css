@@ -259,15 +259,15 @@
 @media (max-width: 350px) { .svc-card h2 { white-space: normal; } }
 
 /* Контакты: три карточки и приглашение оставить заявку */
-.contact-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 36px 0 0; }
-.contact-fact { display: flex; flex-direction: column; gap: 6px; padding: 28px 28px 26px; background: var(--bg-alt); border: 1px solid var(--line); border-radius: 16px; color: var(--ink); text-decoration: none; transition: border-color .2s, transform .2s, box-shadow .2s; }
+.contact-facts { display: grid; grid-template-columns: 1fr 1.35fr 1fr; gap: 20px; margin: 36px 0 0; }
+.contact-fact { display: flex; flex-direction: column; gap: 6px; min-width: 0; padding: 28px 24px 26px; background: var(--bg-alt); border: 1px solid var(--line); border-radius: 16px; color: var(--ink); text-decoration: none; transition: border-color .2s, transform .2s, box-shadow .2s; }
 a.contact-fact:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 10px 24px rgba(12, 26, 40, .08); }
 .contact-fact-icon { display: grid; place-items: center; width: 52px; height: 52px; margin-bottom: 14px; border-radius: 14px; background: #fff; color: var(--accent); box-shadow: 0 0 0 1px var(--line); }
 .contact-fact .label { font-size: var(--fs-small); color: var(--ink-soft); letter-spacing: .04em; text-transform: uppercase; }
-.contact-fact .value { font-size: clamp(20px, 2vw, 26px); font-weight: 600; line-height: 1.25; overflow-wrap: anywhere; }
+.contact-fact .value { font-size: clamp(16px, 1.65vw, 22px); font-weight: 600; line-height: 1.3; overflow-wrap: anywhere; }
 a.contact-fact .value { color: var(--accent-text); }
 .contact-fact .hint { font-size: var(--fs-small); color: var(--ink-soft); }
 .contact-cta { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-top: 20px; padding: 28px 32px; background: var(--night); color: var(--on-night); border-radius: 16px; }
 .contact-cta p { margin: 0; max-width: 560px; color: var(--on-night); }
 .contact-cta .btn { background: #fff; color: var(--night); border-color: #fff; }
-@media (max-width: 860px) { .contact-facts { grid-template-columns: 1fr; gap: 14px; } .contact-fact { padding: 22px; } .contact-cta { padding: 24px; } }
+@media (max-width: 960px) { .contact-facts { grid-template-columns: 1fr; gap: 14px; } .contact-fact { padding: 22px; } .contact-fact .value { font-size: 20px; } .contact-cta { padding: 24px; } }
