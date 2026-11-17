@@ -12,7 +12,7 @@
 .dive-rail { position: absolute; left: 15px; top: 16px; bottom: 16px; width: 2px; border-radius: 2px; background: rgba(255, 255, 255, .14); }
 .dive-fill { position: absolute; left: 0; top: 0; width: 100%; height: 100%; transform-origin: 50% 0; transform: scaleY(var(--p, 1)); will-change: transform; border-radius: 2px; background: linear-gradient(180deg, #5CC4F2, #0284C7); box-shadow: 0 0 12px rgba(56, 189, 248, .7); }
 .dive-probe { position: absolute; left: 50%; top: 0; transform: translateY(calc(var(--p, 1) * var(--rail-h, 0px))); will-change: transform; width: 40px; height: 40px; margin: -20px 0 0 -20px; color: #FFFFFF; filter: drop-shadow(0 0 8px rgba(56, 189, 248, .8)) drop-shadow(0 0 18px rgba(56, 189, 248, .45)); }
-.dive-probe svg { display: block; width: 100%; height: 100%; }
+.dive-probe svg { display: block; width: 100%; height: 100%; overflow: visible; }
 .dive-probe circle:first-child { fill: none; }
 .dive-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: clamp(32px, 4.5vw, 52px); }
 .dive-step { position: relative; }
