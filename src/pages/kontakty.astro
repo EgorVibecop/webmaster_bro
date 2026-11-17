@@ -5,7 +5,7 @@ import SiteFooter from '../components/SiteFooter.astro';
 
 const SITE = 'https://baikalresearch.ru';
 const url = `${SITE}/kontakty/`;
-const description = 'Контакты Baikal Research: телефон, почта, форма заявки. Отвечаем на заявки в течение одного рабочего дня.';
+const description = 'Контакты Baikal Research: телефон, почта и заявка на сайте. Отвечаем на заявки в течение одного рабочего дня.';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -39,21 +39,32 @@ const jsonLd = {
     </nav>
 
     <h1>Контакты</h1>
-    <p class="lead">Позвоните, напишите на почту или оставьте заявку в форме ниже. Отвечаем в течение одного рабочего дня.</p>
+    <p class="lead">Позвоните, напишите на почту или расскажите о задаче в форме на главной. Отвечаем в течение одного рабочего дня.</p>
 
     <div class="contact-facts">
+      <a class="contact-fact" href="tel:+79774437588">
+        <span class="contact-fact-icon"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span>
+        <span class="label">Телефон</span>
+        <span class="value">+7 977 443-75-88</span>
+        <span class="hint">Будни, ответим или перезвоним</span>
+      </a>
+      <a class="contact-fact" href="mailto:info@baikalresearch.ru">
+        <span class="contact-fact-icon"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+        <span class="label">Почта</span>
+        <span class="value">info@baikalresearch.ru</span>
+        <span class="hint">Можно сразу приложить бриф или ТЗ</span>
+      </a>
       <div class="contact-fact">
-        <div class="label">Телефон</div>
-        <a class="value" href="tel:+79774437588">+7 977 443-75-88</a>
+        <span class="contact-fact-icon"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+        <span class="label">Срок ответа</span>
+        <span class="value">В течение рабочего дня</span>
+        <span class="hint">Предложим метод, выборку и сроки</span>
       </div>
-      <div class="contact-fact">
-        <div class="label">Email</div>
-        <a class="value" href="mailto:info@baikalresearch.ru">info@baikalresearch.ru</a>
-      </div>
-      <div class="contact-fact">
-        <div class="label">Срок ответа</div>
-        <div class="value">В течение рабочего дня</div>
-      </div>
+    </div>
+
+    <div class="contact-cta">
+      <p>Удобнее написать в двух словах, что нужно изучить? Оставьте заявку, мы вернемся с предложением.</p>
+      <a class="btn btn-primary" href="/#contact">Рассказать о задаче</a>
     </div>
   </main>
 
