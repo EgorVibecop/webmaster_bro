@@ -64,7 +64,8 @@
       steps.forEach(function (s, i) { s.classList.toggle('reached', i < reached); });
     }
     if (num) {
-      var text = Math.round(depthAt(p)).toLocaleString('ru-RU');
+      var lastM = +steps[steps.length - 1].getAttribute('data-m');
+      var text = (reached === steps.length ? lastM : Math.round(depthAt(p))).toLocaleString('ru-RU');
       if (text !== lastText) { lastText = text; num.textContent = text; }
     }
   }

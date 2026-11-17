@@ -15,6 +15,8 @@
   var heroIce = document.querySelector('.hero-ice');
   // Фото первого экрана: при сбое мобильной сети пробуем загрузить еще раз, а пока прячем значок «битой» картинки.
   var heroImgs = heroIce ? Array.prototype.slice.call(heroIce.querySelectorAll('.hero-ice-bg img')) : [];
+  var heroShown = function () { if (heroIce) heroIce.classList.add('hero-loaded'); };
+  setTimeout(heroShown, 6000);   // страховка: если картинка так и не пришла, заглушку не держим вечно
   heroImgs.forEach(function (heroImg) {
     var tries = 0;
     var retry = function () {
@@ -28,7 +30,8 @@
       }, 1500 * tries);
     };
     heroImg.addEventListener('error', retry);
-    heroImg.addEventListener('load', function () { heroImg.style.visibility = ''; });
+    heroImg.addEventListener('load', function () { heroImg.style.visibility = ''; if (heroImg === visibleHeroImg()) heroShown(); });
+    if (heroImg.complete && heroImg.naturalWidth > 0 && heroImg === visibleHeroImg()) heroShown();
     if (heroImg.complete && heroImg.naturalWidth === 0 && heroImg.currentSrc) retry();
   });
 
@@ -125,19 +128,11 @@
     }).observe(heroIce);
   }
 
-  // Бегущая строка клиентов стоит на паузе, пока ее не видно.
-  var marquee = document.querySelector('.marquee');
-  if (marquee && 'IntersectionObserver' in window) {
-    new IntersectionObserver(function (entries) {
-      marquee.classList.toggle('off-screen', !entries[0].isIntersecting);
-    }).observe(marquee);
-  }
-
   if (!('IntersectionObserver' in window)) return;
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   var SELECTORS = [
-    '.section-head', '.svc-row',
+    '.section-head',
     '.cases-grid > *', '.clients > *', '.contact-grid > *',
     '.page > h2', '.page .steps li', '.page .callout', '.glossary-item'
   ].join(',');

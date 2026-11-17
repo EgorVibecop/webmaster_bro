@@ -122,15 +122,18 @@ const jsonLd = {
   </section>
 
   <section id="process" class="dive" aria-labelledby="dive-title">
-    <div class="dive-bubbles" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
     <div class="dive-wrap">
       <div class="dive-side">
         <h2 class="dive-eyebrow" id="dive-title">Глубина погружения</h2>
         <div class="dive-depth" aria-hidden="true"><span id="dive-num">1 642</span><small>м</small></div>
+        <div class="dive-foot">
+        <div class="dive-chips"><span class="dive-chips-label">Работаем с</span><span>юрлицами</span><span>ИП</span><span>физлицами</span></div>
+        <div class="dive-chips"><span class="dive-chips-label">Оплата</span><span>предоплата</span><span>по этапам</span><span>после сдачи</span></div>
+        </div>
         <p class="dive-fact">Байкал – самое глубокое озеро планеты. Мы идем вглубь задачи до тех пор, пока выводы не станут опорой для решения.</p>
       </div>
       <div class="dive-track">
-      <div class="dive-rail" aria-hidden="true"><span class="dive-fill"></span><span class="dive-probe"><svg viewBox="1 0 16 16" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"><circle cx="9" cy="7" r="6"/><circle cx="9" cy="7" r="2"/><path d="M6 12.2 L4 15"/><path d="M12 12.2 L14 15"/></svg></span></div>
+      <div class="dive-rail" aria-hidden="true"><span class="dive-fill"></span><span class="dive-probe"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"><circle cx="8" cy="8" r="6.5"/><circle cx="8" cy="8" r="2.2"/></svg></span></div>
       <ol class="dive-steps">
         {dive.map((step, i) => (
           <li class="dive-step" data-m={step.m}>
@@ -142,10 +145,6 @@ const jsonLd = {
         ))}
       </ol>
       </div>
-    </div>
-    <div class="dive-foot">
-      <div class="dive-chips"><span class="dive-chips-label">Работаем с</span><span>юрлицами</span><span>ИП</span><span>физлицами</span></div>
-      <div class="dive-chips"><span class="dive-chips-label">Оплата</span><span>предоплата</span><span>по этапам</span><span>после сдачи</span></div>
     </div>
   </section>
 
@@ -170,19 +169,19 @@ const jsonLd = {
 
   <section class="clients" aria-label="Клиенты и партнеры">
     <div class="clients-label">Клиенты и партнеры</div>
-    <div class="marquee">
-      <div class="marquee-track">
-        {[0, 1].map((g) => (
-          <ul class="marquee-group" aria-hidden={g === 1 ? 'true' : undefined}>
-            {Array.from({ length: 3 }, () => clients).flat().map((c, i) => (
-              <li class={[c.tall ? 'tall' : '', c.opaque ? 'opaque' : '', i >= clients.length ? 'dup' : ''].join(' ').trim() || undefined}>
-                <img src={`/clients/${c.file}`} alt={g === 0 && i < clients.length ? c.name : ''} width={c.w} height={c.h} decoding="async" />
-              </li>
-            ))}
-          </ul>
-        ))}
-      </div>
-    </div>
+    <ul class="clients-row">
+      {clients.map((c) => {
+        const r = c.w / c.h;
+        let h = Math.sqrt(5200 / r), w = h * r;
+        if (w > 170) { w = 170; h = w / r; }
+        if (h > 56) { h = 56; w = h * r; }
+        return (
+          <li class={c.opaque ? 'opaque' : undefined}>
+            <img src={`/clients/${c.file}`} alt={c.name} width={Math.round(w)} height={Math.round(h)} loading="lazy" decoding="async" />
+          </li>
+        );
+      })}
+    </ul>
   </section>
 
   <ContactBlock />
