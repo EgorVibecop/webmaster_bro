@@ -270,7 +270,7 @@
 .contact-fact .copy-btn:hover { color: var(--accent-text-hover); text-decoration: underline; text-underline-offset: 4px; }
 .contact-fact .copy-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 .contact-fact div.value, .contact-fact span.value { white-space: normal; }
-.copy-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 6px; font-size: var(--fs-small); color: var(--ink-soft); }
+.copy-row { min-height: 1.5em; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 6px; font-size: var(--fs-small); color: var(--ink-soft); }
 .copy-row.copied .copy-state { color: #15803D; font-weight: 600; }
 .contact-act { color: var(--accent-text); font-weight: 600; white-space: nowrap; }
 .contact-fact .hint { font-size: var(--fs-small); color: var(--ink-soft); }
