@@ -36,14 +36,14 @@ const jsonLd = {
       provider: { '@id': `${SITE}/#org` },
       areaServed: { '@type': 'Country', name: 'Россия' },
     },
-    {
+    ...(landing.faq?.length ? [{
       '@type': 'FAQPage',
       mainEntity: landing.faq.map((item) => ({
         '@type': 'Question',
         name: item.q,
         acceptedAnswer: { '@type': 'Answer', text: item.a },
       })),
-    },
+    }] : []),
   ],
 };
 
@@ -166,7 +166,7 @@ const slugOf = (href: string) => (href || '').split('/').filter(Boolean)[1];
       </>
     ))}
 
-    <section class="lp-sec lp-faq-sec">
+    {landing.faq?.length > 0 && <section class="lp-sec lp-faq-sec">
       <div class="lp-in lp-in-narrow">
         <h2>Частые вопросы</h2>
         <div class="faq">
@@ -178,7 +178,7 @@ const slugOf = (href: string) => (href || '').split('/').filter(Boolean)[1];
           ))}
         </div>
       </div>
-    </section>
+    </section>}
 
     <section class="lp-final">
       <div class="lp-final-in">
