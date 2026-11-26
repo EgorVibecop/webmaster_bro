@@ -1,9 +1,11 @@
 ---
 // Шаблон посадочной страницы под рекламный или поисковый запрос (данные: src/data/landings.js).
+// Первый экран: заголовок, преимущества и форма заявки справа; ниже клиенты, блоки с содержанием, вопросы и финальный призыв.
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from './SiteHeader.astro';
 import SiteFooter from './SiteFooter.astro';
 import ContactBlock from './ContactBlock.astro';
+import { clients } from '../data/clients.js';
 
 interface Props {
   landing: any;
@@ -43,72 +45,150 @@ const jsonLd = {
     },
   ],
 };
+
+// Два блока-списка подряд ставим рядом, остальные идут по одному.
+const blocks: any[] = [];
+for (const s of landing.sections) {
+  const prev = blocks[blocks.length - 1];
+  if (s.type === 'checks' && prev && prev.length === 1 && prev[0].type === 'checks') prev.push(s);
+  else blocks.push([s]);
+}
+const perks = landing.perks || ['Ответ в течение рабочего дня', 'Предложение под ваш бюджет', 'Юрлица, ИП и физлица'];
 ---
 <BaseLayout title={landing.metaTitle} description={landing.metaDescription}>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <SiteHeader contactHref="#contact" />
 
-  <main class="page">
-    <nav class="breadcrumbs" aria-label="Хлебные крошки">
-      <a href="/">Главная</a><span aria-hidden="true">/</span>
-      <span aria-current="page">{landing.title}</span>
-    </nav>
+  <main class="lp">
+    <section class="lp-hero">
+      <div class="lp-hero-in">
+        <div class="lp-hero-copy">
+          <nav class="breadcrumbs" aria-label="Хлебные крошки">
+            <a href="/">Главная</a><span aria-hidden="true">/</span>
+            <span aria-current="page">{landing.title}</span>
+          </nav>
+          <h1>{landing.h1}</h1>
+          <p class="lp-lead">{landing.lead}</p>
+          {landing.offer && <div class="lp-offer">{landing.offer}</div>}
+          <ul class="lp-perks">
+            {perks.map((p) => <li>{p}</li>)}
+          </ul>
+        </div>
+        <div class="lp-hero-form">
+          <div class="lp-form-title">Получите предложение</div>
+          <ContactBlock
+            heading="Расскажите о задаче"
+            subheading={landing.contactNote}
+            presetService={landing.title}
+          />
+        </div>
+      </div>
+    </section>
 
-    <h1>{landing.h1}</h1>
-    <p class="lead">{landing.lead}</p>
-    {landing.offer && <div class="landing-offer">{landing.offer}</div>}
-    <div class="page-actions page-actions-cta">
-      <a class="btn btn-primary" href="#contact">Обсудить задачу</a>
-    </div>
-
-    {landing.sections.map((s) => (
-      <>
-        <h2>{s.h2}</h2>
-        {s.intro && <p class="landing-intro">{s.intro}</p>}
-        {s.type === 'checks' && (
-          <ul class="checks">{s.items.map((item) => <li>{item}</li>)}</ul>
-        )}
-        {s.type === 'steps' && (
-          <ol class="steps">
-            {s.items.map((step) => (
-              <li>
-                <div>
-                  <h3>{step.title}</h3>
-                  <p>{step.text}</p>
-                </div>
+    <section class="lp-clients" aria-label="Клиенты и партнеры">
+      <div class="lp-in">
+        <div class="lp-clients-label">Клиенты и партнеры</div>
+        <ul class="clients-row">
+          {clients.map((c) => {
+            const r = c.w / c.h;
+            let h = Math.sqrt(4200 / r), w = h * r;
+            if (w > 150) { w = 150; h = w / r; }
+            if (h > 48) { h = 48; w = h * r; }
+            return (
+              <li class={c.opaque ? 'opaque' : undefined}>
+                <img src={`/clients/${c.file}`} alt={c.name} width={Math.round(w)} height={Math.round(h)} loading="lazy" decoding="async" />
               </li>
-            ))}
-          </ol>
-        )}
-        {s.type === 'links' && (
-          <div class="post-list">
-            {s.items.map((item) => (
-              <article class="post-card">
-                <h3><a href={item.href}>{item.title}</a></h3>
-                <p>{item.text}</p>
-              </article>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
+
+    {blocks.map((group, bi) => (
+      <section class={`lp-sec${bi % 2 === 0 ? ' lp-sec-alt' : ''}`}>
+        <div class="lp-in">
+          <div class={group.length > 1 ? 'lp-pair' : undefined}>
+            {group.map((s) => (
+              <div class="lp-block">
+                <h2>{s.h2}</h2>
+                {s.intro && <p class="lp-intro">{s.intro}</p>}
+                {s.type === 'checks' && (
+                  <ul class={`lp-checks${group.length > 1 ? ' lp-checks-card' : ''}`}>{s.items.map((item) => <li>{item}</li>)}</ul>
+                )}
+                {s.type === 'tiles' && (
+                  <ul class="lp-tiles">
+                    {s.items.map((t, i) => (
+                      <li>
+                        <span class="lp-tile-n">{String(i + 1).padStart(2, '0')}</span>
+                        <h3>{t.title}</h3>
+                        <p>{t.text}</p>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {s.type === 'steps' && (
+                  <ol class="lp-steps">
+                    {s.items.map((step) => (
+                      <li>
+                        <h3>{step.title}</h3>
+                        <p>{step.text}</p>
+                      </li>
+                    ))}
+                  </ol>
+                )}
+                {s.type === 'links' && (
+                  <ul class="lp-cards">
+                    {s.items.map((item) => (
+                      <li>
+                        {landing.staticCards ? (
+                          <div class="lp-card">
+                            <h3>{item.title}</h3>
+                            <p>{item.text}</p>
+                          </div>
+                        ) : (
+                          <a class="lp-card lp-card-link" href={item.href}>
+                            <h3>{item.title}</h3>
+                            <p>{item.text}</p>
+                            <span class="lp-card-more" aria-hidden="true">Подробнее →</span>
+                          </a>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {s.type === 'text' && <p class="lp-text">{s.text}</p>}
+              </div>
             ))}
           </div>
-        )}
-        {s.type === 'text' && <p class="landing-text">{s.text}</p>}
-      </>
+        </div>
+      </section>
     ))}
 
-    <h2>Частые вопросы</h2>
-    <div class="faq">
-      {landing.faq.map((item) => (
-        <details>
-          <summary>{item.q}</summary>
-          <p>{item.a}</p>
-        </details>
-      ))}
-    </div>
+    <section class="lp-sec lp-faq-sec">
+      <div class="lp-in lp-in-narrow">
+        <h2>Частые вопросы</h2>
+        <div class="faq">
+          {landing.faq.map((item) => (
+            <details>
+              <summary>{item.q}</summary>
+              <p>{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="lp-final">
+      <div class="lp-final-in">
+        <div>
+          <h2>Расскажите о задаче</h2>
+          <p>Ответим в течение рабочего дня и предложим оптимальное решение под ваш бюджет.</p>
+          {landing.offer && <div class="lp-offer lp-offer-on-dark">{landing.offer}</div>}
+        </div>
+        <a class="btn btn-on-dark" href="#contact">Оставить заявку</a>
+      </div>
+    </section>
   </main>
 
-  <ContactBlock
-    heading="Расскажите о задаче"
-    subheading={landing.contactNote || 'Предложим метод, выборку и сроки под вашу задачу и бюджет.'}
-    presetService={landing.title}
-  />
   <SiteFooter contactHref="#contact" />
 </BaseLayout>

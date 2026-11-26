@@ -5,14 +5,8 @@ import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import ContactBlock from '../components/ContactBlock.astro';
 import { services } from '../data/services.js';
+import { clients } from '../data/clients.js';
 
-const clients = [
-  { name: 'Магнит Tech', file: 'magnit-tech.png', w: 279, h: 96 },
-  { name: 'Novartis', file: 'novartis.png', w: 586, h: 96 },
-  { name: 'Национальная Лотерея', file: 'nacionalnaya-loteriya.png', w: 293, h: 110, tall: true },
-  { name: 'Промышленно-энергетический форум', file: 'promyshlenno-energeticheskiy-forum.png', w: 187, h: 110, tall: true, opaque: true },
-  { name: 'СберЗдоровье', file: 'sberzdorovye.png', w: 342, h: 96 },
-];
 
 const dive = [
   { depth: '0 м', m: 0, title: 'Бриф и методология', desc: 'Обсуждаем задачу, предлагаем метод и выборку, фиксируем сроки и стоимость. Чтобы найти причины и барьеры, часто хватает 10–15 интервью, чтобы оценить долю с погрешностью около 5%, нужен опрос примерно на 400 человек.' },
