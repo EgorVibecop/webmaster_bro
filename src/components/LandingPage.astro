@@ -81,10 +81,10 @@ const slugOf = (href: string) => (href || '').split('/').filter(Boolean)[1];
           </nav>
           <h1>{landing.h1}</h1>
           <p class="lp-lead">{landing.lead}</p>
-          {landing.offer && <div class="lp-offer">{landing.offer}</div>}
           <ul class="lp-perks">
             {perks.map((p) => <li>{p}</li>)}
           </ul>
+          {landing.offer && <div class="lp-offer">{landing.offer}</div>}
         </div>
         <div class="lp-hero-form">
           <div class="lp-form-title">Оставьте заявку</div>
