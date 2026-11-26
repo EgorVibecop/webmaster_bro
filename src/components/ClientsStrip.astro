@@ -1,0 +1,26 @@
+---
+// Полоса «Клиенты и партнеры» для посадочных: логотипы одной площади, чтобы Novartis не был огромным, а форум крошечным.
+import { clients } from '../data/clients.js';
+const sizeOf = (c: any) => {
+  const r = c.w / c.h;
+  let h = Math.sqrt(4200 / r), w = h * r;
+  if (w > 150) { w = 150; h = w / r; }
+  if (h > 48) { h = 48; w = h * r; }
+  return { w: Math.round(w), h: Math.round(h) };
+};
+---
+<section class="lp-clients" aria-label="Клиенты и партнеры">
+  <div class="lp-in">
+    <div class="lp-clients-label">Клиенты и партнеры</div>
+    <ul class="clients-row">
+      {clients.map((c) => {
+        const z = sizeOf(c);
+        return (
+          <li class={c.opaque ? 'opaque' : undefined}>
+            <img src={`/clients/${c.file}`} alt={c.name} width={z.w} height={z.h} loading="lazy" decoding="async" />
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+</section>

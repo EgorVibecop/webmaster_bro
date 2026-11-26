@@ -374,3 +374,28 @@
   .lp-clients .clients-row { width: 100%; justify-content: center; }
   .lp-final .btn { width: 100%; justify-content: center; }
 }
+
+/* ===== Посадочные: иконки преимуществ, иллюстрации в карточках, движение ===== */
+.lp-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.lp-tiles li { position: relative; overflow: hidden; transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+.lp-tiles li::after { content: ''; position: absolute; inset: auto -30% -60% auto; width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle, rgba(56, 189, 248, .16), transparent 70%); opacity: 0; transition: opacity .3s ease; pointer-events: none; }
+.lp-tiles li:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 14px 30px rgba(12, 26, 40, .09); }
+.lp-tiles li:hover::after { opacity: 1; }
+.lp-tile-icon { display: grid; place-items: center; width: 52px; height: 52px; margin-bottom: 16px; border-radius: 14px; background: linear-gradient(135deg, #E3F3FB, #CBE8F6); color: var(--accent-text); transition: transform .3s ease, background .3s ease, color .3s ease; }
+.lp-tiles li:hover .lp-tile-icon { transform: rotate(-6deg) scale(1.08); background: var(--accent-text); color: #fff; }
+.lp-tile-icon svg { display: block; }
+
+.lp-card { overflow: hidden; transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+.lp-card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 14px 30px rgba(12, 26, 40, .09); }
+.lp-card-art { margin: -4px -4px 16px; padding: 6px 10px; border-radius: 12px; background: var(--bg-alt); }
+.lp-card-art .art { max-height: 120px; }
+.lp-sec-alt .lp-card-art { background: #F3F8FB; }
+
+.lp-checks-solo { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px 40px; padding: clamp(22px, 2.4vw, 32px); background: #fff; border: 1px solid var(--line); border-radius: 16px; }
+.lp-sec:not(.lp-sec-alt) .lp-checks-solo { background: var(--bg-alt); border-color: transparent; }
+
+/* Появление блоков при прокрутке: мягкий подъем с задержкой по порядку */
+.motion .lp-cards > li[data-reveal], .motion .lp-tiles > li[data-reveal], .motion .lp-steps > li[data-reveal], .motion .lp-checks[data-reveal] { transition-duration: .7s; }
+@media (max-width: 1100px) { .lp-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .lp-tiles { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .lp-tiles li, .lp-card, .lp-tile-icon { transition: none; } .lp-tiles li:hover, .lp-card:hover, .lp-tiles li:hover .lp-tile-icon { transform: none; } }

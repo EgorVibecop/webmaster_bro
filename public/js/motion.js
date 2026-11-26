@@ -132,7 +132,7 @@
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   var SELECTORS = [
-    '.section-head',
+    '.section-head', '.lp-sec h2', '.lp-cards > li', '.lp-tiles > li', '.lp-steps > li', '.lp-checks',
     '.cases-grid > *', '.clients > *', '.contact-grid > *',
     '.page > h2', '.page .steps li', '.page .callout', '.glossary-item'
   ].join(',');

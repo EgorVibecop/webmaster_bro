@@ -1,11 +1,12 @@
 ---
 // Шаблон посадочной страницы под рекламный или поисковый запрос (данные: src/data/landings.js).
-// Первый экран: заголовок, преимущества и форма заявки справа; ниже клиенты, блоки с содержанием, вопросы и финальный призыв.
+// Первый экран: заголовок, преимущества и форма заявки справа; ниже блоки с содержанием, клиенты, вопросы и финальный призыв.
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from './SiteHeader.astro';
 import SiteFooter from './SiteFooter.astro';
 import ContactBlock from './ContactBlock.astro';
-import { clients } from '../data/clients.js';
+import ServiceArt from './ServiceArt.astro';
+import ClientsStrip from './ClientsStrip.astro';
 
 interface Props {
   landing: any;
@@ -54,6 +55,17 @@ for (const s of landing.sections) {
   else blocks.push([s]);
 }
 const perks = landing.perks || ['Ответ в течение рабочего дня', 'Предложение под ваш бюджет', 'Юрлица, ИП и физлица'];
+const clientsAfter = landing.clientsAfter ?? 0;
+
+const icons: Record<string, string> = {
+  bolt: '<path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/>',
+  shield: '<path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/>',
+  users: '<circle cx="9" cy="8" r="3.4"/><path d="M2.5 20c0-3.2 2.9-5.5 6.5-5.5s6.5 2.3 6.5 5.5"/><path d="M16 5.2a3.2 3.2 0 0 1 0 6.1"/><path d="M17.5 14.8c2.4.5 4 2.3 4 5.2"/>',
+  target: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4"/>',
+  search: '<circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/>',
+  spark: '<path d="M12 3l2.1 5.4L19.5 10.5l-5.4 2.1L12 18l-2.1-5.4L4.5 10.5l5.4-2.1z"/><path d="M19 3v4M17 5h4"/>',
+};
+const slugOf = (href: string) => (href || '').split('/').filter(Boolean)[1];
 ---
 <BaseLayout title={landing.metaTitle} description={landing.metaDescription}>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
@@ -85,83 +97,73 @@ const perks = landing.perks || ['Ответ в течение рабочего �
       </div>
     </section>
 
-    <section class="lp-clients" aria-label="Клиенты и партнеры">
-      <div class="lp-in">
-        <div class="lp-clients-label">Клиенты и партнеры</div>
-        <ul class="clients-row">
-          {clients.map((c) => {
-            const r = c.w / c.h;
-            let h = Math.sqrt(4200 / r), w = h * r;
-            if (w > 150) { w = 150; h = w / r; }
-            if (h > 48) { h = 48; w = h * r; }
-            return (
-              <li class={c.opaque ? 'opaque' : undefined}>
-                <img src={`/clients/${c.file}`} alt={c.name} width={Math.round(w)} height={Math.round(h)} loading="lazy" decoding="async" />
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    </section>
+    {clientsAfter === 0 && <ClientsStrip />}
 
     {blocks.map((group, bi) => (
-      <section class={`lp-sec${bi % 2 === 0 ? ' lp-sec-alt' : ''}`}>
-        <div class="lp-in">
-          <div class={group.length > 1 ? 'lp-pair' : undefined}>
-            {group.map((s) => (
-              <div class="lp-block">
-                <h2>{s.h2}</h2>
-                {s.intro && <p class="lp-intro">{s.intro}</p>}
-                {s.type === 'checks' && (
-                  <ul class={`lp-checks${group.length > 1 ? ' lp-checks-card' : ''}`}>{s.items.map((item) => <li>{item}</li>)}</ul>
-                )}
-                {s.type === 'tiles' && (
-                  <ul class="lp-tiles">
-                    {s.items.map((t, i) => (
-                      <li>
-                        <span class="lp-tile-n">{String(i + 1).padStart(2, '0')}</span>
-                        <h3>{t.title}</h3>
-                        <p>{t.text}</p>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                {s.type === 'steps' && (
-                  <ol class="lp-steps">
-                    {s.items.map((step) => (
-                      <li>
-                        <h3>{step.title}</h3>
-                        <p>{step.text}</p>
-                      </li>
-                    ))}
-                  </ol>
-                )}
-                {s.type === 'links' && (
-                  <ul class="lp-cards">
-                    {s.items.map((item) => (
-                      <li>
-                        {landing.staticCards ? (
-                          <div class="lp-card">
-                            <h3>{item.title}</h3>
-                            <p>{item.text}</p>
-                          </div>
-                        ) : (
-                          <a class="lp-card lp-card-link" href={item.href}>
-                            <h3>{item.title}</h3>
-                            <p>{item.text}</p>
-                            <span class="lp-card-more" aria-hidden="true">Подробнее →</span>
-                          </a>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                {s.type === 'text' && <p class="lp-text">{s.text}</p>}
-              </div>
-            ))}
+      <>
+        <section class={`lp-sec${bi % 2 === 0 ? ' lp-sec-alt' : ''}`}>
+          <div class="lp-in">
+            <div class={group.length > 1 ? 'lp-pair' : undefined}>
+              {group.map((s) => (
+                <div class="lp-block">
+                  <h2>{s.h2}</h2>
+                  {s.intro && <p class="lp-intro">{s.intro}</p>}
+                  {s.type === 'checks' && (
+                    <ul class={`lp-checks${group.length > 1 ? ' lp-checks-card' : ' lp-checks-solo'}`}>{s.items.map((item) => <li>{item}</li>)}</ul>
+                  )}
+                  {s.type === 'tiles' && (
+                    <ul class="lp-tiles">
+                      {s.items.map((t, i) => (
+                        <li>
+                          {t.icon && icons[t.icon]
+                            ? <span class="lp-tile-icon"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icons[t.icon]} /></span>
+                            : <span class="lp-tile-n">{String(i + 1).padStart(2, '0')}</span>}
+                          <h3>{t.title}</h3>
+                          <p>{t.text}</p>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  {s.type === 'steps' && (
+                    <ol class="lp-steps">
+                      {s.items.map((step) => (
+                        <li>
+                          <h3>{step.title}</h3>
+                          <p>{step.text}</p>
+                        </li>
+                      ))}
+                    </ol>
+                  )}
+                  {s.type === 'links' && (
+                    <ul class="lp-cards">
+                      {s.items.map((item) => (
+                        <li>
+                          {landing.staticCards ? (
+                            <div class="lp-card">
+                              <div class="lp-card-art"><ServiceArt slug={slugOf(item.href)} /></div>
+                              <h3>{item.title}</h3>
+                              <p>{item.text}</p>
+                            </div>
+                          ) : (
+                            <a class="lp-card lp-card-link" href={item.href}>
+                              <div class="lp-card-art"><ServiceArt slug={slugOf(item.href)} /></div>
+                              <h3>{item.title}</h3>
+                              <p>{item.text}</p>
+                              <span class="lp-card-more" aria-hidden="true">Подробнее →</span>
+                            </a>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  {s.type === 'text' && <p class="lp-text">{s.text}</p>}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+        {clientsAfter > 0 && bi === clientsAfter - 1 && <ClientsStrip />}
+      </>
     ))}
 
     <section class="lp-sec lp-faq-sec">
