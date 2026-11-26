@@ -319,7 +319,8 @@
 .lp-clients-label { font-size: var(--fs-label); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
 .lp-clients .clients-row { margin: 0; flex: 1; min-width: 0; }
 
-.lp-sec { padding: clamp(40px, 5.5vw, 76px) var(--gutter); }
+.lp-sec { padding: clamp(28px, 3.6vw, 48px) var(--gutter); }
+.lp-perks + .lp-offer { margin-top: 48px; }
 .lp-sec-alt { background: var(--bg-alt); }
 .lp-sec h2 { font-weight: 600; font-size: var(--fs-h2); line-height: 1.2; letter-spacing: -0.02em; margin: 0 0 clamp(20px, 2.6vw, 32px); color: var(--ink); }
 .lp-intro, .lp-text { font-size: var(--fs-body); line-height: 1.6; color: var(--ink-soft); max-width: 70ch; margin: -8px 0 24px; }
