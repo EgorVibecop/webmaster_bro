@@ -1,5 +1,5 @@
 ---
-// Полоса «Клиенты и партнеры» для посадочных: логотипы одной площади, чтобы Novartis не был огромным, а форум крошечным.
+// Полоса «Клиенты и партнеры» для посадочных: бегущая строка, логотипы одной площади, чтобы Novartis не был огромным, а форум крошечным.
 import { clients } from '../data/clients.js';
 const sizeOf = (c: any) => {
   const r = c.w / c.h;
@@ -8,19 +8,26 @@ const sizeOf = (c: any) => {
   if (h > 48) { h = 48; w = h * r; }
   return { w: Math.round(w), h: Math.round(h) };
 };
+const row = Array.from({ length: 3 }, () => clients).flat();
 ---
 <section class="lp-clients" aria-label="Клиенты и партнеры">
   <div class="lp-in">
     <div class="lp-clients-label">Клиенты и партнеры</div>
-    <ul class="clients-row">
-      {clients.map((c) => {
-        const z = sizeOf(c);
-        return (
-          <li class={c.opaque ? 'opaque' : undefined}>
-            <img src={`/clients/${c.file}`} alt={c.name} width={z.w} height={z.h} loading="lazy" decoding="async" />
-          </li>
-        );
-      })}
-    </ul>
+  </div>
+  <div class="lp-marquee">
+    <div class="lp-marquee-track">
+      {[0, 1].map((g) => (
+        <ul class="lp-marquee-group" aria-hidden={g === 1 ? 'true' : undefined}>
+          {row.map((c, i) => {
+            const z = sizeOf(c);
+            return (
+              <li class={[c.opaque ? 'opaque' : '', i >= clients.length ? 'dup' : ''].join(' ').trim() || undefined}>
+                <img src={`/clients/${c.file}`} alt={g === 0 && i < clients.length ? c.name : ''} width={z.w} height={z.h} loading="lazy" decoding="async" />
+              </li>
+            );
+          })}
+        </ul>
+      ))}
+    </div>
   </div>
 </section>

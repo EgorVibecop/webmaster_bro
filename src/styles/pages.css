@@ -428,3 +428,24 @@
   60%, 100% { left: 130%; }
 }
 @media (prefers-reduced-motion: reduce) { .lp-offer, .lp-offer::before, .lp-offer::after { animation: none; } }
+
+/* ===== Клиенты на посадочных: бегущая строка ===== */
+.lp-clients { padding: 28px 0 30px; overflow: hidden; }
+.lp-clients .lp-in { padding: 0 var(--gutter); display: block; }
+.lp-clients-label { text-align: center; }
+.lp-marquee { margin-top: 20px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.lp-marquee-track { display: flex; width: max-content; animation: lp-marquee 60s linear infinite; }
+@media (hover: hover) { .lp-marquee:hover .lp-marquee-track { animation-play-state: paused; } }
+.lp-marquee.off-screen .lp-marquee-track { animation-play-state: paused; }
+.lp-marquee-group { list-style: none; margin: 0; padding: 0; display: flex; flex: none; align-items: center; }
+.lp-marquee-group li { flex: none; padding-right: clamp(48px, 7vw, 100px); }
+.lp-marquee-group img { display: block; max-width: none; height: auto; filter: grayscale(1); opacity: .8; transition: filter .2s ease, opacity .2s ease; }
+.lp-marquee-group li.opaque img { mix-blend-mode: multiply; }
+@media (hover: hover) { .lp-marquee-group li:hover img { filter: none; opacity: 1; } }
+@keyframes lp-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .lp-marquee { -webkit-mask-image: none; mask-image: none; }
+  .lp-marquee-track { animation: none; width: auto; }
+  .lp-marquee-group[aria-hidden="true"], .lp-marquee-group li.dup { display: none; }
+  .lp-marquee-group { flex-wrap: wrap; justify-content: center; gap: 18px 0; padding: 0 var(--gutter); }
+}
