@@ -8,22 +8,26 @@ interface Props {
   heading?: string;
   subheading?: string;
   presetService?: string;
+  hideDeadline?: boolean;
 }
 const {
   heading = 'Расскажите о задаче',
   subheading,
   presetService,
+  hideDeadline = false,
 } = Astro.props;
 ---
 <section id="contact" class="contact">
   <div class="contact-grid">
     <div class="contact-info" id="contact-head">
       <h2>{heading}</h2>
-      <p class="contact-subheading">{subheading || 'Предложим метод, выборку и сроки под вашу задачу и бюджет.'}</p>
+      {subheading && <p class="contact-subheading">{subheading}</p>}
       <ul class="contact-direct">
         <li><span class="contact-direct-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span><div><small>Телефон</small><a href="tel:+79774437588">+7 977 443-75-88</a></div></li>
         <li><span class="contact-direct-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><div><small>Почта</small><a href="mailto:info@baikalresearch.ru">info@baikalresearch.ru</a></div></li>
+        {!hideDeadline && (
         <li><span class="contact-direct-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><small>Срок ответа</small><strong>В течение рабочего дня</strong></div></li>
+        )}
       </ul>
     </div>
     <div class="contact-form-col">
