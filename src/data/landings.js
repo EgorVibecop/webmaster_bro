@@ -151,7 +151,7 @@ export const landings = [
           { href: '/uslugi/custdev-glubinnye-intervyu/', title: 'Глубинные интервью и кастдев', text: 'Беседы с текущими и потенциальными клиентами: мотивы, барьеры, критерии выбора.' },
           { href: '/uslugi/produktovye-issledovaniya/', title: 'Продуктовое исследование', text: 'Определение ценности и сценариев использования продукта до запуска и после.' },
           { href: '/uslugi/usability-testirovanie/', title: 'Юзабилити-тестирование', text: 'Изучение пользовательского пути в готовом продукте или прототипе.' },
-          { href: '/uslugi/strategiya-i-analiz-rynka/', title: 'Стратегия и анализ рынка', text: 'Выбор ниши и приоритетных клиентов, план действий.' },
+          { href: '/uslugi/strategiya-i-analiz-rynka/', title: 'Стратегия и анализ рынка', text: 'Выбор ниши и построение стратегии на месяцы и годы.' },
         ],
       },
       {
