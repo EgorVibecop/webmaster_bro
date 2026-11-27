@@ -15,19 +15,13 @@
 .dive-probe svg { display: block; width: 100%; height: 100%; overflow: visible; }
 .dive-probe circle:first-child { fill: none; }
 .dive-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: clamp(32px, 4.5vw, 52px); }
-.dive-step { position: relative; }
+.dive-step { position: relative; min-height: clamp(96px, 14vh, 150px); }
 .dive-dot { position: absolute; left: -64px; top: 0; width: 32px; height: 32px; display: grid; place-items: center; border-radius: 50%; background: var(--night); border: 2px solid var(--dark-line); color: var(--dark-label); font-size: var(--fs-small); font-weight: 600; transition: border-color .35s ease, color .35s ease, background .35s ease, box-shadow .35s ease; }
 .dive-meta { margin-bottom: 6px; color: var(--dark-label); font-size: var(--fs-label); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; font-variant-numeric: tabular-nums; }
 .dive-step h3 { margin-bottom: 8px; color: #FFFFFF; font-size: var(--fs-h3); font-weight: 600; transition: color .35s ease; }
-.dive-step p { color: var(--on-night-soft); font-size: var(--fs-body); line-height: 1.6; transition: color .35s ease; }
 .dive-js .dive-step:not(.reached) h3 { color: #C3D2DE; }
-.dive-js .dive-step:not(.reached) p { color: #9DB1C1; }
 .dive-step.reached .dive-dot { background: var(--accent-text-hover); border-color: #5CC4F2; color: #FFFFFF; box-shadow: 0 0 0 6px rgba(56, 189, 248, .15), 0 0 20px rgba(56, 189, 248, .5); }
 
-.dive-foot { margin-top: 12px; padding-top: 22px; border-top: 1px solid rgba(255, 255, 255, .1); display: flex; flex-direction: column; gap: 14px; }
-.dive-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-.dive-chips span { padding: 6px 14px; border: 1px solid rgba(255, 255, 255, .18); border-radius: 999px; color: var(--on-night); font-size: var(--fs-small); }
-.dive-chips .dive-chips-label { padding: 0 6px 0 0; border: none; color: var(--dark-label); font-size: var(--fs-label); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
 
 @media (max-width: 880px) {
   .dive-wrap { grid-template-columns: 1fr; gap: 36px; }

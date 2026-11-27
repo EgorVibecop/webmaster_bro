@@ -9,10 +9,10 @@ import { clients } from '../data/clients.js';
 
 
 const dive = [
-  { depth: '0 м', m: 0, title: 'Бриф и методология', desc: 'Обсуждаем задачу, предлагаем метод и выборку, фиксируем сроки и стоимость. Чтобы найти причины и барьеры, часто хватает 10–15 интервью, чтобы оценить долю с погрешностью около 5%, нужен опрос примерно на 400 человек.' },
-  { depth: '120 м', m: 120, title: 'Сбор данных', desc: 'CATI/CAWI-опрос, интервью или тестирование по согласованному сценарию. Следим за качеством рекрута.' },
-  { depth: '600 м', m: 600, title: 'Анализ', desc: 'В опросах считаем статистику и проверяем данные на искажения, в интервью выделяем причины и барьеры. Наблюдения сверяем с аналитикой, чтобы выводы опирались на оба источника.' },
-  { depth: '1 642 м', m: 1642, title: 'Отчет с рекомендациями', desc: 'Что делать в первую очередь, на каких данных это основано и какие у выводов ограничения.' },
+  { depth: '0 м', m: 0, title: 'Брифинг' },
+  { depth: '120 м', m: 120, title: 'Сбор данных' },
+  { depth: '600 м', m: 600, title: 'Анализ' },
+  { depth: '1 642 м', m: 1642, title: 'Презентация отчета и внедрение результатов' },
 ];
 
 
@@ -120,10 +120,6 @@ const jsonLd = {
       <div class="dive-side">
         <h2 class="dive-eyebrow" id="dive-title">Глубина погружения</h2>
         <div class="dive-depth" aria-hidden="true"><span id="dive-num">1 642</span><small>м</small></div>
-        <div class="dive-foot">
-        <div class="dive-chips"><span class="dive-chips-label">Работаем с</span><span>юрлицами</span><span>ИП</span><span>физлицами</span></div>
-        <div class="dive-chips"><span class="dive-chips-label">Оплата</span><span>предоплата</span><span>по этапам</span><span>после сдачи</span></div>
-        </div>
         <p class="dive-fact">Байкал – самое глубокое озеро планеты. Мы проводим deep dive – собираем не поверхностные выводы, а глубокую аналитику.</p>
       </div>
       <div class="dive-track">
@@ -134,7 +130,6 @@ const jsonLd = {
             <span class="dive-dot" aria-hidden="true">{i + 1}</span>
             <div class="dive-meta">{step.depth}</div>
             <h3>{step.title}</h3>
-            <p>{step.desc}</p>
           </li>
         ))}
       </ol>
