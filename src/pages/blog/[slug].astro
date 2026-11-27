@@ -30,7 +30,7 @@ const graph: any[] = [
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Главная', item: `${SITE}/` },
-      { '@type': 'ListItem', position: 2, name: 'Блог', item: `${SITE}/blog/` },
+      { '@type': 'ListItem', position: 2, name: 'База знаний', item: `${SITE}/blog/` },
       { '@type': 'ListItem', position: 3, name: data.title, item: url },
     ],
   },
@@ -73,7 +73,7 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
   <main class="page article">
     <nav class="breadcrumbs" aria-label="Хлебные крошки">
       <a href="/">Главная</a><span aria-hidden="true">/</span>
-      <a href="/blog/">Блог</a><span aria-hidden="true">/</span>
+      <a href="/blog/">База знаний</a><span aria-hidden="true">/</span>
       <span aria-current="page">{data.title}</span>
     </nav>
 

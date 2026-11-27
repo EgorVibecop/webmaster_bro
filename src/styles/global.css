@@ -216,12 +216,12 @@ img, svg { display: block; max-width: 100%; }
 .nps-scale {
   display: flex; align-items: center; gap: clamp(14px, 2.5vw, 26px);
   font-family: var(--font); font-weight: 600;
-  font-size: clamp(44px, 6vw, 76px); line-height: 1; white-space: nowrap;
+  font-size: clamp(88px, 12vw, 168px); line-height: 1; white-space: nowrap;
 }
 .nps-from { color: var(--dark-label); }
 .nps-to { color: var(--accent); }
 .nps-arrow { color: var(--accent); flex-shrink: 0; width: clamp(36px, 4.5vw, 60px); height: auto; }
-.nps-card .headline { font-size: var(--fs-small); color: var(--bg); font-weight: 400; }
+.nps-card .headline { font-size: var(--fs-h3); color: var(--bg); font-weight: 400; }
 .nps-card .fine-print { font-size: var(--fs-small); line-height: 1.6; color: var(--on-night-soft); }
 
 /* Contact */
