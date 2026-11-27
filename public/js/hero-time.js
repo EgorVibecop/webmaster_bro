@@ -7,7 +7,7 @@
   root.setAttribute('data-hero', night ? 'night' : 'day');
   root.classList.add('hero-js');
   var name = night ? 'night' : 'day';
-  var ver = (document.currentScript && document.currentScript.getAttribute('data-v')) || 'v3';
+  var ver = (document.currentScript && document.currentScript.getAttribute('data-v')) || 'v4';
   var mobile = window.matchMedia && window.matchMedia('(max-width: 700px)').matches;
   var link = document.createElement('link');
   link.rel = 'preload';
