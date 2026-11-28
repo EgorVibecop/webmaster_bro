@@ -366,7 +366,8 @@
 .lp-final p { margin: 0; max-width: 56ch; color: var(--on-night); font-size: var(--fs-body); line-height: 1.6; }
 .lp-final-phone { display: inline-block; margin-top: 18px; color: #fff; font-size: clamp(26px, 3.4vw, 38px); font-weight: 600; letter-spacing: -0.01em; text-decoration: none; white-space: nowrap; }
 .lp-final-phone:hover, .lp-final-mail:hover { color: #5CC4F2; }
-.lp-final-contacts { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 28px; margin-top: 18px; }
+.lp-final-contacts { display: none; flex-wrap: wrap; align-items: baseline; gap: 6px 28px; margin-top: 18px; }
+@media (max-width: 1180px) { .lp-final-contacts { display: flex; } }
 .lp-final-contacts .lp-final-phone { margin-top: 0; }
 .lp-final-mail { color: var(--on-night); font-size: clamp(18px, 2.2vw, 24px); font-weight: 500; text-decoration: none; overflow-wrap: anywhere; }
 
